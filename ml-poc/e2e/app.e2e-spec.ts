@@ -1,10 +1,10 @@
-import { MlPocPage } from './app.po';
+import { TimeAppPage } from './app.po';
 
-describe('ml-poc App', () => {
-  let page: MlPocPage;
+describe('time-app App', () => {
+  let page: TimeAppPage;
 
   beforeEach(() => {
-    page = new MlPocPage();
+    page = new TimeAppPage();
   });
 
   it('should display welcome message', () => {

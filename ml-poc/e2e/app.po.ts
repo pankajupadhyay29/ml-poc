@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class MlPocPage {
+export class TimeAppPage {
   navigateTo() {
     return browser.get('/');
   }
