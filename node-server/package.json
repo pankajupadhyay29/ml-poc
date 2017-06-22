@@ -1,0 +1,12 @@
+{
+  "name": "ml-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./ml-server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "lodash": "^4.17.4"
+  }
+}
