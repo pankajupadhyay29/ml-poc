@@ -48,7 +48,7 @@
         {{column.name}}
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
-        <i class="material-icons" (click)="onAction()">edit</i>
+        <i class="material-icons" md-button (click)="openDialog()">edit</i>
         <i class="material-icons" (click)="onAction()">delete</i>
       </ng-template>
     </ngx-datatable-column>
