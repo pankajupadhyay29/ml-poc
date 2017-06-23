@@ -1,0 +1,11 @@
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+ul.menu-list{
+  padding: 0;
+  list-style: none;
+}
+.menu-list li{
+  display: block; 
+}
