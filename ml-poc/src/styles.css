@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@import './icomoon/style.css';
+.icon-appserver:before {    
+    color: red;
+}
+.icon-appserver:before {
+  color: red;
+}
+.icon-Clusters:before {
+  color: red;
+}
+.icon-databases:before {
+  color: red;
+}
+.icon-forest:before {
+  color: red;
+}
+.icon-Group:before {
+  color: red;
+}
+.icon-help:before {
+  color: red;
+}
+.icon-home:before {
+  color: red;
+}
+.icon-host:before {
+  color: red;
+}
+.icon-menu:before {
+  color: red;
+}
+.icon-security:before {
+  color: red;
+}
+.icon-Shape:before {
+  color: red;
+}
+.icon-user:before {
+  color: red;
+}
