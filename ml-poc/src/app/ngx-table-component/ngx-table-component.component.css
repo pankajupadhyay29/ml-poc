@@ -1,3 +1,25 @@
-.tableHeader .tHeader{
+.tableHeader{
 background-color: purple;
 }
+
+.title{
+    background-color: #9966ff;
+    -webkit-text-fill-color: white;
+}
+
+.attach-forest{
+    display: flex;
+      align-items: flex-end;
+  margin-bottom: 40px;
+
+}
+
+.attach-existing{
+    width: 175px;
+    height: 90px;
+    border: 2px dotted grey;
+    border-radius: 12px;
+    text-align: center;
+    align-items: flex-end;
+
+    }
