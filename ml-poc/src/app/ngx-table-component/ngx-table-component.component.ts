@@ -1,8 +1,10 @@
 
+
 import { Component, OnInit, Input, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import {MdDialog, MdDialogRef} from '@angular/material';
+
 
 
 @Component({
@@ -17,8 +19,8 @@ export class NgxTableComponentComponent implements OnInit {
   @Input() rows: Array<Object>;
   selectedOption: string;
   constructor(vcRef: ViewContainerRef, public modal: Modal,overlay:Overlay ,public dialog: MdDialog) {
-    //  modal.defaultViewContainer = vcRef;
-  }
+}
+
 
   ngOnInit() {
     console.log(this.rows);
@@ -56,6 +58,7 @@ onClick() {
   }
 
 }
+
 
 
 @Component({
