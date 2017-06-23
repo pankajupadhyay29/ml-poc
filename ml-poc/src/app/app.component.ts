@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { MenuComponent } from './menu/menu.component'
+import { MenuComponent } from './menu/menu.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-root',

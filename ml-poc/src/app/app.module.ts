@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
+import { HeaderComponent } from './header/header.component';
 import { MenuService } from './menu.service';
 import { ProductComponent } from './product/product.component';
 import { MembersComponent } from './members/members.component';
@@ -16,6 +17,7 @@ import { MembersComponent } from './members/members.component';
   declarations: [
     AppComponent,
     MenuComponent,
+    HeaderComponent,
     MdGridList,
     MdGridTile,
     ProductComponent,
