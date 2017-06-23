@@ -8,6 +8,16 @@
         [columns]="columns">
       </ngx-datatable>
     </div>-->
+<div  style="width: 100%">
+  <div  style="display:inline">
+    <input type="text" placeholder="Search database" [(ngModel)]="trainingSearchTerm" (ngModelChange)="filterDb($event)"><i class="material-icons prefix">search</i>
+  </div>
+  <div style="float:right">
+    <button>Create Database</button>
+
+  </div>
+</div>
+
 
 <div class="tableHeader">
   <ngx-datatable class="material tableHeader" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="'auto'" [limit]="10">
@@ -49,9 +59,9 @@
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
 
-        <i class="material-icons" md-button (click)="openDialog()">edit</i>
-        <i class="material-icons" (click)="onClick()">edit</i>
-        <i class="material-icons" (click)="onAction()">delete</i>
+        <i class="fa fa-paperclip" md-button (click)="openDialog()"></i>
+        <i class="fa fa-pencil fa-fw" (click)="onClick()"></i>
+        <i class="fa fa-cog fa-fw" (click)="onAction()"></i>
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>

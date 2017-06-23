@@ -2,9 +2,10 @@ import { NgxTableComponentComponent } from './ngx-table-component/ngx-table-comp
 //import {DataTableModule,SharedModule} from 'primeng/primeng';
 
 
-import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component, ViewContainerRef, ViewEncapsulation ,OnInit} from '@angular/core';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { MlDbServicesService } from "app/ml-db-services.service";
 
 @Component({
   selector: 'app-root',
@@ -12,21 +13,30 @@ import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
   providers: [Modal],
   
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+ 
   title = 'app';
-  rows = [
-       { DatabaseName: 'App Services', RelatedDatabases: 'Security', Forests: 'App Services', AppServers: 'Manage HTTP' },
-       { DatabaseName: 'App Services', RelatedDatabases: 'Security', Forests: 'App Services', AppServers: 'Manage HTTP' },
-       { DatabaseName: 'App Services', RelatedDatabases: 'Security', Forests: 'App Services', AppServers: 'Manage HTTP' }
-     ];
+  rows:any;
+ 
 
-     Edit() :void{
-       console.log('Edit');
-     }
-    // 
-  constructor(vcRef: ViewContainerRef, public modal: Modal, Overlay: Overlay) {
-    // modal.overlay.defaultViewContainer = vcRef;
+  constructor(private dbService:MlDbServicesService) {
+  }
+
+   ngOnInit(): void {
+      this.rows = [
+       { DatabaseName: 'App ervices', RelatedDatabases: 'Security', Forests: 'App Services', AppServers: 'Manage HTTP' },
+       { DatabaseName: 'App Serices', RelatedDatabases: 'Security', Forests: 'App Services', AppServers: 'Manage HTTP' },
+       { DatabaseName: 'pp Services', RelatedDatabases: 'Security', Forests: 'App Services', AppServers: 'Manage HTTP' }
+     ];
+    this.getdatabases();
   }
    
-  
+  getdatabases(){
+    this.dbService.getDbList().subscribe(result=>{
+      console.log(result);
+     // this.rows = result;
+      //console.log(this.rows);
+    });
+    
+  }
 }

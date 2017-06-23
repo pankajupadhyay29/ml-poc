@@ -2,7 +2,7 @@
 import { Component, OnInit, Input, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-ngx-table-component',
@@ -13,15 +13,33 @@ import {MdDialog, MdDialogRef} from '@angular/material';
 
 })
 export class NgxTableComponentComponent implements OnInit {
+  temp: Array<Object>;
   @Input() rows: Array<Object>;
   selectedOption: string;
-  constructor(vcRef: ViewContainerRef, public modal: Modal,overlay:Overlay ,public dialog: MdDialog) {
-}
+  trainingSearchTerm: string;
+  constructor(vcRef: ViewContainerRef, public modal: Modal, overlay: Overlay, public dialog: MdDialog) {
+  }
 
 
   ngOnInit() {
+    this.temp = this.rows;
+    this.trainingSearchTerm = '';
     console.log(this.rows);
   }
+
+  filterDb(event) {
+    
+    this.trainingSearchTerm = this.trainingSearchTerm || '';
+      const val = this.trainingSearchTerm.toLowerCase();
+      if (this.temp) {
+      const tempdata = this.temp.filter(function (d) {
+        return d['DatabaseName'].toLowerCase().indexOf(val) !== -1 || !val;
+      });
+      // update the rows
+      this.rows = tempdata;
+      }
+  }
+
 
 
   openDialog() {
@@ -31,28 +49,28 @@ export class NgxTableComponentComponent implements OnInit {
     });
   }
 
-  onAction():void{
+  onAction(): void {
     console.log('here');
   }
 
-onClick() {
-    this.modal.alert()
-        .size('lg')
-        .showClose(true)
-        .title('A simple Alert style modal window')
-        .body(`
-            <h4>Alert is a classic (title/body/footer) 1 button modal window that 
-            does not block.</h4>
-            <b>Configuration:</b>
-            <ul>
-                <li>Non blocking (click anywhere outside to dismiss)</li>
-                <li>Size large</li>
-                <li>Dismissed with default keyboard key (ESC)</li>
-                <li>Close wth button click</li>
-                <li>HTML content</li>
-            </ul>`)
-        .open();
-  }
+  // onClick() {
+  //     this.modal.alert()
+  //         .size('lg')
+  //         .showClose(true)
+  //         .title('A simple Alert style modal window')
+  //         .body(`
+  //             <h4>Alert is a classic (title/body/footer) 1 button modal window that 
+  //             does not block.</h4>
+  //             <b>Configuration:</b>
+  //             <ul>
+  //                 <li>Non blocking (click anywhere outside to dismiss)</li>
+  //                 <li>Size large</li>
+  //                 <li>Dismissed with default keyboard key (ESC)</li>
+  //                 <li>Close wth button click</li>
+  //                 <li>HTML content</li>
+  //             </ul>`)
+  //         .open();
+  //   }
 
 
 }
@@ -63,5 +81,5 @@ onClick() {
   templateUrl: './dialog-result-example-dialog.html',
 })
 export class DialogResultExampleDialog {
-  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
+  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) { }
 }

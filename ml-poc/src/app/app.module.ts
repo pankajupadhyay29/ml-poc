@@ -6,6 +6,7 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import {MaterialModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpModule }    from '@angular/http';
+import { FormsModule } from '@angular/forms';
 //import {DataTableModule,SharedModule} from 'primeng/primeng';     //accordion and accordion tab
 //import {MenuItem} from 'primeng/primeng';
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -32,7 +33,8 @@ import { MlDbServicesService } from "app/ml-db-services.service";
     BootstrapModalModule,
     MaterialModule,
     BrowserAnimationsModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [MlDbServicesService],
   bootstrap: [AppComponent,DialogResultExampleDialog]
