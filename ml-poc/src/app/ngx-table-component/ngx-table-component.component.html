@@ -10,9 +10,9 @@
     </div>-->
 
 <div>
-  <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+  <ngx-datatable class="material tableHeader" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="'auto'" [limit]="10">
     <ngx-datatable-column name="Database Name">
-      <ng-template let-column="column" ngx-datatable-header-template>
+      <ng-template style="color:darkviolet;" let-column="column" ngx-datatable-header-template>
         {{column.name}}
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
@@ -20,7 +20,7 @@
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Related Databases">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+      <ng-template class="tHeader" let-column="column" let-sort="sortFn" ngx-datatable-header-template>
         <span>{{column.name}}</span>
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
@@ -28,7 +28,7 @@
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Forests">
-      <ng-template let-column="column" ngx-datatable-header-template>
+      <ng-template class="tHeader" let-column="column" ngx-datatable-header-template>
         {{column.name}}
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
@@ -36,7 +36,7 @@
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="App Servers">
-      <ng-template let-column="column" ngx-datatable-header-template>
+      <ng-template class="tHeader" let-column="column" ngx-datatable-header-template>
         {{column.name}}
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
@@ -44,7 +44,7 @@
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Action">
-      <ng-template let-column="column" ngx-datatable-header-template>
+      <ng-template class="tHeader" let-column="column" ngx-datatable-header-template>
         {{column.name}}
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
