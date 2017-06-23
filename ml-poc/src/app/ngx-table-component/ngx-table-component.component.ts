@@ -1,11 +1,8 @@
 
-
 import { Component, OnInit, Input, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import {MdDialog, MdDialogRef} from '@angular/material';
-
-
 
 @Component({
   selector: 'app-ngx-table-component',
@@ -57,8 +54,8 @@ onClick() {
         .open();
   }
 
-}
 
+}
 
 
 @Component({
