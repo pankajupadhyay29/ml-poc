@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MenuService } from './menu.service';
 import { ProductComponent } from './product/product.component';
 import { MembersComponent } from './members/members.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MembersComponent } from './members/members.component';
     MdGridTile,
     ProductComponent,
     MembersComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

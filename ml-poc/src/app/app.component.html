@@ -7,7 +7,9 @@
   >
     <div [ngSwitch]="tile.text">
       <side-menu *ngSwitchCase="'Menu'"></side-menu>
-      <router-outlet *ngSwitchCase="'Content'"></router-outlet>
+      <!--<router-outlet *ngSwitchCase="'Content'"></router-outlet>-->
+            <app-dashboard *ngSwitchCase="'content'"></app-dashboard>
+
       <div *ngSwitchDefault>{{tile.text}}</div>
     </div>
 

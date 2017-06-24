@@ -12,6 +12,10 @@ export class AppComponent {
   tiles = [
   {text: 'Top', cols: 12, rows: 1, color: 'lightblue'},
   {text: 'Menu', cols: 1, rows: 9, color: 'lightgreen' },
-  {text: 'Content', cols: 11, rows: 9, color: 'lightpink'},
+  {text: 'Content1', cols: 6, rows: 5, color: 'lightpink'},
+  {text: 'Content2', cols: 5, rows: 3, color: 'lightpink'},
+  {text: 'Content3', cols: 5, rows: 3, color: 'lightpink'},
+  {text: 'Content4', cols: 6, rows: 4, color: 'lightpink'},
+  {text: 'Content5', cols: 5, rows: 3, color: 'lightpink'}
 ];
 }
