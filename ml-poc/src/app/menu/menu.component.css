@@ -1,11 +1,21 @@
-.flex-column{
-  display: flex;
-  flex-direction: column;
+.menu-icon{
+  font-size: 32px;
+  margin-right: 10px;
 }
-ul.menu-list{
-  padding: 0;
-  list-style: none;
+
+#sidebar {
+  position: relative;
+  height: 100%;
+  overflow:hidden;
 }
-.menu-list li{
-  display: block; 
+
+#sidebar.expended{
+  min-width: 175px;
+}
+
+#sidebar .list-group-item {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
 }

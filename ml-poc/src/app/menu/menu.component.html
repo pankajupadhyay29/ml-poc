@@ -1,4 +1,17 @@
-<ul class='menu-list flex-column'>
-  <li class='icon-expand'></li>  
-  <li *ngFor="let menu of menuList" class='icon-{{menu}}'>{{menu}}</li>
-</ul>
+<div id="sidebar" [ngClass]="{'expended': isExpended}">
+  <ul class='nav list-group'>
+    <li>
+      <a (click)="toggle($event)" class="list-group-item">
+        <span *ngIf="!isExpended" class='menu-icon icon-menu'></span>
+        <span *ngIf="isExpended" class='menu-icon icon-close'>X</span>
+      </a>
+    </li>  
+    <li *ngFor="let menu of menuList">
+      <a [routerLink]="[menu.url]" class="list-group-item">
+        <span class='menu-icon icon-{{menu.name}}'></span>
+        <span *ngIf="isExpended">{{menu.text}}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+

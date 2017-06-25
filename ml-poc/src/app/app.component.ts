@@ -1,17 +1,30 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { MenuService } from './menu.service';
 import { MenuComponent } from './menu/menu.component'
+import { LayoutService } from './layout.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'app';
-  tiles = [
-  {text: 'Top', cols: 12, rows: 1, color: 'lightblue'},
-  {text: 'Menu', cols: 1, rows: 9, color: 'lightgreen' },
-  {text: 'Content', cols: 11, rows: 9, color: 'lightpink'},
-];
+export class AppComponent implements OnInit  {
+  menuList =  [];
+  tiles= [];
+  isExpended = false;
+
+  constructor(private menuService: MenuService, private layoutService: LayoutService){
+
+  }
+
+  ngOnInit(){
+    this.menuList = this.menuService.getMenus()
+    this.tiles = this.layoutService.getMainLayout();
+  }
+
+  onMenuToggle(isExpended){
+    this.isExpended= isExpended;
+  }
+
+  title = 'app';  
 }
