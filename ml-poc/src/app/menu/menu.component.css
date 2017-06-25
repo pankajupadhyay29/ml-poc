@@ -11,6 +11,7 @@
 
 #sidebar.expended{
   min-width: 175px;
+
 }
 
 #sidebar .list-group-item {
@@ -18,4 +19,12 @@
   border-left: 0;
   border-right: 0;
   border-top: 0;
+  background: #3c3a3a;
+  color: white;
+    
 }
+
+ #navigation a:hover{
+  background:#a80404;
+  color: #fff;
+ }

@@ -7,10 +7,12 @@
       </a>
     </li>  
     <li *ngFor="let menu of menuList">
+      <div id="navigation">
       <a [routerLink]="[menu.url]" class="list-group-item">
         <span class='menu-icon icon-{{menu.name}}'></span>
-        <span *ngIf="isExpended">{{menu.text}}</span>
+        <span *ngIf="isExpended">{{menu.text}}</span>        
       </a>
+      </div>
     </li>
   </ul>
 </div>
