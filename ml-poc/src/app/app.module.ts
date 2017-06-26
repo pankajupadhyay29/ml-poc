@@ -16,6 +16,7 @@ import { DatabaseService } from './database.service';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatabaseComponent } from './database/database.component';
+import { WidgetComponent } from './widget/widget.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DatabaseComponent } from './database/database.component';
     HeaderComponent,
     DashboardComponent,
     DatabaseComponent,
+    WidgetComponent,
   ],
   imports: [
     BrowserModule,
