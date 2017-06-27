@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatabaseComponent } from './database/database.component';
 import { WidgetComponent } from './widget/widget.component';
+import { CreateDbComponent } from './create-db/create-db.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { WidgetComponent } from './widget/widget.component';
     DashboardComponent,
     DatabaseComponent,
     WidgetComponent,
+    CreateDbComponent,
 
   ],
   imports: [
@@ -46,6 +48,10 @@ import { WidgetComponent } from './widget/widget.component';
     {
       path: 'database',
       component: DatabaseComponent
+    },
+    {
+      path: 'create_database',
+      component: CreateDbComponent
     }    
     ])
   ],
