@@ -1,11 +1,13 @@
 .menu-icon{
-  font-size: 32px;
-  margin-right: 10px;
+  font-size: 24px;
+}
+
+.menu-text{
+  margin-left: 10px;
 }
 
 #sidebar {
-  position: relative;
-  height: 100%;
+  position: relative;  
   overflow:hidden;
 }
 
@@ -18,4 +20,14 @@
   border-left: 0;
   border-right: 0;
   border-top: 0;
+  background: inherit;
+}
+
+.navigation a{
+  color: #fff;
+}
+
+.navigation a:hover {
+  background:#a80404;
+  color: #fff;
 }
