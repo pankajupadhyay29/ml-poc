@@ -3,8 +3,9 @@
     width: 100%; 
 }
 #sidebar-wrapper {
-    height: 100%;    
-    border-right: 1px solid gray;
+  background: #3c3a3a;
+  color: #fff;  
+  border-right: 1px solid gray;
 }
 #header{
   border-bottom: 1px solid gray;

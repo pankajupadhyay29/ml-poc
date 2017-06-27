@@ -6,10 +6,10 @@
         <span *ngIf="isExpended" class='menu-icon icon-close' style="color:white">X</span>
       </a>
     </li>  
-    <li *ngFor="let menu of menuList">
+    <li *ngFor="let menu of menuList" class="navigation">
       <a [routerLink]="[menu.url]" class="list-group-item">
         <span class='menu-icon icon-{{menu.name}}'></span>
-        <span *ngIf="isExpended">{{menu.text}}</span>
+        <span *ngIf="isExpended" class="menu-text">{{menu.text}}</span>
       </a>
     </li>
   </ul>
