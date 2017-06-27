@@ -1,4 +1,38 @@
 @import './icomoon/style.css';
-[class^="icon-"]:before, [class*=" icon-"]:before {    
-    color: inherit;
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  color: inherit;
 }
+
+ul{
+  padding: 0;
+  list-style: none;
+}
+li{
+  display: block; 
+}
+/*
+body {
+  padding-top: 50px;
+  overflow: hidden;
+}
+
+@media (max-width: 992px) {
+  body {
+    padding-top: 0px;
+  }
+}
+*/
+.flex-column, .flex-row{
+  display: flex;  
+  width: 100%;
+}
+
+.flex-column{
+  flex-direction: column;
+}
+
+.flex-row{
+  flex-direction: row;
+}
+
+

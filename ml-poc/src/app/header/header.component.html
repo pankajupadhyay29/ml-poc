@@ -1,6 +1,30 @@
-<div class="row">
-         <div class="col m10 center"><img src="images/yuna.jpg" alt="" class=" icon-Group responsive-img"> </div>
-         <div class="col m1  center"><i class="material-icons" style="margin-top:10px">help_outline</i> Help</div>
-         <div class="col m1 center"><i class="material-icons" style="margin-top:10px">person</i> Hi, {{username}}</div>
-         
-      </div>
+<div class="flex-row">  
+  <a class="navbar-brand" href="#">
+    <img style="width:100px;" src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Marklogic-logo.PNG">
+  </a>
+  <nav class="flex-row">
+    <ul class="nav navbar-nav flex-row">
+      <li>
+        <a href="#">Navbar Item 1</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navbar Item 2<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Navbar Item2 - Sub Item 1</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Navbar Item 3</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+      <li class="dropdown">
+        <a href="#" id="nbAcctDD" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Username<i class="icon-sort-down"></i></a>
+        <ul class="dropdown-menu pull-right">
+          <li><a href="#">Log Out</a></li>
+        </ul>
+      </li>
+    </ul>
+</nav>
+</div>
+

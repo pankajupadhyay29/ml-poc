@@ -1,11 +1,30 @@
-.flex-column{
-  display: flex;
-  flex-direction: column;
+.menu-icon{
+  font-size: 32px;
+  margin-right: 10px;
 }
-ul.menu-list{
-  padding: 0;
-  list-style: none;
+
+#sidebar {
+  position: relative;
+  height: 100%;
+  overflow:hidden;
 }
-.menu-list li{
-  display: block; 
+
+#sidebar.expended{
+  min-width: 175px;
+  -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+#sidebar .list-group-item {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+
+.list-group-item{
+background: #333;
+color: white;
 }

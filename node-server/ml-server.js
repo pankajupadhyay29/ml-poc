@@ -49,6 +49,13 @@ var DBList = [
   { id: 10, name: 'Triggers',     isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas',   id: 8, relation: dbRelation.schemas },],                                                                forests: [{ name: 'Triggers',     id: 10 }], },
 ]
 
+app.use(function(req, res, next) {
+  console.log('test')
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 app.get('/dblist', function (req, res) {
   res.end(JSON.stringify(DBList));
 })
