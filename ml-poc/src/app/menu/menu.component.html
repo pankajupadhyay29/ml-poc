@@ -2,8 +2,8 @@
   <ul class='nav list-group'>
     <li>
       <a (click)="toggle($event)" class="list-group-item">
-        <span *ngIf="!isExpended" class='menu-icon icon-menu'></span>
-        <span *ngIf="isExpended" class='menu-icon icon-close'>X</span>
+        <span *ngIf="!isExpended" class='menu-icon icon-hamburger-menu'></span>
+        <span *ngIf="isExpended" class='menu-icon icon-menuclose'>X</span>
       </a>
     </li>  
     <li *ngFor="let menu of menuList" class="navigation">
