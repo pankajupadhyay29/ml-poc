@@ -9,11 +9,21 @@ import { WidgetComponent } from '../widget/widget.component'
 })
 export class DashboardComponent implements OnInit {
   widgets = [];
+  chart=[];
   constructor(private layout: LayoutService) {  }
 
   ngOnInit() {
     this.widgets = this.layout.getWidgetLayout();
+    this.chart = this.layout.getChartData();
+
+    for(let i=0;i<this.widgets.length;i++)
+    {
+      this.widgets[i]['chart']=this.chart[i] || {};
+    }
+
   }
+
+  
   
   getWidgetClasses(widget){
     return "w-" + widget.width + ' h-' + widget.height
