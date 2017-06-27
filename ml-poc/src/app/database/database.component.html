@@ -1,13 +1,13 @@
 
-<div class="flex-row">
-  <input 
-    type="text" 
-    placeholder="Search database" 
+<div class="flex-row"><span>Databases</span> 
+  <md-input-container class="example-full-width">
+      <input mdInput placeholder="Search database" 
     [(ngModel)]="trainingSearchTerm" 
-    (ngModelChange)="filterDb($event)"
-  >
+    (ngModelChange)="filterDb($event)">
+    </md-input-container>
   <i class="material-icons prefix">Search</i>
-  <button>Create Database</button>
+  <a routerLink="/create_database">Create Database</a>
+  <router-outlet></router-outlet>
 </div>
 
 <div class="tableHeader">

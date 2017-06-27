@@ -17,6 +17,8 @@ import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatabaseComponent } from './database/database.component';
 import { WidgetComponent } from './widget/widget.component';
+import { NvD3Component } from 'ng2-nvd3';
+import { CreateDbComponent } from './create-db/create-db.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { WidgetComponent } from './widget/widget.component';
     DashboardComponent,
     DatabaseComponent,
     WidgetComponent,
+    NvD3Component,
+    CreateDbComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,10 @@ import { WidgetComponent } from './widget/widget.component';
     {
       path: 'database',
       component: DatabaseComponent
+    },
+    {
+      path: 'create_database',
+      component: CreateDbComponent
     }    
     ])
   ],

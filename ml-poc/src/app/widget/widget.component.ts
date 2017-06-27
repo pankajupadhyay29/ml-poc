@@ -8,9 +8,21 @@ import { Component, OnInit, Input } from '@angular/core';
 export class WidgetComponent implements OnInit {
 
   @Input() data: any;
+  options: any;
+  chartData: any;
 
   constructor() { }
 
   ngOnInit() {
-  }  
+    let chart = this.data.chart;
+    this.options = '';
+    this.chartData = '';
+    
+
+    if (chart !== {}) {
+      this.options = chart.options;
+      this.chartData = chart.data;
+    }
+   
+  }
 }
