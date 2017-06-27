@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatabaseComponent } from './database/database.component';
 import { WidgetComponent } from './widget/widget.component';
+import { NvD3Component } from 'ng2-nvd3';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { WidgetComponent } from './widget/widget.component';
     DashboardComponent,
     DatabaseComponent,
     WidgetComponent,
-
+    NvD3Component
   ],
   imports: [
     BrowserModule,

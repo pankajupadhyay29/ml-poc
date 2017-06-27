@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class WidgetComponent implements OnInit {
 
   @Input() data: any;
+  @Input() options: any;
+  @Input() chartData: any;
 
   constructor() { }
 
