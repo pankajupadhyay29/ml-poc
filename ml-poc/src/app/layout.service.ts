@@ -1,7 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { ChartService } from "app/chart.service";
 
 @Injectable()
-export class LayoutService {
+export class LayoutService implements OnInit {
+  chartServiceData : Array<object>;
+
+
+  constructor(private chart_service:ChartService) { }
+
+  ngOnInit(): void {
+    this.chart_service.getChartList().subscribe(result=>{
+      this.chartServiceData = result;
+    });
+    
+  }
+
+
   tiles = [
     { text: 'Top', cols: 12, rows: 1, color: 'lightblue' },
     { text: 'Menu', cols: 1, rows: 8, color: 'lightgreen' },
@@ -19,7 +33,7 @@ export class LayoutService {
   chart = [{
     options: {
       chart: {
-        type: 'discreteBarChart',
+        type:'discreteBarChart',
         height: 300,
         margin: {
           top: 20,
@@ -178,9 +192,16 @@ export class LayoutService {
     
   ];
 
-  constructor() { }
+  
 
   getChartData() {
+    this.chart_service.getChartList().subscribe(result=>{
+      //console.log(result);
+      this.chartServiceData = result;
+      console.log(this.chartServiceData[0]);
+
+    });
+    //console.log(this.chart_service.getChartList);
     return this.chart;
   }
 

@@ -19,6 +19,7 @@ import { DatabaseComponent } from './database/database.component';
 import { WidgetComponent } from './widget/widget.component';
 import { NvD3Component } from 'ng2-nvd3';
 import { CreateDbComponent } from './create-db/create-db.component';
+import { ChartService } from "app/chart.service";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { CreateDbComponent } from './create-db/create-db.component';
     }    
     ])
   ],
-  providers: [MenuService, LayoutService, DatabaseService],
+  providers: [MenuService, LayoutService, DatabaseService, ChartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
