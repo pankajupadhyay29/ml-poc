@@ -18,6 +18,8 @@ export class DatabaseComponent implements OnInit {
   @Input() rows: Array<Object>;
   selectedOption: string;
   trainingSearchTerm: string;
+
+  selectedDb= {};
   constructor(vcRef: ViewContainerRef,public dialog: MdDialog, private dbService: DatabaseService ) {
   }
 
@@ -47,16 +49,22 @@ export class DatabaseComponent implements OnInit {
       const tempdata = this.temp.filter(function (d) {
         return d['name'].toLowerCase().indexOf(val) !== -1 || !val;
       });
+
       // update the rows
       this.rows = tempdata;
       }
   }
 
-  openDialog() {
+  openDialog(db) {
+    this.selectedDb = db;
     let dialogRef = this.dialog.open(DialogComponent);
+    dialogRef.componentInstance.selectedDb = db;
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
+      this.selectedDb = {};
+      
     });
+    console.log('row id', db);
   }
 
   onAction(): void {

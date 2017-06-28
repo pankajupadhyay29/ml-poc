@@ -21,6 +21,7 @@ import { NvD3Component } from 'ng2-nvd3';
 import { CreateDbComponent } from './create-db/create-db.component';
 import { ChartService } from "app/chart.service";
 import { DialogComponent } from './dialog/dialog.component';
+import { CreateForestComponent } from './create-forest/create-forest.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DialogComponent } from './dialog/dialog.component';
     WidgetComponent,
     NvD3Component,
     CreateDbComponent,
-    DialogComponent
+    DialogComponent,
+    CreateForestComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,11 @@ import { DialogComponent } from './dialog/dialog.component';
     {
       path: 'create_database',
       component: CreateDbComponent
-    }    
+    },
+    {
+      path: 'create_forest',
+      component: CreateForestComponent
+    }     
     ])
   ],
 <<<<<<< 75951d18bae6f967911e1caacefafc488ce76bb5
