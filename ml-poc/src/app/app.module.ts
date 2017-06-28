@@ -20,6 +20,7 @@ import { WidgetComponent } from './widget/widget.component';
 import { NvD3Component } from 'ng2-nvd3';
 import { CreateDbComponent } from './create-db/create-db.component';
 import { ChartService } from "app/chart.service";
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ChartService } from "app/chart.service";
     DatabaseComponent,
     WidgetComponent,
     NvD3Component,
-    CreateDbComponent
+    CreateDbComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { ChartService } from "app/chart.service";
     MaterialModule,
     FormsModule,
     NgxDatatableModule,
+    MdDialogModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {
@@ -56,7 +59,12 @@ import { ChartService } from "app/chart.service";
     }    
     ])
   ],
+<<<<<<< 75951d18bae6f967911e1caacefafc488ce76bb5
   providers: [MenuService, LayoutService, DatabaseService, ChartService],
   bootstrap: [AppComponent]
+=======
+  providers: [MenuService, LayoutService, DatabaseService],
+  bootstrap: [AppComponent, DialogComponent]
+>>>>>>> # This is a combination of 5 commits.
 })
 export class AppModule { }

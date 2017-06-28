@@ -1,0 +1,48 @@
+.db{
+    margin-top: 20px;
+    font-family: Helvetica Neue, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+
+}
+.mat-input-container{
+    margin-left: 20px;
+}
+.container {
+     border: 0px solid grey;
+
+}
+.move {
+    float:right;
+    display:block;
+    margin-right:0px;
+    clear:left;
+    margin-top: 12px;
+    margin-bottom: 16px;
+    background-color: #e31b23 ;
+    color: white;
+}
+.icon-add{
+    color:white;
+    padding: 5px;
+
+}
+.icon-Database{
+    padding: 10px;
+    font-size: 25px;
+}
+
+.icons{
+   font-size: 14px;
+border-radius: 50%;
+border: 1px solid #e31b23;
+padding: 7px;
+color:#e31b23;
+margin-left: 15px;
+cursor: pointer;
+}
+
+.icons:hover{
+    background-color: #e31b23 ;
+    color:white;
+    }

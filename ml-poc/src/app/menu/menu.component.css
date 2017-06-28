@@ -9,14 +9,16 @@
 #sidebar {
   position: relative;  
   overflow:hidden;
+  color:red;
 }
 
+#sidebar a:hover{
+  background-color:#e31b23;
+  color:white;
+
+}
 #sidebar.expended{
   min-width: 175px;
-  -webkit-transition-duration: 0.3s;
-    -moz-transition-duration: 0.3s;
-    -o-transition-duration: 0.3s;
-    transition-duration: 0.3s;
 }
 
 #sidebar .list-group-item {
@@ -24,12 +26,14 @@
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  background: inherit;
+
+  
 }
 
 .list-group-item{
 background: #333;
 color: white;
+ 
 }
 
 .navigation a{
@@ -37,6 +41,10 @@ color: white;
 }
 
 .navigation a:hover {
-  background:#a80404;
+  color: #fff;
+    background-color:#e31b23;
+}
+.navigation a:focus {
+  background:#e31b23;
   color: #fff;
 }
