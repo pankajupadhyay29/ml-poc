@@ -15,3 +15,8 @@ i{
  .nav-padding{
   vertical-align: middle !important;
 } 
+
+.header{
+  background-color: #fff;
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0), 0 0px 0 rgba(0,0,0,0) !important;
+}

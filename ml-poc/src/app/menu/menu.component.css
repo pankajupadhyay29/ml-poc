@@ -17,10 +17,6 @@
 }
 #sidebar.expended{
   min-width: 175px;
-  -webkit-transition-duration: 0.3s;
-    -moz-transition-duration: 0.3s;
-    -o-transition-duration: 0.3s;
-    transition-duration: 0.3s;
 }
 
 #sidebar .list-group-item {
