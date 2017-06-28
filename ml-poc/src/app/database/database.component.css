@@ -10,6 +10,7 @@
 }
 .container {
      border: 0px solid grey;
+
 }
 .move {
     float:right;
@@ -18,6 +19,13 @@
     clear:left;
     margin-top: 12px;
     margin-bottom: 16px;
+    background-color: #e31b23 ;
+    color: white;
+}
+.icon-add{
+    color:white;
+    padding: 5px;
+
 }
 .icon-Database{
     padding: 10px;
