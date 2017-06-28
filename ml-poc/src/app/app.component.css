@@ -1,7 +1,7 @@
 #wrapper {
     min-height: 100%;
     width: 100%; 
-}
+  }
 #sidebar-wrapper {
   background: #333;
   color: #fff;  
@@ -29,5 +29,6 @@
 }
 
 .navbar{
-  padding:0px !important;
+  padding:0px ;
 }
+

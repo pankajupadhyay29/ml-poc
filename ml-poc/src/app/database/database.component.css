@@ -3,6 +3,7 @@
     font-family: Helvetica Neue, sans-serif;
     font-weight: bold;
     font-size: 18px;
+
 }
 .mat-input-container{
     margin-left: 20px;
@@ -20,4 +21,21 @@
 }
 .icon-Database{
     padding: 10px;
+    font-size: 25px;
 }
+
+.icons{
+   font-size: 14px;
+border-radius: 50%;
+border: 1px solid #e31b23;
+padding: 7px;
+color:red;
+margin-left: 15px;
+cursor: pointer;
+}
+
+.icons:hover{
+    background-color: #e31b23 ;
+    color:white;
+    }
+
