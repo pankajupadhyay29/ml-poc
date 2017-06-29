@@ -113,6 +113,15 @@ app.get('/Chart', function (req, res) {
 })
 //-------------------------------------------------------
 
+var objectAccessDetalis = [];
+
+var objectTypes = {
+  forest: "Forest",
+  database: "Database",
+  cluster: "Cluster",
+  appServers: "App Server"
+}
+
 app.use(function(req, res, next) {
   console.log('test')
   res.header("Access-Control-Allow-Origin", "*");
@@ -124,27 +133,85 @@ app.get('/dblist', function (req, res) {
   res.end(JSON.stringify(DBList));
 })
 
-app.get('/forasts', function (req, res) {
-  res.end( JSON.stringify(forests));
+function addToAccessList(objectType, name, id){
+  objectAccessDetalis.push({objectType: objectType, name:name, id: id, accessTime: new Date()})
+}
+
+app.get('/forests', function (req, res) {
+  var forestAndDb = _.map(forests, function(forest){
+    var mapDb = _.find(DBList, function(db){ return _find(db.forests, {id: forest.id})});
+    
+    if(mapDb){
+      return _.extend(forest, {database: {id: mapDb.id, name: mapDb.name}});
+    }
+    
+    return forest;
+  });
+  
+  res.end(JSON.stringify(forestsAndDb));
+})
+
+app.get('/requestTrend', function (req, res) {
+  var startDate = new Date(req.query.startDate);
+  var endData = new Date(req.query.endDate);
+  var dataPointsCount = req.query.dataPointsCount;
+
+  var bucketSize = (endData.getTime() - startDate.getTime())/dataPointsCount;
+
+  dataBucket = [];
+
+  for(i=0; i< dataPointCount; i++){
+    dataBucket.push({
+      startDate: new Date(startDate.getTime() + i*bucketSize), 
+      endData:  new Date(startDate.getTime() + (i+1)*bucketSize)}
+    );
+  }
+
+  var trendFor = req.query.trendFor;
+
+  var groupedData = _(objectAccessDetalis)
+                    .filter(function(value){
+                      return value.objectType == trendFor && value.accessTime < endDate && value.accessTime >= startDate;
+                    })
+                    .groupBy('name')
+                    .mapKeys(function(value, key){
+                      return {name: key, data:  _.map(dataBucket, function(chunk){
+                        return _.filter(value, function(accessDetail){
+                            return accessDetail.accessTime >= chunk.startDate && accessDetail.accessTime < chunk.endDate;
+                        });
+                      })}
+                    })
+                    .valueOf();
+
+  return groupedData;
+
 })
 
 app.post('/setForestToDB', function (req, res) {
   var db = req.body.database;
   var selectedForests = req.body.selectedForests;
   _.extend(_.find(DBList, {id: db.id}), {forests: selectedForests})
-
+  
+  addToAccessList(objectTypes.database, db.name, db.id);
+  
   res.end('true');
 })
 
 app.post('/createDB', function (req, res) {
   var db = req.body.database;
   DBList.push(db);
+
+  addToAccessList(objectTypes.database, db.name, db.id);
+
   res.end('true');
 })
 
 app.post('/createForest', function (req, res) {
-  var db = req.body.database;
-  DBList.push(db);
+  var forest = req.body.forest;
+  forests.push(forest);
+
+  addToAccessList(objectTypes.forest, forest.name, forest.id);
+
   res.end('true');
 })
 
@@ -152,6 +219,6 @@ var server = app.listen(3000, function () {
 
   var host = server.address().address
   var port = server.address().port
-  console.log("Example app listening at http://%s:%s", host, port)
+  console.log("ML Server listening at http://%s:%s", host, port)
 
 })
