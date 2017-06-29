@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from "@angular/http";
+import { Http, Response, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 @Injectable()
@@ -8,9 +8,21 @@ private service_url = "http://localhost:3000/";
   constructor(private http: Http) { }
 
   getChartList():Observable<any[]> {
+//     let params: URLSearchParams = new URLSearchParams();
+//     params.append('startDate','Thu Jun 29 2017 14:10:57' );
+//  params.append('endDate', 'Thu Jun 29 2017 14:20:57');
+//  params.append('dataPointsCount', '10');
+// let options = new RequestOptions({
+//               // Have to make a URLSearchParams with a query string
+//               params
+//           });
+let startDate = 'Thu Jun 29 2017 20:15:57';
+let endDate = 'Thu Jun 29 2017 20:25:57';
+let dataPointsCount='10';
 
-    return this.http.get(this.service_url + 'Chart')
+    return this.http.get(this.service_url + 'requestTrend?startDate='+startDate+'&endDate='+endDate+'&dataPointsCount='+dataPointsCount)
       .map((response: Response) => response.json());
   }
+
 
 }

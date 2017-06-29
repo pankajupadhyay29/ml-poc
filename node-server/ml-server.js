@@ -152,6 +152,7 @@ app.get('/forests', function (req, res) {
 })
 
 app.get('/requestTrend', function (req, res) {
+  console.log(req.query.startDate);
   var startDate = new Date(req.query.startDate);  
   var endDate = new Date(req.query.endDate); 
   var dataPointsCount = req.query.dataPointsCount;
@@ -193,6 +194,52 @@ app.get('/requestTrend', function (req, res) {
   res.end(JSON.stringify(groupedData));
 
 })
+
+var dbAvailablity = [
+  {timestamp: new Date(), UnavialableDB: 0}  
+];
+app.get('/toggleAvilability', function (req, res) {
+  var availble = req.query.isAvailable;
+  var last = dbAvailablity[dbAvailablity.length-1];
+  console.log(dbAvailablity);
+  dbAvailablity.push({timestamp: new Date(), UnavialableDB: availble? Math.max(last.UnavialableDB -1, 0): last.UnavialableDB + 1});
+  res.end('true');
+  
+})
+
+app.get('/requestAvailabilityTrend', function (req, res) {
+  var startDate = new Date(req.query.startDate);  
+  var endDate = new Date(req.query.endDate); 
+  var dataPointsCount = req.query.dataPointsCount; 
+  console.log(req.query.startDate);
+
+  var bucketSize = (endDate.getTime() - startDate.getTime())/dataPointsCount;
+  console.log(bucketSize);
+
+  dataBucket = [];
+
+ for(i=0; i< dataPointsCount; i++){
+    dataBucket.push({
+      startDate: new Date(startDate.getTime() + i*bucketSize), 
+      endDate:  new Date(startDate.getTime() + (i+1)*bucketSize)}
+    );
+  }  
+  console.log("databucket",dataBucket);
+
+  var groupedData = _.map(dataBucket, function(chunk){
+    return _.extend(chunk, {data: _(dbAvailablity)
+      .filter(function(value){
+        return value.timestamp >= chunk.startDate && value.timestamp < chunk.endDate;
+      })
+      .sumBy('UnavialableDB')
+      .valueOf()
+    })
+  })  
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(groupedData));
+
+})
+
 
 app.get('/requestForest', function (req, res) {
     console.log(objectAccessDetalis);
