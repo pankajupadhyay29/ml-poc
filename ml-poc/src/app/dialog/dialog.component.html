@@ -21,14 +21,26 @@
 	<div class="title">X</div>
 	</div>
 </div>
-<div class="row dimensions">
+<div class="row dimensions" *ngIf="notVisible">
  <div class="col-sm-6 line" >
-	<div class="attach-existing"><div class="center-block inner row "><i class="icon-add"></i></div><div class=" row content">Attach an Existing Forest</div></div>
+	<div class="attach-existing" (click)="onClick()"><div class="center-block inner row "><i class="icon-add"></i></div><div class=" row content">Attach an Existing Forest</div></div>
 </div>	
 <div class="col-sm-6 ">
 	<div class="attach-existing"><div class="center-block inner"><i class="icon-add"></i></div><div class=" row content">Create new Forest and attach</div></div>
 </div>
-
-
 </div>
+	<div *ngIf="visible">
+		<md-input-container style="width:35%">
+		      <input mdInput placeholder="Search database" 
+		    [(ngModel)]="trainingSearchTerm" 
+		    (ngModelChange)="filterDb($event)">
+		        </md-input-container >
+		  <i class="icon-search prefix"></i>
+		
+		<li *ngFor="let forests of forestsList" class="navigation">   
+		        <span>{{forests.name}}</span>      
+		</li>
+		<a md-button (click)="onBack()">Back</a>
+        <a md-raised-button routerLink="/database">Done</a>
+	</div>	
 </div>
