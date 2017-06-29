@@ -45,18 +45,21 @@ export class DatabaseComponent implements OnInit {
       const val = this.trainingSearchTerm.toLowerCase();
       if (this.temp) {
       const tempdata = this.temp.filter(function (d) {
-        return d['DatabaseName'].toLowerCase().indexOf(val) !== -1 || !val;
+        return d['name'].toLowerCase().indexOf(val) !== -1 || !val;
       });
+
       // update the rows
       this.rows = tempdata;
       }
   }
 
-  openDialog() {
+  openDialog(id) {
     let dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
+      
     });
+    console.log('row id',id);
   }
 
   onAction(): void {

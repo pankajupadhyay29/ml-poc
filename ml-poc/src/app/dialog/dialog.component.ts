@@ -14,6 +14,7 @@ export class DialogComponent implements OnInit {
 	temp: Array<Object>;
 	menuList =  [];
   @Input() forestsList: Array<Object>;
+ checkedForests = [];
 
   notVisible:boolean = true;
   visible:boolean = false;
@@ -38,6 +39,15 @@ constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: D
   	onBack() {
   	this.visible = false;
   	this.notVisible = true;
-  	}
+  }
+  onCheck(check) {
+    console.log('forest list: ',check);
+   
+   this.checkedForests.push(check);
+  } 
+  
+  onDone() {
+    //console.log(this.forests);
+  }
   }
 

@@ -35,12 +35,12 @@
 		    [(ngModel)]="trainingSearchTerm" 
 		    (ngModelChange)="filterDb($event)">
 		        </md-input-container >
-		  <i class="icon-search prefix"></i>
-		
+		<i class="icon-search prefix"></i>
+				
 		<li *ngFor="let forests of forestsList" class="navigation">   
-		        <span>{{forests.name}}</span>      
+			<md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.name)">{{forests.name}} </md-checkbox>
 		</li>
-		<a md-button (click)="onBack()">Back</a>
-        <a md-raised-button routerLink="/database">Done</a>
+		<a md-raised-button (click)="onBack()">Back</a>
+        <a md-raised-button (click)="onDone()">Done</a>
 	</div>	
 </div>
