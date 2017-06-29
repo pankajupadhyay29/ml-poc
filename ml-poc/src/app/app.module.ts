@@ -20,6 +20,7 @@ import { WidgetComponent } from './widget/widget.component';
 import { NvD3Component } from 'ng2-nvd3';
 import { CreateDbComponent } from './create-db/create-db.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { CreateForestComponent } from './create-forest/create-forest.component';
 
 
 
@@ -33,7 +34,8 @@ import { DialogComponent } from './dialog/dialog.component';
     WidgetComponent,
     NvD3Component,
     CreateDbComponent,
-    DialogComponent
+    DialogComponent,
+    CreateForestComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,11 @@ import { DialogComponent } from './dialog/dialog.component';
     {
       path: 'create_database',
       component: CreateDbComponent
-    }    
+    },
+    {
+      path: 'create_forest',
+      component: CreateForestComponent
+    }     
     ])
   ],
   providers: [MenuService, LayoutService, DatabaseService],
