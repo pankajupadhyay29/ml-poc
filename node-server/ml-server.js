@@ -152,39 +152,65 @@ app.get('/forests', function (req, res) {
 })
 
 app.get('/requestTrend', function (req, res) {
-  var startDate = new Date(req.query.startDate);
-  var endData = new Date(req.query.endDate);
+  var startDate = new Date(req.query.startDate);  
+  var endDate = new Date(req.query.endDate); 
   var dataPointsCount = req.query.dataPointsCount;
+   console.log(endDate,dataPointsCount);
 
-  var bucketSize = (endData.getTime() - startDate.getTime())/dataPointsCount;
+  var bucketSize = (endDate.getTime() - startDate.getTime())/dataPointsCount;
 
   dataBucket = [];
 
-  for(i=0; i< dataPointCount; i++){
+  for(i=0; i< dataPointsCount; i++){
     dataBucket.push({
       startDate: new Date(startDate.getTime() + i*bucketSize), 
-      endData:  new Date(startDate.getTime() + (i+1)*bucketSize)}
+      endDate:  new Date(startDate.getTime() + (i+1)*bucketSize)}
     );
   }
 
-  var trendFor = req.query.trendFor;
-
-  var groupedData = _(objectAccessDetalis)
-                    .filter(function(value){
+  var trendFor = req.query.trendFor || objectTypes.forest;
+  var groupedData = [];
+   _(objectAccessDetalis)
+                    .filter(function(value){                     
                       return value.objectType == trendFor && value.accessTime < endDate && value.accessTime >= startDate;
                     })
                     .groupBy('name')
-                    .mapKeys(function(value, key){
-                      return {name: key, data:  _.map(dataBucket, function(chunk){
-                        return _.filter(value, function(accessDetail){
+                    .forEach(function(value, key){
+                       console.log("In filter", value.name, key.name);
+                      var g = {name: key, data:  _.map(dataBucket, function(chunk){
+                        return _.extend(chunk, {data: _.filter(value, function(accessDetail){
                             return accessDetail.accessTime >= chunk.startDate && accessDetail.accessTime < chunk.endDate;
-                        });
+                        })
+                       })                       
                       })}
+                      
+                      groupedData.push(g);
                     })
                     .valueOf();
+                     console.log('Done');
+                    //console.log(JSON.stringify(groupedData));
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(groupedData));
 
-  return groupedData;
+})
 
+app.get('/requestForest', function (req, res) {
+    console.log(objectAccessDetalis);
+  var forestName = req.query.forestName;
+  var forestId = req.query.forestId;
+
+  addToAccessList(objectTypes.forest, forestName, forestId);
+  
+  res.end('true');
+})
+
+app.get('/requestDatabase', function (req, res) {
+  var dbName = req.body.dbName;
+  var dbId = req.body.dbId;
+
+  addToAccessList(objectTypes.database, dbName, dbId);
+  
+  res.end('true');
 })
 
 app.post('/setForestToDB', function (req, res) {
