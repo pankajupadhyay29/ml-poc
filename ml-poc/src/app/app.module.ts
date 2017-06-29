@@ -19,6 +19,9 @@ import { DatabaseComponent } from './database/database.component';
 import { WidgetComponent } from './widget/widget.component';
 import { NvD3Component } from 'ng2-nvd3';
 import { CreateDbComponent } from './create-db/create-db.component';
+import { DialogComponent } from './dialog/dialog.component';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { CreateDbComponent } from './create-db/create-db.component';
     DatabaseComponent,
     WidgetComponent,
     NvD3Component,
-    CreateDbComponent
+    CreateDbComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,7 @@ import { CreateDbComponent } from './create-db/create-db.component';
     MaterialModule,
     FormsModule,
     NgxDatatableModule,
+    MdDialogModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {
@@ -56,6 +61,6 @@ import { CreateDbComponent } from './create-db/create-db.component';
     ])
   ],
   providers: [MenuService, LayoutService, DatabaseService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, DialogComponent]
 })
 export class AppModule { }

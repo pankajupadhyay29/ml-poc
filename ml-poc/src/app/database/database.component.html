@@ -1,11 +1,11 @@
 
 <div class="flex-row"><span class="db"><span class="icon-Database"></span>Databases</span> 
-  <md-input-container>
+  <md-input-container style="width:35%">
       <input mdInput placeholder="Search database" 
     [(ngModel)]="trainingSearchTerm" 
     (ngModelChange)="filterDb($event)">
-    </md-input-container>
-  <i class="material-icons prefix"></i>
+        </md-input-container >
+  <i class="icon-search prefix"></i>
   <div class="container"><a md-raised-button routerLink="/create_database" class="move"><i class=" icon-add" ></i>  Create New</a></div>
   <router-outlet></router-outlet>
 </div>
@@ -50,8 +50,8 @@
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
 
-        <i class="icons icon-edit" md-button (click)="openDialog()"></i>
-        <i class="icons icon-attachment" (click)="onClick()"></i>
+        <i class="icons icon-edit" md-button (click)="onClick()"></i>
+        <i class="icons icon-attachment" (click)="openDialog()"></i>
         <i class="icons icon-Create-New-Forest-n-attach" (click)="onAction()"></i>
       </ng-template>
     </ngx-datatable-column>

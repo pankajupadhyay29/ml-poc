@@ -4,6 +4,7 @@ import { Component, OnInit, Input, ViewContainerRef, ViewEncapsulation } from '@
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { HeaderComponent } from '../header/header.component';
 import {DatabaseService} from '../database.service'
+import {DialogComponent} from '../dialog/dialog.component'
 
 
 @Component({
@@ -52,7 +53,7 @@ export class DatabaseComponent implements OnInit {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(HeaderComponent);
+    let dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
     });
@@ -64,13 +65,15 @@ export class DatabaseComponent implements OnInit {
 
 }
 
-/*@Component({
+/*
+@Component({
   selector: 'app-database',
   templateUrl: './ngx-table-component.component.html',
   styleUrls: ['./ngx-table-component.component.css'],
   encapsulation: ViewEncapsulation.None,
   providers: [Modal],
 })
+
 export class NgxTableComponentComponent implements OnInit {
   temp: Array<Object>;
   @Input() rows: Array<Object>;
@@ -113,13 +116,14 @@ export class NgxTableComponentComponent implements OnInit {
   }
 
 }
-
-
-@Component({
-  selector: 'dialog-result-example-dialog',
-  templateUrl: './dialog-result-example-dialog.html',
-})
-export class DialogResultExampleDialog {
-  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) { }
-}
 */
+
+// @Component({
+//   selector: 'dialog-result-example-dialog',
+//   templateUrl: './dialog-result.html',
+//   styleUrls: ['./dialog-result.css']
+// })
+// export class DialogResultExampleDialog {
+//   constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) { }
+// }
+
