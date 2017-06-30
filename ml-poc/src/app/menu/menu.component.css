@@ -9,12 +9,13 @@
 #sidebar {
   position: relative;  
   overflow:hidden;
-  color:red;
+  color:#C2142E;
+  background-color:  #333333;
+ 
 }
 
 #sidebar a:hover{
-  background-color:#e31b23;
-  color:white;
+  background-color:   #020102;
 
 }
 #sidebar.expended{
@@ -29,8 +30,8 @@
 }
 
 .list-group-item{
-background: #292929;
-color: white;
+background: #333333;
+color:#C2142E;
  
 }
 
@@ -40,12 +41,12 @@ color: white;
 
 .navigation a:active {
   color: #fff;
-  background-color:#101010;
+  background-color:#C2142E;
 }
 .navigation a:focus {
-  background:#e31b23;
+  background:#C2142E;
   color: #fff;
 }
 .navigation a:hover {
-  background-color: #101010;
+  background-color: #020102;
 }
