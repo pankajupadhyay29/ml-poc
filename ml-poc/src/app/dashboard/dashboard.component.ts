@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
         bottom: 50,
         left: 55
       },
-      x: function (d) { return d.lable; },
+      x: function (d) { return d.label; },
       y: function (d) { return d.value; },
       xAxis: {},
       yAxis: {}
@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit {
       console.log('widgetgraphs in subscribe',this.widgetsGraphs[i]);
       this.widgets[i]['chart'] = this.widgetsGraphs[i] || {};
     }
+    console.log('widgets in subscribe',this.widgets)
   });
 
   }
@@ -93,12 +94,15 @@ export class DashboardComponent implements OnInit {
   transform() {
     let graphData = [];
     let cOptions=this.chartOptions;
+
           console.log('in transform', this.chart);
          graphData.push(cOptions);
 
           graphData[0]['chart']['type'] = 'lineChart';
           graphData[0]['chart']['useInteractiveGuideline'] = true;
           graphData[0]['chart'].xAxis = { axisLabel: 'Time (ms)' }
+          graphData[0]['chart'].x=function (d) { return d.x; },
+          graphData[0]['chart'].y=function (d) { return d.y; },
           graphData[0]['chart'].yAxis = {
             axisLabel: 'No of Forests',
             tickFormat: function (d) {

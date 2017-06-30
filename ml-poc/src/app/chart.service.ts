@@ -16,8 +16,8 @@ private service_url = "http://localhost:3000/";
 //               // Have to make a URLSearchParams with a query string
 //               params
 //           });
-let startDate = 'Fri Jun 30 2017 09:45:57';
-let endDate = 'Fri Jun 30 2017 09:55:57';
+let startDate = 'Fri Jun 30 2017 11:29:57';
+let endDate = 'Fri Jun 30 2017 11:39:57';
 let dataPointsCount='10';
 
     return this.http.get(this.service_url + 'requestTrend?startDate='+startDate+'&endDate='+endDate+'&dataPointsCount='+dataPointsCount)
