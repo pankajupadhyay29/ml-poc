@@ -65,12 +65,7 @@ import { CreateForestComponent } from './create-forest/create-forest.component';
     }     
     ])
   ],
-<<<<<<< 75951d18bae6f967911e1caacefafc488ce76bb5
-  providers: [MenuService, LayoutService, DatabaseService, ChartService],
-  bootstrap: [AppComponent]
-=======
   providers: [MenuService, LayoutService, DatabaseService],
   bootstrap: [AppComponent, DialogComponent]
->>>>>>> # This is a combination of 5 commits.
 })
 export class AppModule { }
