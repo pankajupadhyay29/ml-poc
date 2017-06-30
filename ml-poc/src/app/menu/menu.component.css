@@ -25,13 +25,11 @@
   border-radius: 0;
   border-left: 0;
   border-right: 0;
-  border-top: 0;
-
-  
+  border-top: 0;  
 }
 
 .list-group-item{
-background: #333;
+background: #292929;
 color: white;
  
 }
@@ -40,11 +38,14 @@ color: white;
   color: #fff;
 }
 
-.navigation a:hover {
+.navigation a:active {
   color: #fff;
-    background-color:#e31b23;
+  background-color:#101010;
 }
 .navigation a:focus {
   background:#e31b23;
   color: #fff;
+}
+.navigation a:hover {
+  background-color: #101010;
 }

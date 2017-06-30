@@ -1,34 +1,27 @@
-<!-- <h1 md-dialog-title class="title">Attach Forest</h1>
-<div class="attach-forest">
-  <div class="attach-existing">  <i class="material-icons" md-button (click)="dialogRef.close('Option 1')">edit</i>
-  <div>Attach an Existing Forest</div>
-  </div>
- <div class="attach-existing">  <i class="material-icons" md-button (click)="dialogRef.close('Option 1')">edit</i>
-  <div>Create new Forest and attach</div>
-  </div>
-
-  <!--<button md-button (click)="dialogRef.close('Option 1')">Option 1</button>-->
-  <!--<button md-button (click)="dialogRef.close('Option 2')">Option 2</button>-->
-
-
 <div class="container">
- <div class="row header"> 
-	<div class="col-sm-6 ">
-	<div class="title"><i class="icon-attachment"></i>  ATTACH FOREST</div>
-	</div>	
-	<div class="col-sm-5 "></div>
-	<div class="col-sm-1 ">
-	<div class="title">X</div>
+	<div class="row header"> 
+		<div class="col-sm-6 ">
+		<div class="title"><i class="icon-attachment"></i>  ATTACH FOREST</div>
+		</div>	
+		<div class="col-sm-5 "></div>
+		<div class="col-sm-1 ">
+		<div class="title">X</div>
+		</div>
 	</div>
-</div>
-<div class="row dimensions" *ngIf="notVisible">
- <div class="col-sm-6 line" >
-	<div class="attach-existing" (click)="onClick()"><div class="center-block inner row "><i class="icon-add"></i></div><div class=" row content">Attach an Existing Forest</div></div>
-</div>	
-<div class="col-sm-6 ">
-	<div class="attach-existing" routerLink="/create_forest"><div class="center-block inner"><i class="icon-add"></i></div><div class=" row content">Create new Forest and attach</div></div>
-</div>
-</div>
+	<div class="row dimensions" *ngIf="notVisible">
+		<div class="col-sm-6 line" >
+			<div class="attach-existing" (click)="onClick()">
+				<div class="center-block inner row "><i class="icon-add"></i></div>
+				<div class="row content">Attach an Existing Forest</div>
+			</div>
+		</div>	
+		<div class="col-sm-6 ">
+			<div class="attach-existing" routerLink="/create_forest">
+				<div class="center-block inner"><i class="icon-add"></i></div>
+				<div class="row content">Create new Forest and attach</div>
+			</div>
+		</div>
+	</div>
 	<div *ngIf="visible">
 		<md-input-container style="width:35%">
 		      <input mdInput placeholder="Search database" 
@@ -38,9 +31,9 @@
 		<i class="icon-search prefix"></i>
 				
 		<li *ngFor="let forests of forestsList" class="navigation">   
-			<md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.name)">{{forests.name}} </md-checkbox>
+			<md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.name)">{{forests.name}}</md-checkbox>
 		</li>
 		<a md-raised-button (click)="onBack()">Back</a>
         <a md-raised-button (click)="onDone()">Done</a>
-	</div>	
+	</div>
 </div>
