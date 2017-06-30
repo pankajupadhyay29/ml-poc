@@ -39,7 +39,7 @@
 	    <div class="col-sm-11">
 	     <ul style="height:175px; width:90%; overflow:auto;">
 				 	<li *ngFor="let forests of forestsList" class="navigation">   
-						<md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.name)"> {{forests.name}}</md-checkbox>
+						<md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.id)"> {{forests.name}}</md-checkbox>
 					</li>
 			 </ul>
 			<a md-raised-button (click)="onBack()">Back</a>

@@ -57,6 +57,7 @@ export class DatabaseComponent implements OnInit {
 
   openDialog(db) {
     this.selectedDb = db;
+    console.log(db);
     let dialogRef = this.dialog.open(DialogComponent);
     dialogRef.componentInstance.selectedDb = db;
     dialogRef.afterClosed().subscribe(result => {

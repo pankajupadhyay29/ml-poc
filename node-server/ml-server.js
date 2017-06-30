@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser')
 var app = express();
 var _ = require('lodash');
 
@@ -106,6 +107,8 @@ var SAChart=[ {
     ]
 var chart = [{Type:'discreteBarChart',Data:Barchart},{Type:'lineChart',Data:LChart},{Type:'stackedAreaChart',Data:SAChart}]
 
+app.use(bodyParser.json());
+
 app.get('/Chart', function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -122,8 +125,7 @@ var objectTypes = {
   appServers: "App Server"
 }
 
-app.use(function(req, res, next) {
-  console.log('test')
+app.use(function(req, res, next) {  
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
@@ -139,7 +141,7 @@ function addToAccessList(objectType, name, id){
 
 app.get('/forests', function (req, res) {
   var forestAndDb = _.map(forests, function(forest){
-    var mapDb = _.find(DBList, function(db){ return _find(db.forests, {id: forest.id})});
+    var mapDb = _.find(DBList, function(db){ return _.find(db.forests, {id: forest.id})});
     
     if(mapDb){
       return _.extend(forest, {database: {id: mapDb.id, name: mapDb.name}});
@@ -148,15 +150,13 @@ app.get('/forests', function (req, res) {
     return forest;
   });
   
-  res.end(JSON.stringify(forestsAndDb));
+  res.end(JSON.stringify(forestAndDb));
 })
 
 app.get('/requestTrend', function (req, res) {
-  console.log(req.query.startDate);
   var startDate = new Date(req.query.startDate);  
   var endDate = new Date(req.query.endDate); 
-  var dataPointsCount = req.query.dataPointsCount;
-   console.log(endDate,dataPointsCount);
+  var dataPointsCount = req.query.dataPointsCount;   
 
   var bucketSize = (endDate.getTime() - startDate.getTime())/dataPointsCount;
 
@@ -176,8 +176,7 @@ app.get('/requestTrend', function (req, res) {
                       return value.objectType == trendFor && value.accessTime < endDate && value.accessTime >= startDate;
                     })
                     .groupBy('name')
-                    .forEach(function(value, key){
-                      console.log("In filter", value, key);
+                    .forEach(function(value, key){                      
                       var g = {name: key, data:  _.map(dataBucket, function(chunk){
                         return _.extend(chunk, {data: _.filter(value, function(accessDetail){
                             return accessDetail.accessTime >= chunk.startDate && accessDetail.accessTime < chunk.endDate;
@@ -189,7 +188,7 @@ app.get('/requestTrend', function (req, res) {
                     })
                     .valueOf();
                      console.log('Done');
-                    //console.log(JSON.stringify(groupedData));
+
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(groupedData));
 
@@ -211,10 +210,8 @@ app.get('/requestAvailabilityTrend', function (req, res) {
   var startDate = new Date(req.query.startDate);  
   var endDate = new Date(req.query.endDate); 
   var dataPointsCount = req.query.dataPointsCount; 
-  console.log(req.query.startDate);
 
   var bucketSize = (endDate.getTime() - startDate.getTime())/dataPointsCount;
-  console.log(bucketSize);
 
   dataBucket = [];
 
@@ -257,9 +254,22 @@ app.get('/requestDatabase', function (req, res) {
 })
 
 app.post('/setForestToDB', function (req, res) {
+  console.log(req.body);
   var db = req.body.database;
   var selectedForests = req.body.selectedForests;
-  _.extend(_.find(DBList, {id: db.id}), {forests: selectedForests})
+
+  console.log(db, selectedForests);
+  //remove these forest form existing
+  _.forEach(DBList, function(d){
+    _.remove(d.forests, function(f){
+      return selectedForests.find({id: f.id})
+    })
+  })
+
+  //add these to current db
+  var database = _.find(DBList, {id: db.id});   
+  database.forests = selectedForests;  
+  //_.extend(, {forests: selectedForests})
   
   addToAccessList(objectTypes.database, db.name, db.id);
   

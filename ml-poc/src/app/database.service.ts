@@ -15,13 +15,13 @@ export class DatabaseService {
 
   getForests():Observable<any[]> {
 
-    return this.http.get(this.service_url + 'forasts')
+    return this.http.get(this.service_url + 'forests')
       .map((response: Response) => response.json());
   }
 
   attacheForest(db, forestList){
     this.http.post(this.service_url+'setForestToDB', {database: db, selectedForests: forestList})
-    .map((response: Response) => response.json());    
+    .map((response: Response) => response.json());
   }
 
 }
