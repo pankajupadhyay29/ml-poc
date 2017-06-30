@@ -16,9 +16,15 @@ private service_url = "http://localhost:3000/";
 //               // Have to make a URLSearchParams with a query string
 //               params
 //           });
-let startDate = 'Fri Jun 30 2017 11:29:57';
-let endDate = 'Fri Jun 30 2017 11:39:57';
-let dataPointsCount='10';
+const currentDate = new Date();
+let endDate = new Date(currentDate.getTime()).toISOString();
+let startDate = new Date(currentDate.getTime() - (10*60*1000)).toISOString();
+
+
+//let startDate = 'Fri Jun 30 2017 12:01:57'; //new Date(currentDate.getTime());
+//let endDate = 'Fri Jun 30 2017 12:10:57'; //new Date(currentDate.getTime() + (10*60*1000))
+
+let dataPointsCount= '10';
 
     return this.http.get(this.service_url + 'requestTrend?startDate='+startDate+'&endDate='+endDate+'&dataPointsCount='+dataPointsCount)
       .map((response: Response) => response.json());

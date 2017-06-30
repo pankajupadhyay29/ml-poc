@@ -177,7 +177,7 @@ app.get('/requestTrend', function (req, res) {
                     })
                     .groupBy('name')
                     .forEach(function(value, key){
-                       console.log("In filter", value.name, key.name);
+                      console.log("In filter", value, key);
                       var g = {name: key, data:  _.map(dataBucket, function(chunk){
                         return _.extend(chunk, {data: _.filter(value, function(accessDetail){
                             return accessDetail.accessTime >= chunk.startDate && accessDetail.accessTime < chunk.endDate;
@@ -200,9 +200,9 @@ var dbAvailablity = [
 ];
 app.get('/toggleAvilability', function (req, res) {
   var availble = req.query.isAvailable;
-  var last = dbAvailablity[dbAvailablity.length-1];
-  console.log(dbAvailablity);
-  dbAvailablity.push({timestamp: new Date(), UnavialableDB: availble? Math.max(last.UnavialableDB -1, 0): last.UnavialableDB + 1});
+  var last = dbAvailablity[dbAvailablity.length-1];  
+  dbAvailablity.push({timestamp: new Date(), 
+    UnavialableDB: availble? Math.max(last.UnavialableDB -1, 0): Math.min(last.UnavialableDB + 1, DBList.length)});
   res.end('true');
   
 })
@@ -223,17 +223,14 @@ app.get('/requestAvailabilityTrend', function (req, res) {
       startDate: new Date(startDate.getTime() + i*bucketSize), 
       endDate:  new Date(startDate.getTime() + (i+1)*bucketSize)}
     );
-  }  
-  console.log("databucket",dataBucket);
+  }    
 
   var groupedData = _.map(dataBucket, function(chunk){
-    return _.extend(chunk, {data: _(dbAvailablity)
+    return _.extend(chunk, {data: _.last(_(dbAvailablity)
       .filter(function(value){
         return value.timestamp >= chunk.startDate && value.timestamp < chunk.endDate;
-      })
-      .sumBy('UnavialableDB')
-      .valueOf()
-    })
+      }).valueOf())
+    });   
   })  
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(groupedData));
@@ -241,8 +238,7 @@ app.get('/requestAvailabilityTrend', function (req, res) {
 })
 
 
-app.get('/requestForest', function (req, res) {
-    console.log(objectAccessDetalis);
+app.get('/requestForest', function (req, res) {    
   var forestName = req.query.forestName;
   var forestId = req.query.forestId;
 
