@@ -65,7 +65,7 @@ import { CreateForestComponent } from './create-forest/create-forest.component';
     }     
     ])
   ],
-  providers: [MenuService, LayoutService, DatabaseService],
+  providers: [MenuService, LayoutService, DatabaseService, ChartService],
   bootstrap: [AppComponent, DialogComponent]
 })
 export class AppModule { }
