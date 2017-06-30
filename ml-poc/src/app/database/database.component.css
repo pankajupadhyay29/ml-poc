@@ -43,3 +43,12 @@
     background-color: #e31b23 ;
     color:white;
 }
+.highlighted {
+    border: 2px solid #e31b23;
+}
+.forest {
+    margin: -10px;    
+    line-height: 3;
+    padding: 0px 10px;
+}
+
