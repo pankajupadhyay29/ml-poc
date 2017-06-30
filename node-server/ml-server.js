@@ -107,6 +107,7 @@ var SAChart=[ {
     ]
 var chart = [{Type:'discreteBarChart',Data:Barchart},{Type:'lineChart',Data:LChart},{Type:'stackedAreaChart',Data:SAChart}]
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/Chart', function (req, res) {
@@ -262,7 +263,7 @@ app.post('/setForestToDB', function (req, res) {
   //remove these forest form existing
   _.forEach(DBList, function(d){
     _.remove(d.forests, function(f){
-      return selectedForests.find({id: f.id})
+      return _.find(selectedForests, ({id: f.id}));
     })
   })
 
@@ -273,7 +274,7 @@ app.post('/setForestToDB', function (req, res) {
   
   addToAccessList(objectTypes.database, db.name, db.id);
   
-  res.end('true');
+  res.end(JSON.stringify(DBList));
 })
 
 app.post('/createDB', function (req, res) {

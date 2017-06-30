@@ -19,7 +19,7 @@ export class DatabaseComponent implements OnInit {
   selectedOption: string;
   trainingSearchTerm: string;
 
-  selectedDb= {};
+  selectedDb: any;
   constructor(vcRef: ViewContainerRef,public dialog: MdDialog, private dbService: DatabaseService ) {
   }
 
@@ -34,7 +34,7 @@ export class DatabaseComponent implements OnInit {
   }
 
   stringifyName(namedList){
-    if(!namedList){
+    if(!namedList || !namedList.map){
       return '';
     }
 
@@ -62,16 +62,23 @@ export class DatabaseComponent implements OnInit {
     dialogRef.componentInstance.selectedDb = db;
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
+      this.highlighted = this.selectedDb.id;
       this.selectedDb = {};
-      
+      setInterval(()=> {this.highlighted = -1}, 5 * 1000)
     });
-    console.log('row id', db);
+    
+    //this.dbService.setDbId(database.id)
   }
 
   onAction(): void {
     console.log('here');
   }
 
+  highlighted= -1;
+
+  getClasses(id) {
+    return this.highlighted == id ? 'highlighted': '';
+  }
 }
 
 /*

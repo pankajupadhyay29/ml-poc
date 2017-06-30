@@ -55,7 +55,16 @@
     background-color: #E35F1D ;
     color:white;
 }
-
 .icon-search{
    margin-top: 25px;
  } 
+
+
+.highlighted {
+    border: 2px solid #e31b23;
+}
+.forest {
+    margin: -10px;    
+    line-height: 3;
+    padding: 0px 10px;
+}

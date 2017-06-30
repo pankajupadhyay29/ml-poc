@@ -14,7 +14,7 @@ export class DialogComponent implements OnInit {
 	temp: Array<Object>;
 	menuList =  [];
   @Input() forestsList: Array<any>;
-  selectedDb = {};
+  selectedDb: any;
  checkedForests = [];
 
   notVisible:boolean = true;
@@ -45,10 +45,33 @@ constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: D
    var forest = this.forestsList.find(function(f){ return f.id == check});
    this.checkedForests.push({id: forest.id, name: forest.name});
   } 
+
+  
   
   onDone() {
-    //console.log(this.forests);
-    this.dbService.attacheForest(this.selectedDb, this.checkedForests);
+    //console.log(this.checkedForests);
+    let db=this.selectedDb;
+    console.log('selected forest',this.checkedForests);
+    console.log('selected db',db.id);
+    let i=0;
+   let forestList = {"database": {"id":db.id,"name":db.name},
+"selectedForests": []
+}
+
+
+for(i=0;i<this.checkedForests.length;i++)
+{
+  let data={'id':0,'name':''};
+  //data=(this.checkedForests[i].id,this.checkedForests[i].name)
+  data['id']=this.checkedForests[i].id;
+  data['name']=this.checkedForests[i].name;
+  forestList.selectedForests.push(data);
+}
+
+
+    this.dbService.attacheForest(forestList);
+    db.forests = this.checkedForests;
+    this.dialogRef.close();
   }
   }
 
