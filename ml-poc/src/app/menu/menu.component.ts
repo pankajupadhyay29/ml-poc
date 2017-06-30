@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
   isExpended = false;
   
   constructor() { }
-  
+
   ngOnInit(){
     console.log('Menu List is: ', this.menuList);
   }
