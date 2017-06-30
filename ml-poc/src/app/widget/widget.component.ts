@@ -14,9 +14,9 @@ export class WidgetComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('widgetData',this.data);
+   // console.log('widgetData',this.data);
     let chart = this.data.chart;
-    console.log('in widget.ts', chart);
+   // console.log('in widget.ts', chart);
     this.options = '';
     this.chartData = '';
 
@@ -25,7 +25,7 @@ export class WidgetComponent implements OnInit {
       this.options = chart[0];
       this.chartData = chart[1];
     }
-    console.log('opt ',this.options);
-    console.log(this.chartData);
+   // console.log('opt ',this.options);
+   // console.log(this.chartData);
   }
 }
