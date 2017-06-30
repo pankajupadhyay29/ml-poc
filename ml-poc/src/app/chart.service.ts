@@ -31,4 +31,17 @@ let dataPointsCount= '10';
   }
 
 
+ getAvailaibleChartList():Observable<any[]> {
+const currentDate = new Date();
+let endDate = new Date(currentDate.getTime()).toISOString();
+let startDate = new Date(currentDate.getTime() - (10*60*1000)).toISOString();
+//let startDate = 'Fri Jun 30 2017 12:01:57'; //new Date(currentDate.getTime());
+//let endDate = 'Fri Jun 30 2017 12:10:57'; //new Date(currentDate.getTime() + (10*60*1000))
+let dataPointsCount= '10';
+    return this.http.get(this.service_url + 'requestAvailabilityTrend?startDate='+startDate+'&endDate='+endDate+'&dataPointsCount='+dataPointsCount)
+      .map((response: Response) => response.json());
+  }
+
+
+
 }
