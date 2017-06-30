@@ -20,7 +20,7 @@ export class DatabaseService {
   }
 
   attacheForest(db, forestList){
-    this.http.post(this.service_url+'setForestToDB', {database: db, selectedForests: forestList})
+    this.http.post(this.service_url+'setForestToDB', JSON.stringify({database: db, selectedForests: forestList}))
     .map((response: Response) => response.json());
   }
 

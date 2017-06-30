@@ -34,7 +34,7 @@ export class DatabaseComponent implements OnInit {
   }
 
   stringifyName(namedList){
-    if(!namedList){
+    if(!namedList || !namedList.map){
       return '';
     }
 
