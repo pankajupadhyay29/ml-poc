@@ -9,14 +9,13 @@
 #sidebar {
   position: relative;  
   overflow:hidden;
-  color:red;
+  color:#e31b23;
+   
 }
 
 #sidebar a:hover{
-  background-color:#e31b23;
-  color:white;
-
-}
+ background-color:#101010;
+ }
 #sidebar.expended{
   min-width: 175px;
 }
@@ -36,11 +35,12 @@ color: white;
 
 .navigation a{
   color: #fff;
+
 }
 
 .navigation a:active {
   color: #fff;
-  background-color:#101010;
+  background-color:#e31b23;
 }
 .navigation a:focus {
   background:#e31b23;

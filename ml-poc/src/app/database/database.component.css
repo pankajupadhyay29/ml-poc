@@ -17,13 +17,25 @@
     clear:left;
     margin-top: 12px;
     margin-bottom: 16px;
-    background-color: #e31b23 ;
-    color: white;
+    border: 1px solid #e31b23 ;
+    color: #e31b23;
+    text-decoration: none; 
 }
+
+.move:hover{
+ color:white;
+ background-color: #e31b23 ;
+ }
+
 .icon-add{
+    color:#e31b23;
+    padding: 5px;
+}
+.icon-add:hover{
     color:white;
     padding: 5px;
 }
+
 .icon-Database{
     padding: 10px;
     font-size: 25px;
@@ -42,4 +54,8 @@
 .icons:hover{
     background-color: #e31b23 ;
     color:white;
+}
+
+.icon-search{
+    margin-top: 25px;
 }

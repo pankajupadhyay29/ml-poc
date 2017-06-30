@@ -1,12 +1,12 @@
 
 <div class="flex-row"><span class="db"><span class="icon-Database"></span>Databases</span> 
-  <md-input-container style="width:35%">
+  <md-input-container style="width:45%">
       <input mdInput placeholder="Search database" 
     [(ngModel)]="trainingSearchTerm" 
     (ngModelChange)="filterDb($event)">
         </md-input-container >
   <i class="icon-search prefix"></i>
-  <div class="container"><a md-raised-button routerLink="/create_database" class="move"><i class=" icon-add" ></i>  Create New</a></div>
+  <div class="container"><a md-raised-button routerLink="/create_database" class="move "><i class=" icon-add icon_hvr " ></i>  Create New</a></div>
   <router-outlet></router-outlet>
 </div>
 
