@@ -13,16 +13,28 @@
 .move {
     float:right;
     display:block;
-    margin-right:0px;
+    margin-right:10px;
     clear:left;
     margin-top: 12px;
     margin-bottom: 16px;
-    background-color: #e31b23 ;
-    color: white;
+    text-decoration: none;
+    border: 1px solid #DF5D26 ;
+    color: #DF5D26;
 }
+
+.move:hover{
+  color:white;
+  background-color: #DF5D26 ;
+ }
+
+.icon-add:hover{
+      color:white;
+      padding: 5px;
+  }
+
 .icon-add{
-    color:white;
-    padding: 5px;
+      color:#E35F1D;
+     padding: 5px;
 }
 .icon-Database{
     padding: 10px;
@@ -32,17 +44,22 @@
 .icons{
     font-size: 14px;
     border-radius: 50%;
-    border: 1px solid #e31b23;
+    border: 1px solid #E35F1D;
     padding: 7px;
-    color:#e31b23;
+    color:#E35F1D;
     margin-left: 15px;
     cursor: pointer;
 }
 
 .icons:hover{
-    background-color: #e31b23 ;
+    background-color: #E35F1D ;
     color:white;
 }
+.icon-search{
+   margin-top: 25px;
+ } 
+
+
 .highlighted {
     border: 2px solid #e31b23;
 }
@@ -51,4 +68,3 @@
     line-height: 3;
     padding: 0px 10px;
 }
-

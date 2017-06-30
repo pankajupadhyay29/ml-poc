@@ -89,3 +89,24 @@ border-radius: 0 5px 5px 0;
 .mat-dialog-container{
   padding: 0px!important;
 }
+
+.mat-checkbox-label
+{
+    font-size: 14px !important;
+    color:black !important;
+    font-family: Helvetica Neue, sans-serif;
+    font-weight:100 !important;
+} 
+
+.widget-header{
+  background-color: transparent!important;
+  border-bottom: 0px !important;
+  color:black!important;
+  font-family: Helvetica Neue, sans-serif;
+  font-size: 18px;
+  font-weight: 100;
+
+}
+.widget-title{
+  padding: 15px;
+}
