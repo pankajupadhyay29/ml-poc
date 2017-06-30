@@ -17,23 +17,32 @@
 		</div>	
 		<div class="col-sm-6 ">
 			<div class="attach-existing" routerLink="/create_forest">
-				<div class="center-block inner"><i class="icon-add"></i></div>
+				<div class="center-block inner row"><i class="icon-add"></i></div>
 				<div class="row content">Create new Forest and attach</div>
 			</div>
 		</div>
 	</div>
 	<div *ngIf="visible">
-		<md-input-container style="width:35%">
-		      <input mdInput placeholder="Search database" 
-		    [(ngModel)]="trainingSearchTerm" 
-		    (ngModelChange)="filterDb($event)">
+	<div class="row">
+	<div class="col-sm-1"></div>
+	    <div class="col-sm-11">
+		<md-input-container style="width:75%">
+		 	     <input mdInput placeholder="Search database" 
+		 	   [(ngModel)]="trainingSearchTerm" 
+		 	   (ngModelChange)="filterDb($event)">
 		        </md-input-container >
-		<i class="icon-search prefix"></i>
-				
-		<li *ngFor="let forests of forestsList" class="navigation">   
-			<md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.name)">{{forests.name}}</md-checkbox>
-		</li>
-		<a md-raised-button (click)="onBack()">Back</a>
-        <a md-raised-button (click)="onDone()">Done</a>
+			<i class="icon-search prefix"></i>
+	  </div>
+	</div>
+	 <div class="row">
+	 <div class="col-sm-1"></div>
+	    <div class="col-sm-11">
+	     	<li *ngFor="let forests of forestsList" class="navigation">   
+			<md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.name)"> {{forests.name}}</md-checkbox>
+			</li>
+			<a md-raised-button (click)="onBack()">Back</a>
+       		<a md-raised-button (click)="onDone()">Done</a>
+        </div>
+       </div> 
 	</div>
 </div>
