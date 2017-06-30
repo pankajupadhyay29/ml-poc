@@ -30,6 +30,23 @@ export class DashboardComponent implements OnInit {
     }
   };
 
+  barChartOptions = {
+    chart: {
+      type: '',
+      height: 300,
+      margin: {
+        top: 20,
+        right: 20,
+        bottom: 50,
+        left: 55
+      },
+      x: function (d) { return d.lable; },
+      y: function (d) { return d.value; },
+      xAxis: {},
+      yAxis: {}
+    }
+  };
+
   constructor(private layout: LayoutService, private chart_service: ChartService) { }
 
   ngOnInit() {
@@ -38,58 +55,21 @@ export class DashboardComponent implements OnInit {
     this.chart_service.getChartList().subscribe(result => {
       this.widgets = this.layout.getWidgetLayout();
       this.chart = result;
-      console.log('new', result);
+      console.log('new', this.chart);
       this.transform();
+      this.showBarChart();
       for (let i = 0; i < this.widgets.length; i++) {
       console.log('widgetgraphs in subscribe',this.widgetsGraphs[i]);
       this.widgets[i]['chart'] = this.widgetsGraphs[i] || {};
     }
   });
+
   }
 
-  
-
-
-  transform() {
+  showBarChart(){
     let graphData = [];
-    for (let i = 0; i < this.chart.length; i++) {
-      graphData = [];
-      switch (i) {
-        case 0: graphData.push(this.chartOptions);
-
-          graphData[0]['chart']['type'] = 'lineChart';
-          graphData[0]['chart']['useInteractiveGuideline'] = true;
-          graphData[0]['chart'].xAxis = { axisLabel: 'Time (ms)' }
-          graphData[0]['chart'].yAxis = {
-            axisLabel: 'No of Forests',
-            tickFormat: function (d) {
-              return d3.format('.02f')(d);
-            },
-            axisLabelDistance: -10
-          }
-          
-          let data=this.createLineChartData();
-          graphData.push(data);
-          this.widgetsGraphs.push(graphData);
-          break;
-        case 1: //graphData.push(this.chartOptions);
-        //   graphData[0]['chart']['type'] = 'discreteBarChart';
-        //   graphData[0]['chart']['showValues'] = true;
-        //   graphData[0]['chart']['valueFormat'] = function (d) {
-        //     return d3.format(',.4f')(d);
-        //   };
-        //   graphData[0]['chart']['duration'] = 500;
-        //   graphData[0]['chart'].xAxis = {
-        //     axisLabel: 'X Axis'
-        //   }
-        //   graphData[0]['chart'].yAxis = {
-        //     axisLabel: 'Y Axis',
-        //     axisLabelDistance: -10
-        //   }
-        //   // graphData.push(this.chart[0]['Data']);
-        //   this.widgetsGraphs.push(graphData);
-          break;
-          case 2:  graphData.push(this.chartOptions);
+    let cOptions=this.barChartOptions;
+    graphData.push(cOptions);
           graphData[0]['chart']['type'] = 'discreteBarChart';
           graphData[0]['chart']['showValues'] = true;
           graphData[0]['chart']['valueFormat'] = function (d) {
@@ -106,11 +86,70 @@ export class DashboardComponent implements OnInit {
            let bardata=this.createBarChartData();
            graphData.push(bardata);
            this.widgetsGraphs.push(graphData);
-          break;
-      }
+           console.log('in showBarChart',this.widgetsGraphs);
+  }
 
-    }
-    console.log('in transfom',this.widgetsGraphs);
+
+  transform() {
+    let graphData = [];
+    let cOptions=this.chartOptions;
+          console.log('in transform', this.chart);
+         graphData.push(cOptions);
+
+          graphData[0]['chart']['type'] = 'lineChart';
+          graphData[0]['chart']['useInteractiveGuideline'] = true;
+          graphData[0]['chart'].xAxis = { axisLabel: 'Time (ms)' }
+          graphData[0]['chart'].yAxis = {
+            axisLabel: 'No of Forests',
+            tickFormat: function (d) {
+              return d3.format('.02f')(d);
+            },
+            axisLabelDistance: -10
+          }
+          
+          let data=this.createLineChartData();
+          graphData.push(data);
+          this.widgetsGraphs.push(graphData);
+      
+        // case 1: //graphData.push(this.chartOptions);
+        // //   graphData[0]['chart']['type'] = 'discreteBarChart';
+        // //   graphData[0]['chart']['showValues'] = true;
+        // //   graphData[0]['chart']['valueFormat'] = function (d) {
+        // //     return d3.format(',.4f')(d);
+        // //   };
+        // //   graphData[0]['chart']['duration'] = 500;
+        // //   graphData[0]['chart'].xAxis = {
+        // //     axisLabel: 'X Axis'
+        // //   }
+        // //   graphData[0]['chart'].yAxis = {
+        // //     axisLabel: 'Y Axis',
+        // //     axisLabelDistance: -10
+        // //   }
+        // //   // graphData.push(this.chart[0]['Data']);
+        // //   this.widgetsGraphs.push(graphData);
+        //   break;
+          // case 2:  graphData.push(this.chartOptions);
+          // graphData[0]['chart']['type'] = 'discreteBarChart';
+          // graphData[0]['chart']['showValues'] = true;
+          // graphData[0]['chart']['valueFormat'] = function (d) {
+          //    return d3.format(',.4f')(d);
+          //  };
+          //  graphData[0]['chart']['duration'] = 500;
+          //  graphData[0]['chart'].xAxis = {
+          //    axisLabel: 'X Axis'
+          //  }
+          //  graphData[0]['chart'].yAxis = {
+          //    axisLabel: 'Y Axis',
+          //    axisLabelDistance: -10
+          //  }
+          //  let bardata=this.createBarChartData();
+          //  graphData.push(bardata);
+          //  this.widgetsGraphs.push(graphData);
+          // break;
+     
+
+    
+    
   }
 
 //     data: [
@@ -134,7 +173,7 @@ export class DashboardComponent implements OnInit {
 
   createLineChartData() {
     let data=[];
-    //console.log('in create', this.chart);
+    console.log('in create', this.chart);
     this.chart.forEach(element => {
           let linedata={};
           linedata['values']=[];
