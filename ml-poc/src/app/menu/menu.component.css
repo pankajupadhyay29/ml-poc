@@ -9,34 +9,43 @@
 #sidebar {
   position: relative;  
   overflow:hidden;
+  color:red;
 }
 
+#sidebar a:hover{
+  background-color:#e31b23;
+  color:white;
+
+}
 #sidebar.expended{
   min-width: 175px;
-  -webkit-transition-duration: 0.3s;
-    -moz-transition-duration: 0.3s;
-    -o-transition-duration: 0.3s;
-    transition-duration: 0.3s;
 }
 
 #sidebar .list-group-item {
   border-radius: 0;
   border-left: 0;
   border-right: 0;
-  border-top: 0;
-  background: inherit;
+  border-top: 0;  
 }
 
 .list-group-item{
-background: #333;
+background: #292929;
 color: white;
+ 
 }
 
 .navigation a{
   color: #fff;
 }
 
-.navigation a:hover {
-  background:#a80404;
+.navigation a:active {
   color: #fff;
+  background-color:#101010;
+}
+.navigation a:focus {
+  background:#e31b23;
+  color: #fff;
+}
+.navigation a:hover {
+  background-color: #101010;
 }

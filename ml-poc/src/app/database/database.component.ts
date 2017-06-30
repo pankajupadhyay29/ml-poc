@@ -4,6 +4,7 @@ import { Component, OnInit, Input, ViewContainerRef, ViewEncapsulation } from '@
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { HeaderComponent } from '../header/header.component';
 import {DatabaseService} from '../database.service'
+import {DialogComponent} from '../dialog/dialog.component'
 
 
 @Component({
@@ -17,6 +18,8 @@ export class DatabaseComponent implements OnInit {
   @Input() rows: Array<Object>;
   selectedOption: string;
   trainingSearchTerm: string;
+
+  selectedDb= {};
   constructor(vcRef: ViewContainerRef,public dialog: MdDialog, private dbService: DatabaseService ) {
   }
 
@@ -46,16 +49,22 @@ export class DatabaseComponent implements OnInit {
       const tempdata = this.temp.filter(function (d) {
         return d['name'].toLowerCase().indexOf(val) !== -1 || !val;
       });
+
       // update the rows
       this.rows = tempdata;
       }
   }
 
-  openDialog() {
-    let dialogRef = this.dialog.open(HeaderComponent);
+  openDialog(db) {
+    this.selectedDb = db;
+    let dialogRef = this.dialog.open(DialogComponent);
+    dialogRef.componentInstance.selectedDb = db;
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
+      this.selectedDb = {};
+      
     });
+    console.log('row id', db);
   }
 
   onAction(): void {
@@ -64,13 +73,15 @@ export class DatabaseComponent implements OnInit {
 
 }
 
-/*@Component({
+/*
+@Component({
   selector: 'app-database',
   templateUrl: './ngx-table-component.component.html',
   styleUrls: ['./ngx-table-component.component.css'],
   encapsulation: ViewEncapsulation.None,
   providers: [Modal],
 })
+
 export class NgxTableComponentComponent implements OnInit {
   temp: Array<Object>;
   @Input() rows: Array<Object>;
@@ -113,13 +124,14 @@ export class NgxTableComponentComponent implements OnInit {
   }
 
 }
-
-
-@Component({
-  selector: 'dialog-result-example-dialog',
-  templateUrl: './dialog-result-example-dialog.html',
-})
-export class DialogResultExampleDialog {
-  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) { }
-}
 */
+
+// @Component({
+//   selector: 'dialog-result-example-dialog',
+//   templateUrl: './dialog-result.html',
+//   styleUrls: ['./dialog-result.css']
+// })
+// export class DialogResultExampleDialog {
+//   constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) { }
+// }
+

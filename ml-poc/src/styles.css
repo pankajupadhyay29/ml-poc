@@ -85,3 +85,7 @@ border-radius: 0 5px 5px 0;
 .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell:nth-child(2n){
             background: #d6cfcf;
 }
+
+.mat-dialog-container{
+  padding: 0px!important;
+}

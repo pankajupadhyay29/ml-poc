@@ -1,11 +1,30 @@
 <p class="text">
-  Create New Database
+  <span class="icon-Database"></span> Create New Database
 </p>
-<div><md-input-container class="example-full-width">
-     <input mdInput placeholder="Search database" >
-    </md-input-container></div>
-<div>
-  <md-select placeholder="State">
-   <md-option ></md-option>
-</md-select>
-</div>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-container" novalidate>
+    <div class="container">
+      <div class="select"><span class="text-style"> Name: <input type="text" placeholder="Type name" style="width: 200px;"></span></div>
+      <div class="select">
+        Security DB: 
+        <md-select placeholder="Select">
+          <md-option *ngFor="let db of databases" [value]="db.value">{{db.viewValue}}</md-option>
+        </md-select>
+      </div>
+      <div class="select">
+        Schema DB: 
+        <md-select placeholder="Select">
+          <md-option *ngFor="let db of databases" [value]="db.value">{{db.viewValue}}</md-option>
+        </md-select>
+      </div>
+      <div class="select">
+        Triggers DB: 
+        <md-select placeholder="Select">
+          <md-option *ngFor="let db of databases" [value]="db.value">{{db.viewValue}}</md-option>
+        </md-select>
+      </div>
+      <div class="move">
+        <a md-button routerLink="/database">Cancel</a>
+        <a md-raised-button (click)="createData()">Create</a>
+    </div>
+    </div>
+</form>
