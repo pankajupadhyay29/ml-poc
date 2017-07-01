@@ -4,14 +4,21 @@
     background: #fff;
 }
 
-.widget.h-2 {
+.widget.h-2,
+.links.h-2 {
     height: 350px;
 }
 
-.widget.h-1 {
+.widget.h-1,
+.links.h-1 {
     height: 150px;
 }
 
-.widget.w-1 {
+.widget.w-1,
+.links.w-1 {
     width: calc(50% - 24px);
+}
+
+.links {
+    background: #f2f0f1;
 }

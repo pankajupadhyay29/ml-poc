@@ -213,6 +213,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getWidgetClasses(widget) {
-    return "w-" + widget.width + ' h-' + widget.height
+    let styles = "w-" + widget.width + ' h-' + widget.height;
+    styles = (widget.settings.type == 'links'? 'links': 'widget') + ' ' + styles;
+    return styles;
   }
 }

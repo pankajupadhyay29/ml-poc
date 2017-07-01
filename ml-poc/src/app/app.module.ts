@@ -22,6 +22,8 @@ import { CreateDbComponent } from './create-db/create-db.component';
 import { ChartService } from "app/chart.service";
 import { DialogComponent } from './dialog/dialog.component';
 import { CreateForestComponent } from './create-forest/create-forest.component';
+import { RecentComponent } from './recent/recent.component';
+import { QuickLinkComponent } from './quick-link/quick-link.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CreateForestComponent } from './create-forest/create-forest.component';
     NvD3Component,
     CreateDbComponent,
     DialogComponent,
-    CreateForestComponent
+    CreateForestComponent,
+    RecentComponent,
+    QuickLinkComponent
   ],
   imports: [
     BrowserModule,
