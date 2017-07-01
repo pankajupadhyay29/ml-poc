@@ -60,11 +60,9 @@ export class DashboardComponent implements OnInit {
         this.transformAvailaibleChart();
         this.showBarChart();
         for (let i = 0; i < this.widgets.length; i++) {
-          console.log('widgetgraphs in subscribe', this.widgetsGraphs[i]);
           this.widgets[i]['chart'] = this.widgetsGraphs[i] || {};
         }
-      });
-      console.log('widgets in subscribe', this.widgets)
+      });      
     });
 
   }
@@ -73,7 +71,6 @@ export class DashboardComponent implements OnInit {
     let graphData = [];
     let cOptions = this.chartOptions;
 
-    console.log('in transform', this.AvailaibleChart);
     graphData.push(cOptions);
 
     graphData[0]['chart']['type'] = 'lineChart';
@@ -82,7 +79,7 @@ export class DashboardComponent implements OnInit {
     graphData[0]['chart'].x = function (d) { return d.x; },
       graphData[0]['chart'].y = function (d) { return d.y; },
       graphData[0]['chart'].yAxis = {
-        axisLabel: 'No of Forests',
+        axisLabel: 'NO OF REQUESTS',
         tickFormat: function (d) {
           return d3.format('.02f')(d);
         },
@@ -98,14 +95,13 @@ export class DashboardComponent implements OnInit {
     let data = [];
     let i = 0;
     let linedata = {};
-    console.log('in avail', this.AvailaibleChart);
     linedata['values'] = [];
     this.AvailaibleChart.forEach(element => {
       let tempdata = { x: 0, y: 0 };
       tempdata.x = i;
       tempdata.y = element.data;
       linedata['values'].push(tempdata);
-      i += 1;
+      i += 3;
     });
     linedata['color'] = '#7777ff';
     linedata['area'] = true;
@@ -118,22 +114,21 @@ export class DashboardComponent implements OnInit {
     let cOptions = this.barChartOptions;
     graphData.push(cOptions);
     graphData[0]['chart']['type'] = 'discreteBarChart';
-    graphData[0]['chart']['showValues'] = true;
+    // graphData[0]['chart']['showValues'] = true;
     graphData[0]['chart']['valueFormat'] = function (d) {
       return d3.format(',.4f')(d);
     };
     graphData[0]['chart']['duration'] = 500;
     graphData[0]['chart'].xAxis = {
-      axisLabel: 'X Axis'
+      axisLabel: 'DB Name'
     }
     graphData[0]['chart'].yAxis = {
-      axisLabel: 'Y Axis',
+      axisLabel: 'MEMORY',
       axisLabelDistance: -10
     }
     let bardata = this.createBarChartData();
     graphData.push(bardata);
     this.widgetsGraphs.push(graphData);
-    console.log('in showBarChart', this.widgetsGraphs);
   }
 
 
@@ -141,7 +136,6 @@ export class DashboardComponent implements OnInit {
     let graphData = [];
     let cOptions = this.chartOptions;
 
-    console.log('in transform', this.chart);
     graphData.push(cOptions);
 
     graphData[0]['chart']['type'] = 'lineChart';
@@ -150,7 +144,7 @@ export class DashboardComponent implements OnInit {
     graphData[0]['chart'].x = function (d) { return d.x; },
       graphData[0]['chart'].y = function (d) { return d.y; },
       graphData[0]['chart'].yAxis = {
-        axisLabel: 'No of Forests',
+        axisLabel: 'NO OF REQUESTS',
         tickFormat: function (d) {
           return d3.format('.02f')(d);
         },
@@ -163,14 +157,13 @@ export class DashboardComponent implements OnInit {
 
   createLineChartData() {
     let data = [];
-    console.log('in create', this.chart);
     this.chart.forEach(element => {
       let linedata = {};
       linedata['values'] = [];
-      for (let i = 1; i <= element.data.length; i++) {
+      for (let i = 0; i < element.data.length; i++) {
         let tempdata = { x: 0, y: 0 };
-        tempdata.x = i;
-        tempdata.y = element.data[i - 1].data.length;
+        tempdata.x = (i == 0) ? i : i * 3;
+        tempdata.y = element.data[i].data.length;
         linedata['values'].push(tempdata);
       }
       linedata['key'] = element.name;
@@ -189,28 +182,28 @@ export class DashboardComponent implements OnInit {
         key: "Cumulative Return",
         values: [
           {
-            "label": "A",
-            "value": 29.765957771107
+            "label": "DB1",
+            "value": 20
           },
           {
-            "label": "B",
-            "value": 0
+            "label": "DB2",
+            "value": 10
           },
           {
-            "label": "C",
-            "value": 32.807804682612
+            "label": "DB3",
+            "value": 50
           },
           {
-            "label": "D",
-            "value": 196.45946739256
+            "label": "DB4",
+            "value": 70
           },
           {
-            "label": "E",
-            "value": 0.19434030906893
+            "label": "DB5",
+            "value": 90
           },
           {
-            "label": "F",
-            "value": 98.079782601442
+            "label": "DB6",
+            "value": 40
           },
         ]
       }
