@@ -1,34 +1,33 @@
 #wrapper {
     min-height: 100%;
-    width: 100%; 
-  }
-#sidebar-wrapper {
-  background: #333;
-  color: #fff;  
-  border-right: 1px solid gray;
-}
-#header{
-  background-color: #fff;
+    width: 100%;
 }
 
-#main-wrapper {    
-    width: 100%; 
-    padding: 0 15px;
-      
+#sidebar-wrapper {
+    background: #333;
+    color: #fff;
+    border-right: 1px solid gray;
 }
-#main {    
+
+#header {
+    background-color: #fff;
+}
+
+#main-wrapper {
+    width: 100%;
+    padding: 0 15px;
+}
+
+#main {
     height: 100%;
     overflow-y: auto;
-   
-     background-color:#fff;
+    background-color: #fff;
 }
 
-.outer
-{
-  background-color:#F2F0F1;
+.outer {
+    background-color: #F2F0F1;
 }
 
-.navbar{
-  padding:0px ;
+.navbar {
+    padding: 0px;
 }
-

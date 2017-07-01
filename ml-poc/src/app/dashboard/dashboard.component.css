@@ -1,16 +1,17 @@
-.widget{
-  border: 1px solid gray;
-  margin: 12px;
+.widget {
+    margin: 7px;
+    padding: 10px 5px;
+    background: #fff;
 }
 
-.widget.h-2{
-  height: 350px;
+.widget.h-2 {
+    height: 350px;
 }
 
-.widget.h-1{
-  height: 150px;
+.widget.h-1 {
+    height: 150px;
 }
 
-.widget.w-1{
-  width: calc(50% - 24px);
+.widget.w-1 {
+    width: calc(50% - 24px);
 }

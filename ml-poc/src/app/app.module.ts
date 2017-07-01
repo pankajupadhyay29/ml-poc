@@ -48,24 +48,25 @@ import { CreateForestComponent } from './create-forest/create-forest.component';
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {
-      path: '',
-      component: DashboardComponent
-    },
-    {
-      path: 'database',
-      component: DatabaseComponent
-    },
-    {
-      path: 'create_database',
-      component: CreateDbComponent
-    },
-    {
-      path: 'create_forest',
-      component: CreateForestComponent
-    }     
+        path: '',
+        component: DashboardComponent
+      },
+      {
+        path: 'database',
+        component: DatabaseComponent
+      },
+      {
+        path: 'create_database',
+        component: CreateDbComponent
+      },
+      {
+        path: 'create_forest',
+        component: CreateForestComponent
+      }     
     ])
   ],
   providers: [MenuService, LayoutService, DatabaseService, ChartService],
-  bootstrap: [AppComponent, DialogComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

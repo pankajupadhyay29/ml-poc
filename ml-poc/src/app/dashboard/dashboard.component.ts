@@ -77,14 +77,14 @@ export class DashboardComponent implements OnInit {
     graphData[0]['chart']['useInteractiveGuideline'] = true;
     graphData[0]['chart'].xAxis = { axisLabel: 'Time (ms)' }
     graphData[0]['chart'].x = function (d) { return d.x; },
-      graphData[0]['chart'].y = function (d) { return d.y; },
-      graphData[0]['chart'].yAxis = {
-        axisLabel: 'NO OF REQUESTS',
-        tickFormat: function (d) {
-          return d3.format('.02f')(d);
-        },
-        axisLabelDistance: -10
-      }
+    graphData[0]['chart'].y = function (d) { return d.y; },
+    graphData[0]['chart'].yAxis = {
+      axisLabel: 'NO OF REQUESTS',
+      tickFormat: function (d) {
+        return d3.format('.02f')(d);
+      },
+      axisLabelDistance: -10
+    }
     let data = this.createAvailaibleChartData();
     graphData.push(data);
     this.widgetsGraphs.push(graphData);

@@ -226,5 +226,3 @@ export class LayoutService implements OnInit {
   // }
 
 }
-
-
