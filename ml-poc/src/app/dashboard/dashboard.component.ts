@@ -60,11 +60,9 @@ export class DashboardComponent implements OnInit {
         this.transformAvailaibleChart();
         this.showBarChart();
         for (let i = 0; i < this.widgets.length; i++) {
-          // console.log('widgetgraphs in subscribe', this.widgetsGraphs[i]);
           this.widgets[i]['chart'] = this.widgetsGraphs[i] || {};
         }
-      });
-      // console.log('widgets in subscribe', this.widgets)
+      });      
     });
 
   }
@@ -73,7 +71,6 @@ export class DashboardComponent implements OnInit {
     let graphData = [];
     let cOptions = this.chartOptions;
 
-    // console.log('in transform', this.AvailaibleChart);
     graphData.push(cOptions);
 
     graphData[0]['chart']['type'] = 'lineChart';
@@ -98,7 +95,6 @@ export class DashboardComponent implements OnInit {
     let data = [];
     let i = 0;
     let linedata = {};
-    // console.log('in avail', this.AvailaibleChart);
     linedata['values'] = [];
     this.AvailaibleChart.forEach(element => {
       let tempdata = { x: 0, y: 0 };
@@ -133,7 +129,6 @@ export class DashboardComponent implements OnInit {
     let bardata = this.createBarChartData();
     graphData.push(bardata);
     this.widgetsGraphs.push(graphData);
-    // console.log('in showBarChart', this.widgetsGraphs);
   }
 
 
@@ -141,7 +136,6 @@ export class DashboardComponent implements OnInit {
     let graphData = [];
     let cOptions = this.chartOptions;
 
-    // console.log('in transform', this.chart);
     graphData.push(cOptions);
 
     graphData[0]['chart']['type'] = 'lineChart';
@@ -163,7 +157,6 @@ export class DashboardComponent implements OnInit {
 
   createLineChartData() {
     let data = [];
-    // console.log('in create', this.chart);
     this.chart.forEach(element => {
       let linedata = {};
       linedata['values'] = [];

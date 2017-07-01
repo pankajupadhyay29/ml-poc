@@ -20,6 +20,8 @@ import { WidgetComponent } from './widget/widget.component';
 import { NvD3Component } from 'ng2-nvd3';
 import { CreateDbComponent } from './create-db/create-db.component';
 import { ChartService } from "app/chart.service";
+import { DialogComponent } from './dialog/dialog.component';
+import { CreateForestComponent } from './create-forest/create-forest.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ChartService } from "app/chart.service";
     DatabaseComponent,
     WidgetComponent,
     NvD3Component,
-    CreateDbComponent
+    CreateDbComponent,
+    DialogComponent,
+    CreateForestComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +44,7 @@ import { ChartService } from "app/chart.service";
     MaterialModule,
     FormsModule,
     NgxDatatableModule,
+    MdDialogModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {
@@ -53,10 +58,14 @@ import { ChartService } from "app/chart.service";
     {
       path: 'create_database',
       component: CreateDbComponent
-    }    
+    },
+    {
+      path: 'create_forest',
+      component: CreateForestComponent
+    }     
     ])
   ],
   providers: [MenuService, LayoutService, DatabaseService, ChartService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, DialogComponent]
 })
 export class AppModule { }

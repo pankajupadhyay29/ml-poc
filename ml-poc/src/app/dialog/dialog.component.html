@@ -1,0 +1,54 @@
+<div class="container">
+	<div class="row header"> 
+		<div class="col-sm-6 ">
+		<div class="title"><i class="icon-attachment"></i>&nbsp;ATTACH FOREST</div>
+		</div>	
+		<div class="col-sm-4 "></div>
+		<div class="col-sm-2 ">
+		<div class="title">X</div>
+		</div>
+	</div>
+	<div class="row dimensions" *ngIf="notVisible">
+		<div class="col-sm-6 line" >
+			<div class="attach-existing" (click)="onClick()">
+				<div class="center-block inner row "><i class="icon-add"></i></div>
+				<div class="row content">Attach an Existing Forest</div>
+			</div>
+		</div>	
+		<div class="col-sm-6 ">
+			<div class="attach-existing" routerLink="/create_forest">
+				<div class="center-block inner row"><i class="icon-add"></i></div>
+				<div class="row content">Create new Forest and attach</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="visible">
+		<div class="row alignment">  
+ 	   <div class="col-sm-11">
+ 		<md-input-container style="width:90%">
+		 	     <input mdInput placeholder="Search database" 
+		 	   [(ngModel)]="trainingSearchTerm" 
+		 	   (ngModelChange)="filterDb($event)">
+		        </md-input-container >
+			<i class="icon-search prefix"></i>  
+	  </div>
+	</div>
+	 <div class="row alignment">
+	 	    <div class="col-sm-12 li_box">
+	     <ul style="height:185px; width:100%; overflow:auto;margin-bottom: 0px;">
+				 	<li *ngFor="let forests of forestsList" class="textColor">   
+						<md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.id)"> {{forests.name}}</md-checkbox>
+					</li>
+			 </ul>
+	       </div> 
+	     </div> 
+			<div class="row div_line ">
+ 			   <div class="col-sm-6"></div>
+ 			   <div class="col-sm-6">
+ 				<a md-raised-button class="btn_back bottom" (click)="onBack()">Back</a>
+       		    <a md-raised-button class="btn_create bottom" (click)="onDone()"  data-dismiss="myModal" >Done</a>
+ 		   </div>
+ 			</div> 
+      
+	</div>
+</div>

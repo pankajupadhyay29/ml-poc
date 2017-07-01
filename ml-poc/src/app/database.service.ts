@@ -15,8 +15,23 @@ export class DatabaseService {
 
   getForests():Observable<any[]> {
 
-    return this.http.get(this.service_url + 'forasts')
+    return this.http.get(this.service_url + 'forests')
       .map((response: Response) => response.json());
   }
+
+  attacheForest(forestList){
+  
+
+var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.post(this.service_url+'setForestToDB', forestList,headers)
+        .map((response: Response) => response.json());
+
+console.log(JSON.stringify(forestList));
+    
+    
+  }
+
+
 
 }

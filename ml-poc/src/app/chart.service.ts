@@ -17,7 +17,7 @@ export class ChartService {
     return this.http.get(this.service_url + 'requestTrend?startDate=' + startDate + '&endDate=' + endDate + '&dataPointsCount=' + dataPointsCount)
       .map((response: Response) => response.json());
   }
-
+  
   getAvailaibleChartList(): Observable<any[]> {
     const currentDate = new Date();
     let endDate = new Date(currentDate.getTime()).toISOString();
