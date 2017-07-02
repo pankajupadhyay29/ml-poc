@@ -1,19 +1,23 @@
 @import './icomoon/style.css';
-[class^="icon-"]:before, [class*=" icon-"]:before {
-  color: inherit;
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    color: inherit;
 }
 
-ul{
-  padding: 0;
-  list-style: none;
-}
-li{
-  display: block; 
+ul {
+    padding: 0;
+    list-style: none;
 }
 
-.inline-block{
-  display: inline-block;
+li {
+    display: block;
 }
+
+.inline-block {
+    display: inline-block;
+}
+
+
 /*
 body {
   padding-top: 50px;
@@ -26,33 +30,32 @@ body {
   }
 }
 */
-.flex-column, .flex-row{
-  display: flex;  
-  width: 100%;
+
+.flex-column,
+.flex-row {
+    display: flex;
+    width: 100%;
 }
 
-.flex-column{
-  flex-direction: column;
+.flex-column {
+    flex-direction: column;
 }
 
-.flex-row{
-  flex-direction: row;
+.flex-row {
+    flex-direction: row;
 }
 
-
-.ngx-datatable.material .datatable-header{
+.ngx-datatable.material .datatable-header {
     background: #6b54b0;
     border-radius: 5px;
-    }
+}
 
-.ngx-datatable.material .datatable-header .datatable-header-inner .datatable-header-cell:nth-child(2n){
-            background: #57409b;
-            height: 47px;
-    }
+.ngx-datatable.material .datatable-header .datatable-header-inner .datatable-header-cell:nth-child(2n) {
+    background: #57409b;
+    height: 47px;
+}
 
-
-
-.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell{
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
     color: #ffffff;
     padding: 7px;
     line-height: 30px;
@@ -60,53 +63,47 @@ body {
     font-family: Helvetica Neue, sans-serif;
     font-weight: bold;
     font-size: 13px;
-    }
-.ngx-datatable.material .datatable-body .datatable-body-row{
-
-margin: 10px 0;
-    }
-    .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell:first-child{
-    border-radius: 5px 0 0 5px;
-    border-left-color: green;
-  border-left-style: solid;
-    border-left-width: 6px;
-        }
-    .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell:last-child{
-border-radius: 0 5px 5px 0;
-    }
-.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell{
-  
-        background: #e8e2e2;
-        font-family: Helvetica Neue, sans-serif;
-        font-size: 14px;
-        padding: 10px;
-        
-    }
-.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell:nth-child(2n){
-            background: #d6cfcf;
 }
 
-.mat-dialog-container{
-  padding: 0px!important;
+.ngx-datatable.material .datatable-body .datatable-body-row {
+    margin: 10px 0;
 }
 
-.mat-checkbox-label
-{
-    font-size: 14px !important;
-    color:black !important;
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+    background: #e8e2e2;
     font-family: Helvetica Neue, sans-serif;
-    font-weight:100 !important;
-} 
-
-.widget-header{
-  background-color: transparent!important;
-  border-bottom: 0px !important;
-  color:black!important;
-  font-family: Helvetica Neue, sans-serif;
-  font-size: 18px;
-  font-weight: 100;
-
+    font-size: 14px;
+    padding: 10px;
 }
-.widget-title{
-  padding: 15px;
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell:nth-child(2n) {
+    background: #d6cfcf;
+}
+
+.mat-dialog-container {
+    padding: 0px!important;
+}
+
+.mat-checkbox-label {
+    font-size: 14px !important;
+    color: black !important;
+    font-family: Helvetica Neue, sans-serif;
+    font-weight: 100 !important;
+}
+
+.widget-header {
+    background-color: transparent!important;
+    border-bottom: 0px !important;
+    color: black!important;
+    font-family: Helvetica Neue, sans-serif;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.widget-title {
+    padding: 15px;
 }

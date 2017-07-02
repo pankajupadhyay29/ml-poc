@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.chart_service.getChartList().subscribe(result => {
+      console.log(result);
       this.chart_service.getAvailaibleChartList().subscribe(res => {
         this.widgets = this.layout.getWidgetLayout();
         this.chart = result;
@@ -85,6 +86,7 @@ export class DashboardComponent implements OnInit {
       },
       axisLabelDistance: -10
     }
+
     let data = this.createAvailaibleChartData();
     graphData.push(data);
     this.widgetsGraphs.push(graphData);

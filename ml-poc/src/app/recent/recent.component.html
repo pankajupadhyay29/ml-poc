@@ -1,3 +1,8 @@
-<p>
-  recent works!
-</p>
+<div class="header">
+    Recents
+</div>
+<ul class="quick-links">
+    <li *ngFor="let link of recents">
+        {{link.name}}<strong>({{link.objectType}})</strong>
+    </li>
+</ul>

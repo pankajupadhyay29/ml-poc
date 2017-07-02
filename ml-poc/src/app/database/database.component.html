@@ -15,7 +15,7 @@
                 {{column.name}}
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.name}}
+                <div class='col-name' [ngClass]='{ available : row.isAvailable}'>{{row.name}}</div>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Related Databases">

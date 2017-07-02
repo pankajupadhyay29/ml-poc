@@ -22,7 +22,10 @@ export class DatabaseService {
     headers.append('Content-Type', 'application/json');
     this.http.post(this.service_url+'setForestToDB', forestList,headers)
       .map((response: Response) => response.json());
+  }
 
-    console.log(JSON.stringify(forestList));
+  getRecent(){
+     return this.http.get(this.service_url + 'recent')
+      .map((response: Response) => response.json());
   }
 }

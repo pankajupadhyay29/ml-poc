@@ -257,7 +257,7 @@ function addToAccessList(objectType, name, id) {
 
 app.get('/forests', function(req, res) {
     var forestAndDb = _.map(forests, function(forest) {
-        var mapDb = _.find(DBList, function(db) { return _.find(db.forests, { id: forest.id }) });
+        var mapDb = _.find(DBList, function(db) { return _.find(db.forests, function(f) { return f.id == forest.id }) });
 
         if (mapDb) {
             return _.extend(forest, { database: { id: mapDb.id, name: mapDb.name } });
@@ -287,27 +287,28 @@ app.get('/requestTrend', function(req, res) {
 
     var trendFor = req.query.trendFor || objectTypes.forest;
     var groupedData = [];
-    _(objectAccessDetalis)
+    var grp = _(objectAccessDetalis)
         .filter(function(value) {
             return value.objectType == trendFor && value.accessTime < endDate && value.accessTime >= startDate;
         })
         .groupBy('name')
-        .forEach(function(value, key) {
-            var g = {
-                name: key,
-                data: _.map(dataBucket, function(chunk) {
-                    return _.extend(chunk, {
-                        data: _.filter(value, function(accessDetail) {
-                            return accessDetail.accessTime >= chunk.startDate && accessDetail.accessTime < chunk.endDate;
-                        })
-                    })
-                })
-            }
-
-            groupedData.push(g);
-        })
         .valueOf();
-    console.log('Done');
+
+    _.forEach(grp, function(value, key) {
+        var g = {
+            name: key,
+            data: _.map(dataBucket, function(chunk) {
+                var data = _.filter(value, function(accessDetail) {
+                    return accessDetail.accessTime >= chunk.startDate && accessDetail.accessTime < chunk.endDate;
+                })
+                console.log(data);
+
+                return { startDate: chunk.startDate, endDate: chunk.endDate, data: data };
+            })
+        }
+
+        groupedData.push(g);
+    })
 
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(groupedData));
@@ -319,7 +320,15 @@ var dbAvailablity = [
 ];
 app.get('/toggleAvailability', function(req, res) {
     var id = req.query.id;
-    var db = _.find(DBList, { id: id });
+    var db = _.find(DBList, function(db) { return db.id == id });
+    if (!db) {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(DBList));
+        return;
+    }
+
+    addToAccessList(objectTypes.database, db.name, db.id);
+
     var last = dbAvailablity[dbAvailablity.length - 1];
     var available = db.isAvailable;
 
@@ -327,7 +336,7 @@ app.get('/toggleAvailability', function(req, res) {
 
     dbAvailablity.push({
         timestamp: new Date(),
-        UnavialableDB: availble ? Math.max(last.UnavialableDB - 1, 0) : Math.min(last.UnavialableDB + 1, DBList.length)
+        UnavialableDB: available ? Math.max(last.UnavialableDB - 1, 0) : Math.min(last.UnavialableDB + 1, DBList.length)
     });
     res.end('true');
 
@@ -390,12 +399,12 @@ app.post('/setForestToDB', function(req, res) {
     //remove these forest form existing
     _.forEach(DBList, function(d) {
         _.remove(d.forests, function(f) {
-            return _.find(selectedForests, ({ id: f.id }));
+            return _.find(selectedForests, function(forest) { return forest.id == f.id });
         })
     })
 
     //add these to current db
-    var database = _.find(DBList, { id: db.id });
+    var database = _.find(DBList, function(d) { return d.id == db.id });
     database.forests = selectedForests;
     //_.extend(, {forests: selectedForests})
 
@@ -420,6 +429,13 @@ app.post('/createForest', function(req, res) {
     addToAccessList(objectTypes.forest, forest.name, forest.id);
 
     res.end('true');
+})
+
+app.get('/recent', function(req, res) {
+    var recent = _(objectAccessDetalis).uniqWith(function(obj, other) {
+        return obj.objectType == other.objectType && obj.name == other.name
+    }).take(5).valueOf();
+    res.end(JSON.stringify(recent));
 })
 
 var server = app.listen(3000, function() {
