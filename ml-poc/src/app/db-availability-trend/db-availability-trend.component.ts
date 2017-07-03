@@ -10,13 +10,14 @@ export class DbAvailabilityTrendComponent implements OnInit {
 
   chartData: any;
   options: any;
+  interval:any;
   widgets = [];
   chart = [];
   widgetsGraphs = [];
 
   chartOptions = {
     chart: {
-      type: '',
+      type: 'lineChart',
       height: 300,
       margin: {
         top: 20,
@@ -24,49 +25,37 @@ export class DbAvailabilityTrendComponent implements OnInit {
         bottom: 50,
         left: 55
       },
-      x: function (d) { return d.lable; },
-      y: function (d) { return d.value; },
-      xAxis: {},
-      yAxis: {}
-    }
-  };
-
-  constructor(private chart_service: ChartService) { }
-
-  ngOnInit() {
-    this.chart_service.getAvailaibleChartList().subscribe(result => {
-      console.log(result);
-      this.chart = result;
-      this.transformAvailaibleChart();
-    });
-  }
-
-  transformAvailaibleChart() {
-    let graphData = [];
-    let cOptions = this.chartOptions;
-
-    graphData.push(cOptions);
-
-    graphData[0]['chart']['type'] = 'lineChart';
-    graphData[0]['chart']['useInteractiveGuideline'] = true;
-    graphData[0]['chart'].xAxis = { axisLabel: 'Time (ms)' }
-    graphData[0]['chart'].x = function (d) { return d.x; },
-      graphData[0]['chart'].y = function (d) { return d.y; },
-      graphData[0]['chart'].yAxis = {
+      useInteractiveGuideline: true,
+      x: function (d) { return d.x; },
+      y: function (d) { return d.y; },
+      xAxis: { axisLabel: 'Time (ms)' },
+      yAxis: {
         axisLabel: 'NO OF REQUESTS',
         tickFormat: function (d) {
           return d3.format('.02f')(d);
         },
         axisLabelDistance: -10
       }
+    }
+  };
 
-    let data = this.createAvailaibleChartData();
-    graphData.push(data);
-     this.options = graphData[0];
-     this.chartData = graphData[1];
 
+  constructor(private chart_service: ChartService) { }
+
+  ngOnInit() {
+     this.loadService = this.loadService.bind(this);
+    this.loadService();
+    this.interval = setInterval(this.loadService, 20 * 1000);
+    
   }
 
+  loadService(){
+    this.chart_service.getAvailaibleChartList().subscribe(result => {
+      this.chart = result;
+      this.options = this.chartOptions;
+      this.chartData = this.createAvailaibleChartData();
+    });
+  }
 
   createAvailaibleChartData() {
     let data = [];
@@ -76,7 +65,12 @@ export class DbAvailabilityTrendComponent implements OnInit {
     this.chart.forEach(element => {
       let tempdata = { x: 0, y: 0 };
       tempdata.x = i;
-      tempdata.y = element.data;
+      if (element.data != undefined) {
+        tempdata.y = element.data.UnavialableDB;
+      }
+      else {
+        tempdata.y = 0;
+      }
       linedata['values'].push(tempdata);
       i += 3;
     });
@@ -84,5 +78,8 @@ export class DbAvailabilityTrendComponent implements OnInit {
     linedata['area'] = true;
     data.push(linedata);
     return data;
+  }
+   ngOnDestroy() {
+    clearInterval(this.interval);
   }
 }
