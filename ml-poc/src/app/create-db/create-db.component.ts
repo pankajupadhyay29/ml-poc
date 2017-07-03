@@ -9,6 +9,7 @@ import { Http, Response } from "@angular/http";
   styleUrls: ['./create-db.component.css']
 })
 export class CreateDbComponent implements OnInit {
+  content = '+ See More';  
   // @Input() rows: Array<Object>;
   private service_url = "http://localhost:3000/";
   databases = [
@@ -16,6 +17,19 @@ export class CreateDbComponent implements OnInit {
     {value: 'Database-1', viewValue: 'DB-2'},
     {value: 'Database-2', viewValue: 'DB-3'}
   ];
+ // or minus if you want that first
+
+   toggleContent() {
+     if(this.content === '+ See More') {
+       this.content = '- See Less';
+     } else {
+       this.content = '+ See More';
+     }
+   }
+
+
+
+
   constructor(private http: Http) { }
   
   onSubmit(f: NgForm) {
