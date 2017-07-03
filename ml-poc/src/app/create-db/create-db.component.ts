@@ -10,6 +10,7 @@ import { DatabaseService } from "app/database.service";
   styleUrls: ['./create-db.component.css']
 })
 export class CreateDbComponent implements OnInit {
+  content = '+ See More';  
   // @Input() rows: Array<Object>;
   private service_url = "http://localhost:3000/";
   temp: Array<Object>;
@@ -18,6 +19,15 @@ export class CreateDbComponent implements OnInit {
   id = 10;
 
   constructor(private http: Http, private dbService: DatabaseService) { }
+
+   toggleContent() {
+     if(this.content === '+ See More') {
+       this.content = '- See Less';
+     } else {
+       this.content = '+ See More';
+     }
+   }
+
   
   onSubmit(f: NgForm) {
     console.log(f.value);  // { first: '', last: '' }

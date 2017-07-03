@@ -14,31 +14,16 @@
 }
 
 .move {
-    float: right;
-    display: block;
-    margin-right: 10px;
-    clear: left;
+    float:right;
+    display:block;
+    margin-right:10px;
+    clear:left;
     margin-top: 12px;
     margin-bottom: 16px;
     text-decoration: none;
-    border: 1px solid #DF5D26;
-    color: #DF5D26;
 }
 
-.move:hover {
-    color: white;
-    background-color: #DF5D26;
-}
 
-.icon-add:hover {
-    color: white;
-    padding: 5px;
-}
-
-.icon-add {
-    color: #E35F1D;
-    padding: 5px;
-}
 
 .icon-Database {
     padding: 10px;
@@ -84,4 +69,15 @@
 
 .col-name.available {
     border-left-color: green;
+}
+
+.mat-raised-button{
+  text-decoration: none;
+    border: 1px solid #DF5D26 ;
+    color: #DF5D26;
+ }
+
+.mat-raised-button:hover{
+  color:white;
+  background-color: #DF5D26 ;
 }
