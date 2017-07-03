@@ -46,7 +46,9 @@ constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: D
    this.checkedForests.push({id: forest.id, name: forest.name});
   } 
 
-  
+  onCreate() {
+    this.dialogRef.close();
+  }
   
   onDone() {
     //console.log(this.checkedForests);
