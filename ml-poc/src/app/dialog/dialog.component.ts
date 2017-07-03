@@ -15,13 +15,29 @@ export class DialogComponent implements OnInit {
 	menuList =  [];
   @Input() forestsList: Array<any>;
   selectedDb: any;
- checkedForests = [];
+  checkedForests = [];
+  trainingSearchTerm: string;
+
 
   notVisible:boolean = true;
   visible:boolean = false;
-constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: DatabaseService, private menuService: MenuService) { }
+  constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: DatabaseService, private menuService: MenuService) { }
   ngOnInit() {
 
+  }
+
+  filterDb(event) {
+    
+    this.trainingSearchTerm = this.trainingSearchTerm || '';
+      const val = this.trainingSearchTerm.toLowerCase();
+      if (this.temp) {
+      const tempdata = this.temp.filter(function (d) {
+        return d['name'].toLowerCase().indexOf(val) !== -1 || !val;
+      });
+
+      // update the rows
+      this.forestsList = tempdata;
+      }
   }
 
   onClick() {
@@ -41,12 +57,17 @@ constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: D
   	this.visible = false;
   	this.notVisible = true;
   }
+
   onCheck(check) {
    var forest = this.forestsList.find(function(f){ return f.id == check});
    this.checkedForests.push({id: forest.id, name: forest.name});
   } 
 
   onCreate() {
+    this.dialogRef.close();
+  }
+
+  onClose() {
     this.dialogRef.close();
   }
   
