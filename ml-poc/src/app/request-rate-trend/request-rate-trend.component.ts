@@ -57,7 +57,8 @@ export class RequestRateTrendComponent implements OnInit {
 
   createLineChartData() {
     let data = [];
-    this.chart.forEach(element => {
+    let colors = ['#7777ff', '#7777aa', '#777788', '#777755', '#777722']
+    this.chart.forEach((element, index) => {
       let linedata = {};
       linedata['values'] = [];
       for (let i = 0; i < element.data.length; i++) {
@@ -67,7 +68,7 @@ export class RequestRateTrendComponent implements OnInit {
         linedata['values'].push(tempdata);
       }
       linedata['key'] = element.name;
-      linedata['color'] = '#7777ff';
+      linedata['color'] = colors[index % 5];
       data.push(linedata);
     });
     return data;

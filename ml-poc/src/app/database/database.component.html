@@ -4,12 +4,12 @@
         <input mdInput placeholder="Search database" [(ngModel)]="trainingSearchTerm" (ngModelChange)="filterDb($event)">
     </md-input-container>
     <i class="icon-search prefix"></i>
-    <div class="container"><a md-raised-button routerLink="/create_database" class="move" ><i class="icon-add" ></i>  Create New</a></div>
+    <div class="container"><a md-raised-button [routerLink]="'/create_database'" class="move"><i class="icon-add" ></i>  Create New</a></div>
     <router-outlet></router-outlet>
 </div>
 
 <div class="tableHeader">
-    <ngx-datatable class="material tableHeader" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="'auto'" >
+    <ngx-datatable class="material tableHeader" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="'auto'">
         <ngx-datatable-column name="Database Name">
             <ng-template let-column="column" ngx-datatable-header-template>
                 {{column.name}}
@@ -47,9 +47,9 @@
                 {{column.name}}
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-        <span mdTooltip="Edit"><i class="icons icon-edit" md-button (click)="onClick()"></i></span>
-        <span mdTooltip="Forest"><i class="icons icon-attachment" (click)="openDialog(row)"></i></span>
-        <span mdTooltip="Edit"><i class="icons icon-Create-New-Forest-n-attach" (click)="onAction()"></i></span>
+                <span mdTooltip="Edit"><i class="icons icon-edit" md-button (click)="onClick()"></i></span>
+                <span mdTooltip="Forest"><i class="icons icon-attachment" (click)="openDialog(row)"></i></span>
+                <span mdTooltip="Edit"><i class="icons icon-Create-New-Forest-n-attach" (click)="onAction()"></i></span>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
