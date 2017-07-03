@@ -1,3 +1,6 @@
+.bottom{
+    margin-bottom: 15px;
+}
 .text {
     padding: 10px;
     line-height: 30px;
@@ -24,18 +27,25 @@
    justify-content: flex-start;
 }
 
-.container {
-    border: 1px solid grey;
-}
+.container-fluid {
+    border-radius: 5px;
+    border: 1px solid #DFDEDF;
+} 
+
+.outer{
+    padding:15px 15px 60px 15px;
+    background: white;
+   } 
+
 .form-container {
         border: 0px solid grey;
 }
 .move {
     float:right;
     display:block;
-    margin-right:15%;
     clear:left;
     margin-top: 15px;
+    
 }
 
 .alignment
@@ -45,3 +55,22 @@
     text-align: center;
     font-weight: 600;
 }
+
+.create_btn{
+    margin-left: 10px;
+  text-decoration: none;
+   background: #DF5D26;
+   color: white;
+   border-radius: 5px;
+ }
+
+ .cancel_btn{
+     color:white;
+     background:#AAA6A9;
+      text-decoration: none;
+      border-radius: 5px;
+ }
+
+ .moreless_btn{
+ cursor: pointer
+ }
