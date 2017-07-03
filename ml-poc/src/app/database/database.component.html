@@ -9,7 +9,7 @@
 </div>
 
 <div class="tableHeader">
-    <ngx-datatable class="material tableHeader" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+    <ngx-datatable class="material tableHeader" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [rowHeight]="'auto'" >
         <ngx-datatable-column name="Database Name">
             <ng-template let-column="column" ngx-datatable-header-template>
                 {{column.name}}

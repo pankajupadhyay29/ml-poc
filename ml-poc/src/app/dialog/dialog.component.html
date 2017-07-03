@@ -5,7 +5,7 @@
         </div>
         <div class="col-sm-4 "></div>
         <div class="col-sm-2">
-            <div class="close"><i class="icon-menuclose" style="color:white"></i></div>
+            <div class="close"><i class="icon-menuclose" style="color:white" (click)="onClose()"></i></div>
         </div>
     </div>
     <div class="row dimensions" *ngIf="notVisible">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="col-sm-6 ">
-            <div class="attach-existing" routerLink="/create_forest">
+            <div class="attach-existing" routerLink="/create_forest" (click)="onCreate()">
                 <div class="center-block inner row"><i class="icon-add"></i></div>
                 <div class="row content">Create new Forest and attach</div>
             </div>
@@ -26,7 +26,7 @@
         <div class="row alignment">
             <div class="col-sm-11">
                 <md-input-container style="width:90%">
-                    <input mdInput placeholder="Search database" [(ngModel)]="trainingSearchTerm" (ngModelChange)="filterDb($event)">
+                    <input mdInput placeholder="Search Forest" [(ngModel)]="trainingSearchTerm" (ngModelChange)="filterDb($event)">
                 </md-input-container>
                 <i class="icon-search prefix"></i>
             </div>

@@ -5,23 +5,23 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-container" novalidate>
   <div class="outer">  
     <div class="container-fluid">
-      <div class="select"><span> Name:  <input type="text" placeholder="Type name" style="width: 400px;margin:0px 0px 0px 5px"></span></div>
+      <div class="select"><span> Name:  <input type="text" [(ngModel)]="dbName" placeholder="Type name" style="width: 400px;margin:0px 0px 0px 5px"></span></div>
       <div class="select">
         Security DB: 
-        <md-select placeholder="Select">
-          <md-option *ngFor="let db of databases" [value]="db.value">{{db.viewValue}}</md-option>
+        <md-select >
+          <md-option *ngFor="let db of dbList" [value]="db.name" >{{db.name}}</md-option>
         </md-select>
       </div>
       <div class="select">
         Schema DB: 
-        <md-select placeholder="Select">
-          <md-option *ngFor="let db of databases" [value]="db.value">{{db.viewValue}}</md-option>
+        <md-select>
+          <md-option *ngFor="let db of dbList" [value]="db.name"  >{{db.name}}</md-option>
         </md-select>
       </div>
       <div class="select">
         Triggers DB: 
-        <md-select placeholder="Select">
-          <md-option *ngFor="let db of databases" [value]="db.value">{{db.viewValue}}</md-option>
+        <md-select >
+          <md-option *ngFor="let db of dbList" [value]="db.name" >{{db.name}}</md-option>
         </md-select>
       </div>
       <div id="demo" class="collapse">

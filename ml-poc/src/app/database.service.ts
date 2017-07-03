@@ -24,6 +24,17 @@ export class DatabaseService {
       .map((response: Response) => response.json());
   }
 
+
+    createDb(db){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    console.log('from service',this.service_url+'createDB');
+    this.http.post(this.service_url+'createDB', db, headers)
+      .map((response: Response) =>
+            response.json());
+  }
+
+
   getRecent(){
      return this.http.get(this.service_url + 'recent')
       .map((response: Response) => response.json());
