@@ -13,10 +13,11 @@ export class RequestRateTrendComponent implements OnInit {
   widgets = [];
   chart = [];
   widgetsGraphs = [];
+  interval: any;
 
   chartOptions = {
     chart: {
-      type: '',
+      type: 'lineChart',
       height: 300,
       margin: {
         top: 20,
@@ -24,45 +25,35 @@ export class RequestRateTrendComponent implements OnInit {
         bottom: 50,
         left: 55
       },
-      x: function (d) { return d.lable; },
-      y: function (d) { return d.value; },
-      xAxis: {},
-      yAxis: {}
-    }
-  };
-
-  constructor(private layout: LayoutService, private chart_service: ChartService) { }
-
-  ngOnInit() {
-    this.chart_service.getChartList().subscribe(result => {
-      console.log(result);
-      this.chart = result;
-      this.transform();
-    });
-  }
-
-  transform() {
-    let graphData = [];
-    let cOptions = this.chartOptions;
-    graphData.push(cOptions);
-    graphData[0]['chart']['type'] = 'lineChart';
-    graphData[0]['chart']['useInteractiveGuideline'] = true;
-    graphData[0]['chart'].xAxis = { axisLabel: 'Time (ms)' }
-    graphData[0]['chart'].x = function (d) { return d.x; },
-      graphData[0]['chart'].y = function (d) { return d.y; },
-      graphData[0]['chart'].yAxis = {
+      useInteractiveGuideline: true,
+      x: function (d) { return d.x; },
+      y: function (d) { return d.y; },
+      xAxis: { axisLabel: 'Time (ms)' },
+      yAxis: {
         axisLabel: 'NO OF REQUESTS',
         tickFormat: function (d) {
           return d3.format('.02f')(d);
         },
         axisLabelDistance: -10
       }
-    let data = this.createLineChartData();
-    graphData.push(data);
-     this.options = graphData[0];
-     this.chartData = graphData[1];
+    }
+  };
+
+  constructor(private layout: LayoutService, private chart_service: ChartService) { }
+
+  ngOnInit() {
+    this.loadService = this.loadService.bind(this);
+    this.loadService();
+    this.interval = setInterval(this.loadService, 20 * 1000);
   }
 
+  loadService() {
+    this.chart_service.getChartList().subscribe(result => {
+      this.chart = result;
+      this.options = this.chartOptions;
+      this.chartData = this.createLineChartData();
+    });
+  }
 
   createLineChartData() {
     let data = [];
@@ -81,6 +72,9 @@ export class RequestRateTrendComponent implements OnInit {
     });
     return data;
 
+  }
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 
 }
