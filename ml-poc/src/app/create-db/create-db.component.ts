@@ -3,6 +3,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import {NgForm} from '@angular/forms';
 import { Http, Response } from "@angular/http";
 import { DatabaseService } from "app/database.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-create-db',
@@ -17,8 +18,11 @@ export class CreateDbComponent implements OnInit {
   @Input() dbList: Array<any>;
   dbName: '';
   id = 10;
+  security: '';
+  schema: '';
+  trigger: '';
 
-  constructor(private http: Http, private dbService: DatabaseService) { }
+  constructor(private http: Http, private dbService: DatabaseService,private router: Router,) { }
 
    toggleContent() {
      if(this.content === '+ See More') {
@@ -46,11 +50,16 @@ export class CreateDbComponent implements OnInit {
 }
 
   createData(db) {
+    this.id++;
     let data={};
-   let database={};
-   database={'id':11,'name':'testML'};
+   let database={id:0,name:'',isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9}, { name: 'Schemas', id: 8 }, ], forests: [{ name: 'mlsonforest', id: 6 }], appServers: [{ name: 'mlsprer', id: 3, isDefault: true }, ]};
+   database.id=this.id;
+   database.name=this.dbName;
+  //  database.relatedDatabase= [{ name: this.security, id: this.id}, {name: this.schema, id: this.id}, {name: this.trigger, id: this.id}]
    data["database"]= database;
-  this.dbService.createDb(JSON.stringify(data));
+   console.log(JSON.stringify(data));
+    this.dbService.createDb(JSON.stringify(data));
+   this.router.navigate(['/database']);
     // console.log('here in save db', data );
   }
 

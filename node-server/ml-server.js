@@ -243,7 +243,7 @@ var objectTypes = {
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
     next();
 });
 
@@ -259,7 +259,7 @@ app.get('/forests', function(req, res) {
     var forestAndDb = _.map(forests, function(forest) {
         var mapDb = _.find(DBList, function(db) { return _.find(db.forests, function(f) { return f.id == forest.id }) });
 
-        if (mapDb) {
+        if (!_.isEmpty(mapDb)) {
             return _.extend(forest, { database: { id: mapDb.id, name: mapDb.name } });
         }
 

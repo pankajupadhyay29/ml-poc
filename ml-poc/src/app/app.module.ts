@@ -70,7 +70,7 @@ import { MemoryUsesTrendComponent } from './memory-uses-trend/memory-uses-trend.
         component: CreateDbComponent
       },
       {
-        path: 'create_forest',
+        path: 'create_forest/:id/:name',
         component: CreateForestComponent
       }     
     ])

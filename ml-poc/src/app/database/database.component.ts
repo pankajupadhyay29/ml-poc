@@ -13,6 +13,8 @@ import {DialogComponent} from '../dialog/dialog.component'
   styleUrls: ['./database.component.css']
 })
 export class DatabaseComponent implements OnInit {
+  interval: any;
+  loadRecent: any;
 
   temp: Array<Object>;
   @Input() rows: Array<Object>;
@@ -25,12 +27,9 @@ export class DatabaseComponent implements OnInit {
 
 
   ngOnInit() {
-    this.dbService.getDbList().subscribe(result=>{
-      this.rows = result;
-      this.temp = this.rows;
-      this.trainingSearchTerm = '';
-      console.log(this.rows);
-    });
+    this.loadData = this.loadData.bind(this);
+    this.loadData();
+  //  this.interval = setInterval(this.loadData, 1 * 1000);
   }
 
   stringifyName(namedList){
@@ -53,6 +52,15 @@ export class DatabaseComponent implements OnInit {
       // update the rows
       this.rows = tempdata;
       }
+  }
+  
+  loadData() {
+    this.dbService.getDbList().subscribe(result=>{
+      this.rows = result;
+      this.temp = this.rows;
+      this.trainingSearchTerm = '';
+      console.log(this.rows);
+    });
   }
 
   openDialog(db) {
@@ -79,6 +87,11 @@ export class DatabaseComponent implements OnInit {
   getClasses(id) {
     return this.highlighted == id ? 'highlighted': '';
   }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
+  }
+
 }
 
 /*

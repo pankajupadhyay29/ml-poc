@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-sm-6">
-            <div class="attach-existing" routerLink="/create_forest" (click)="onCreate()">
+            <div class="attach-existing" [routerLink]="['/create_forest', selectedDb.id, selectedDb.name]" (click)="onCreate()">
                 <div class="center-block inner row "><i class="icon-add"></i></div>
                 <div class="row content ">Create new Forest <span style="margin-left:20px;">and attach</span></div>
             </div>
@@ -37,7 +37,7 @@
                 <ul class="ul_style">
                     <li *ngFor="let forests of forestsList">
                         <md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.id)" class="chckbox"> {{forests.name}}
-                        <span ><i class="icons icon-attachment"></i></span></md-checkbox>
+                            <span><i class="icons icon-attachment"></i></span></md-checkbox>
                     </li>
                 </ul>
             </div>
