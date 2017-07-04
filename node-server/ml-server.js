@@ -301,7 +301,6 @@ app.get('/requestTrend', function(req, res) {
                 var data = _.filter(value, function(accessDetail) {
                     return accessDetail.accessTime >= chunk.startDate && accessDetail.accessTime < chunk.endDate;
                 })
-                console.log(data);
 
                 return { startDate: chunk.startDate, endDate: chunk.endDate, data: data };
             })
@@ -351,8 +350,6 @@ app.get('/requestAvailabilityTrend', function(req, res) {
 
     dataBucket = [];
 
-    console.log(dbAvailablity);
-
     for (i = 0; i < dataPointsCount; i++) {
         dataBucket.push({
             startDate: new Date(startDate.getTime() + i * bucketSize),
@@ -397,11 +394,9 @@ app.get('/requestDatabase', function(req, res) {
 })
 
 app.post('/setForestToDB', function(req, res) {
-    console.log(req.body);
     var db = req.body.database;
     var selectedForests = req.body.selectedForests;
 
-    console.log(db, selectedForests);
     //remove these forest form existing
     _.forEach(DBList, function(d) {
         _.remove(d.forests, function(f) {
@@ -446,8 +441,8 @@ app.get('/recent', function(req, res) {
 
 var server = app.listen(3000, function() {
 
-    var host = server.address().address
-    var port = server.address().port
-    console.log("ML Server listening at http://%s:%s", host, port)
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("ML Server listening at http://%s:%s", host, port);
 
 })
