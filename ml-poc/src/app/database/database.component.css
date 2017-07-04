@@ -1,8 +1,8 @@
 .db {
     margin-top: 20px;
     font-family: Helvetica Neue, sans-serif;
-    font-weight: bold;
-    font-size: 18px;
+    font-weight: light;
+    font-size: 22px;
 }
 
 .mat-input-container {
@@ -23,8 +23,6 @@
     text-decoration: none;
 }
 
-
-
 .icon-Database {
     padding: 10px;
     font-size: 25px;
@@ -33,15 +31,15 @@
 .icons {
     font-size: 14px;
     border-radius: 50%;
-    border: 1px solid #E35F1D;
+    border: 1px solid #ED6704;
     padding: 7px;
-    color: #E35F1D;
+    color: #ED6704;
     margin-left: 15px;
     cursor: pointer;
 }
 
 .icons:hover {
-    background-color: #E35F1D;
+    background-color: #ED6704;
     color: white;
 }
 
@@ -50,7 +48,7 @@
 }
 
 .highlighted {
-    border: 2px solid #e31b23;
+    border: 2px solid #C01205;
 }
 
 .col-name,
@@ -61,23 +59,25 @@
 }
 
 .col-name {
-    border-radius: 5px 0 0 5px;
-    border-left-color: red;
+    border-radius: 4px 0 0 4px;
+    border-left-color: #C01205;
     border-left-style: solid;
     border-left-width: 6px;
 }
 
 .col-name.available {
-    border-left-color: green;
+    border-left-color: #84BF04;
 }
 
 .mat-raised-button{
   text-decoration: none;
-    border: 1px solid #DF5D26 ;
-    color: #DF5D26;
+    border: 1px solid #ED6704 ;
+    color: #ED6704;
+    font-size: 16px;
+    font-family:Helvetica Neue(Bold);
  }
 
 .mat-raised-button:hover{
   color:white;
-  background-color: #DF5D26 ;
+  background-color: #ED6704;
 }
