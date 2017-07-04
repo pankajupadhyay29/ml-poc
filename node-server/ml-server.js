@@ -336,7 +336,7 @@ app.get('/toggleAvailability', function(req, res) {
 
     dbAvailablity.push({
         timestamp: new Date(),
-        UnavialableDB: available ? Math.max(last.UnavialableDB - 1, 0) : Math.min(last.UnavialableDB + 1, DBList.length)
+        UnavialableDB: !available ? Math.max(last.UnavialableDB - 1, 0) : Math.min(last.UnavialableDB + 1, DBList.length)
     });
     res.end('true');
 
@@ -351,6 +351,8 @@ app.get('/requestAvailabilityTrend', function(req, res) {
 
     dataBucket = [];
 
+    console.log(dbAvailablity);
+
     for (i = 0; i < dataPointsCount; i++) {
         dataBucket.push({
             startDate: new Date(startDate.getTime() + i * bucketSize),
@@ -359,11 +361,15 @@ app.get('/requestAvailabilityTrend', function(req, res) {
     }
 
     var groupedData = _.map(dataBucket, function(chunk) {
+        var filtered = _(dbAvailablity)
+            .filter(function(value) {
+                return value.timestamp >= chunk.startDate && value.timestamp < chunk.endDate;
+            }).valueOf();
+        var last = _.last(filtered);
+        var count = (last || { UnavialableDB: 0 }).UnavialableDB
+
         return _.extend(chunk, {
-            data: _.last(_(dbAvailablity)
-                .filter(function(value) {
-                    return value.timestamp >= chunk.startDate && value.timestamp < chunk.endDate;
-                }).valueOf())
+            data: last
         });
     })
     res.setHeader('Content-Type', 'application/json');
