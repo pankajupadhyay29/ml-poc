@@ -1,85 +1,18 @@
-<!--<div class="jumbotron">
-  <div class="container">
-    <ngb-alert type="success" [dismissible]="false">
-      Bootstrap is working!
-    </ngb-alert>
-
-    <h1>
-      <i class="fa fa-bath" aria-hidden="true"></i>
-      And so is Font Awesome!
-    </h1>
-  </div>
-</div>
-
-<div class="container">
-  <p>
-    A progress bar:
-    <ngb-progressbar showValue="true" type="success" [value]="65">
-    </ngb-progressbar>
-  </p>
-</div>
-
-<div class="container">
-  <ngb-tabset>
-    <ngb-tab title="Bacon">
-        <ng-template ngbTabContent>
-          <p class="mt-4">Content for tab 1.
-            <button type="button"
-                    class="btn btn-secondary"
-                    placement="bottom"
-                    ngbPopover="A popover in tab 1"
-                    popoverTitle="Bacon is good">
-              Click me
-            </button>
-          </p>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab title="Lettuce">
-        <ng-template ngbTabContent>
-          <p>Content for tab 2</p>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab title="Tomatoes">
-        <ng-template ngbTabContent>
-          <p>Content for tab 3</p>
-        </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
-</div>-->
 <div class="flex-column outer ">
-  <div id="header" class="navbar navbar-default navbar-fixed-top ">
-    <header></header>
-  </div>
-  <div id="wrapper" class="flex-row menu">
-    <div id="sidebar-wrapper">
-      <side-menu  [menuList]= "menuList" (menuToggle)= "onMenuToggle($event)"></side-menu>
+    <div id="header" class="navbar navbar-default navbar-fixed-top ">
+        <header></header>
     </div>
-      <div id="main-wrapper">        
-        <div id="main">  
-        <router-outlet></router-outlet>              
-        <!-- <div class="col-md-12 footer">
-          <ul class="nav navbar-nav"><li><a href="">Link</a></li><li><a href="">Link</a></li><li><a href="">Link</a></li></ul>
-        </div>-->     
-      </div>
-  </div>
+    <div id="wrapper" class="flex-row">
+        <div id="sidebar-wrapper">
+            <side-menu [menuList]="menuList" (menuToggle)="onMenuToggle($event)"></side-menu>
+        </div>
+        <div id="main-wrapper" [ngClass]="getClassName()">
+            <div id="main">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        Copyright © 2017 MarkLogic Corporation.
+    </div>
 </div>
-<!-- <md-grid-list cols="12" >
-
-  <md-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [ngClass]="tile.name"
-      class="{{tile.name}}"
-  >
-    <div [ngSwitch]="tile.text">
-      <side-menu *ngSwitchCase="'Menu'" [menuList]= "menuList" (menuToggle)= "onMenuToggle($event)"></side-menu>
-      <router-outlet *ngSwitchCase="'Content'"></router-outlet>
-      <div *ngSwitchDefault>{{tile.text}}</div>
-    </div>
-
-  </md-grid-tile>
-</md-grid-list>
-<a routerLink ="/member">Member</a>
-<a routerLink ="/product">Product</a>-->
-

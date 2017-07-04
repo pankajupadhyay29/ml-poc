@@ -12,7 +12,7 @@ import { LayoutService } from './layout.service'
 export class AppComponent implements OnInit  {
   menuList =  [];
   tiles= [];
-  isExpended = false;
+  isExpendedMenu = false;
 
   constructor(private menuService: MenuService, private layoutService: LayoutService){
 
@@ -24,7 +24,13 @@ export class AppComponent implements OnInit  {
   }
 
   onMenuToggle(isExpended){
-    this.isExpended= isExpended;
+    console.log(isExpended);
+    this.isExpendedMenu = isExpended;
+  }
+
+  getClassName(){
+    return this.isExpendedMenu? 'squeeze': 'normal';
+    //{'squeeze': isExpendedMenu, 'normal': !isExpended}
   }
 
   title = 'app';  

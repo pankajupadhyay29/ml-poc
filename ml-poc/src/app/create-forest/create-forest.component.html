@@ -5,26 +5,62 @@
   <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-container white" novalidate>
     <div class="outer">
       <div class="container-fluid ">
-        <div class="select"><span> Forest:  <input type="text" placeholder="Forest name" style="width: 400px;margin:0px 0px 0px 5px"></span></div>
-        <div class="select">
-          Host:
-          <md-select placeholder="Select">
-            <md-option *ngFor="let db of databases" [value]="db.value">{{db.viewValue}}</md-option>
-          </md-select>
-        </div>
-        <div class="select"><span> Data Directory:  <input type="text"  style="width: 200px;margin:0px 0px 0px 5px"></span></div>
-        <div class="select"><span> Large Data Directory:   <input type="text"style="width: 200px;margin:0px 0px 0px 5px"></span></div>
-        <div id="demo" class="collapse">
-          <div class="select"><span> Fast Data Directory: :  <input type="text"  style="width: 200px;margin:0px 0px 0px 5px"></span></div>
-          <div class="select">
-            Fast Data Max Size:
-            <md-select placeholder="Select">
-              <md-option *ngFor="let db of databases" [value]="db.value">{{db.viewValue}}</md-option>
-            </md-select>
-          </div>
-        </div>
+        <table class="table borderless">
+          <tbody>
+            <tr class="set_margn">
+              <td style="width:14%;">
+                <div class="select adjustment"><label class="lbl"> Forest: </label></div>
+              </td>
+              <td><input type="text" [(ngModel)]="dbName" name="name" placeholder="Forest name" style="width: 400px;"></td>
+            </tr>
+            <tr class="set_margn">
+              <td>
+                <div class="select adjustment"><label class="lbl"> Host: </label></div>
+              </td>
+              <td>
+                <md-select>
+                  <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
+                </md-select>
+              </td>
+            </tr>
+            <tr class="set_margn">
+              <td style="width:12%;">
+                <div class="select adjustment"><label class="lbl">Data Directory: </label></div>
+              </td>
+              <td><input type="text" [(ngModel)]="dbName" name="name" placeholder="" style="width: 400px;"></td>
+            </tr>
+            <tr class="set_margn">
+              <td style="width:12%;">
+                <div class="select adjustment"><label class="lbl"> Large Data Directory:  </label></div>
+              </td>
+              <td><input type="text" [(ngModel)]="dbName" name="name" placeholder="" style="width: 400px;"></td>
+            </tr>
+
+            <tr class="set_margn" id="demo" class="collapse">
+              <td>
+                <div class="select adjustment"><label class="lbl"> Fast Data Directory:  </label></div>
+              </td>
+              <td>
+                <md-select>
+                  <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
+                </md-select>
+              </td>
+            </tr>
+            <tr class="set_margn" id="demo1" class="collapse">
+              <td>
+                <div class="select adjustment"><label class="lbl"> Fast Data Max Size: </label></div>
+              </td>
+              <td>
+                <md-select>
+                  <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
+                </md-select>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
         <div class="row alignment">
-          <div class="col-sm-12 moreless_btn" data-toggle="collapse" data-target="#demo" (click)="toggleContent()">{{content}}</div>
+          <div class="col-sm-12 moreless_btn" data-toggle="collapse" data-target="#demo,#demo1" (click)="toggleContent()">{{content}}</div>
         </div>
       </div>
       <div class="move">

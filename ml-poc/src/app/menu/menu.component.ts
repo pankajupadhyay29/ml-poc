@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
 
   toggle(){
     this.isExpended = !this.isExpended;
-    this.menuToggle.emit({isExpeded: this.isExpended})
+    this.menuToggle.emit(this.isExpended)
   }
 
 }

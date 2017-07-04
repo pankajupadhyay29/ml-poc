@@ -5,39 +5,67 @@
     <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-container" name="create-db" novalidate>
         <div class="outer">
             <div class="container-fluid">
-                <div class="select"><span> Name: </span><input type="text" [(ngModel)]="dbName" name="name" placeholder="Type name" style="width: 400px;margin:0px 0px 0px 5px"></div>
-                <div class="select">
-                    Security DB:
-                    <md-select>
-                        <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
-                    </md-select>
-                </div>
-                <div class="select">
-                    Schema DB:
-                    <md-select>
-                        <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
-                    </md-select>
-                </div>
-                <div class="select">
-                    Triggers DB:
-                    <md-select>
-                        <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
-                    </md-select>
-                </div>
-                <div id="demo" class="collapse">
-                    <div class="select">
-                        Data Encryption:
-                        <md-select placeholder="Select">
-                            <md-option *ngFor="let db of databases" [value]="db.value">{{db.viewValue}}</md-option>
-                        </md-select>
-                    </div>
-                    <div class="select">
-                        <span> Encryption Key ID: </span>
-                        <input type="text" placeholder="Key ID" name="key" style="width: 400px;margin:0px 0px 0px 5px">
-                    </div>
-                </div>
+                <table class="table borderless">
+                    <tbody>
+                        <tr class="set_margn">
+                            <td style="width:12%;">
+                                <div class="select adjustment"><label class="lbl"> Name: </label></div>
+                            </td>
+                            <td><input type="text" [(ngModel)]="dbName" name="name" placeholder="Type name" style="width: 400px;"></td>
+                        </tr>
+                        <tr class="set_margn">
+                            <td>
+                                <div class="select adjustment"><label class="lbl"> Security DB: </label></div>
+                            </td>
+                            <td>
+                                <md-select>
+                                    <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
+                                </md-select>
+                            </td>
+                        </tr>
+
+                        <tr class="set_margn">
+                            <td>
+                                <div class="select adjustment"><label class="lbl"> Schema DB: </label></div>
+                            </td>
+                            <td>
+                                <md-select>
+                                    <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
+                                </md-select>
+                            </td>
+                        </tr>
+                        <tr class="set_margn">
+                            <td>
+                                <div class="select adjustment"><label class="lbl"> Triggers DB:</label> </div>
+                            </td>
+                            <td>
+                                <md-select>
+                                    <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
+                                </md-select>
+                            </td>
+                        </tr>
+
+                        <tr class="set_margn" id="demo" class="collapse">
+                            <td>
+                                <div class="select adjustment"><label class="lbl"> Data Encryption: </label></div>
+                            </td>
+                            <td>
+                                <md-select>
+                                    <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
+                                </md-select>
+                            </td>
+                        </tr>
+                        <tr class="set_margn" id="demo1" class="collapse">
+                            <td>
+                                <div class="select adjustment "><label class="lbl"> Encryption Key ID: </label> </div>
+                            </td>
+                            <td><input type="text" [(ngModel)]="dbName" name="name" placeholder="Key ID" style="width: 400px;"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
                 <div class="row alignment">
-                    <div class="col-sm-12 moreless_btn" data-toggle="collapse" data-target="#demo" (click)="toggleContent()">{{content}}</div>
+                    <div class="col-sm-12 moreless_btn" data-toggle="collapse" data-target="#demo,#demo1" (click)="toggleContent()">{{content}}</div>
                 </div>
             </div>
             <div class="move">
