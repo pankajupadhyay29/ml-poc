@@ -2,9 +2,24 @@
     <span class="widget-title">{{data.title}}</span>
 </div>
 <div class="widget-body">
-    <nvd3 *ngIf="data.settings.type=='chart'" [options]="options" [data]="chartData"></nvd3>
-    <div *ngIf="data.settings.type=='links'" class="flex-column">
-        <recent></recent>
-        <quick-link></quick-link>
+    <div [ngSwitch]="data.title">
+        <div *ngSwitchCase="'Request Rate Trend'">
+            <app-request-rate-trend></app-request-rate-trend>
+        </div>
+        <div *ngSwitchCase="'DB Availability Trend'">
+            <app-db-availability-trend></app-db-availability-trend>
+        </div>
+         <div *ngSwitchCase="'Memory Uses(Top 5)'">
+             <app-memory-uses-trend></app-memory-uses-trend>
+         </div>
+        <div *ngSwitchCase="''">
+            <div *ngIf="data.settings.type=='links'" class="flex-column">
+                <recent></recent>
+                <quick-link></quick-link>
+            </div>
+        </div>
     </div>
+
+    <!--<nvd3 *ngIf="data.settings.type=='chart'" [options]="options" [data]="chartData"></nvd3>-->
+
 </div>
