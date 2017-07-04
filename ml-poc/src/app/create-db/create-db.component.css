@@ -73,3 +73,25 @@
  .moreless_btn{
  cursor: pointer
  }
+
+ .borderless tr td {
+    border: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.lbl{
+  
+    padding-top: 15px;
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.adjustment{
+    text-align: right;padding-right:15px;margin-bottom:0px
+}
+
+.set_margn{
+    margin-bottom: 0px;
+}
