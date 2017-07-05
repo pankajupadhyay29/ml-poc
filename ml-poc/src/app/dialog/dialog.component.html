@@ -10,14 +10,14 @@
     </div>
     <div class="row dimensions" *ngIf="notVisible">
         <div class="col-sm-6 ">
-            <div class="attach-existing" routerLink="/create_forest" (click)="onClick()">
+            <div class="attach-existing" (click)="onClick()">
                 <div class="center-block inner row "><i class="icon-add"></i></div>
                 <div class="row content ">Attach an Existing <span style="margin-left:35px;"> Forest</span></div>
             </div>
         </div>
 
-        <div class="col-sm-6  ">
-            <div class="attach-existing " routerLink="/create_forest" (click)="onCreate()">
+        <div class="col-sm-6">
+            <div class="attach-existing" routerLink="/create_forest" (click)="onCreate()">
                 <div class="center-block inner row "><i class="icon-add"></i></div>
                 <div class="row content ">Create new Forest <span style="margin-left:20px;">and attach</span></div>
             </div>
