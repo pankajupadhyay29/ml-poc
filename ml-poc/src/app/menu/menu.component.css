@@ -33,20 +33,18 @@
     color: #C2142E;
 }
 
+.navigation a:hover {
+    background-color: #020102;
+}
 .navigation a {
     color: #fff;
 }
 
 .navigation a:active {
     color: #fff;
-    background-color: #C2142E;
+    background-color: #C2142E !important;
 }
-
 .navigation a:focus {
-    background: #C2142E;
+    background: #C2142E !important;
     color: #fff;
-}
-
-.navigation a:hover {
-    background-color: #020102;
 }
