@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import {DatabaseService} from '../database.service';
 
 @Component({
@@ -7,7 +7,8 @@ import {DatabaseService} from '../database.service';
   styleUrls: ['./recent.component.css']
 })
 export class RecentComponent implements OnInit {
-  recents: any
+  @Input() data:any;
+  recents: any;
   interval: any;
   constructor(private dbService: DatabaseService) { }
 
@@ -18,10 +19,7 @@ export class RecentComponent implements OnInit {
   }
 
   loadRecent(){
-    this.dbService.getRecent().subscribe (result => {
-        this.recents = result;
-        //this.ref.detectChanges();
-    });
+   this.recents=this.data;
   }
 
   ngOnDestroy() {

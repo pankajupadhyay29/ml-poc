@@ -13,5 +13,7 @@ export class WidgetComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('data in widget',this.data['chart']);
+  }
 }

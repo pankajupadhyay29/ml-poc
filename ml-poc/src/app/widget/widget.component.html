@@ -2,7 +2,7 @@
     <span class="widget-title">{{data.title}}</span>
 </div>
 <div class="widget-body">
-    <div [ngSwitch]="data.title">
+    <!--<div [ngSwitch]="data.title">
         <div *ngSwitchCase="'Request Rate Trend'">
             <app-request-rate-trend></app-request-rate-trend>
         </div>
@@ -18,6 +18,13 @@
                 <quick-link></quick-link>
             </div>
         </div>
+    </div>-->
+    <div *ngIf="data.title!=''">
+        <app-chart [chartType]="data.title" [cData]="data.chart"></app-chart>
+    </div>
+    <div *ngIf="data.settings.type=='links'" class="flex-column">
+        <recent [data]="data.chart"></recent>
+        <quick-link></quick-link>
     </div>
 
     <!--<nvd3 *ngIf="data.settings.type=='chart'" [options]="options" [data]="chartData"></nvd3>-->
