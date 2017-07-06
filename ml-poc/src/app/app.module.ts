@@ -64,6 +64,10 @@ import { ChartComponent } from './chart/chart.component';
         component: DatabaseComponent
       },
       {
+        path: 'database/:id',
+        component: DatabaseComponent
+      },
+      {
         path: 'create_database',
         component: CreateDbComponent
       },

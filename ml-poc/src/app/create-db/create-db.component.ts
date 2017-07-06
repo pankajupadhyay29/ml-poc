@@ -59,10 +59,11 @@ uuid() {
   );
 }
   createData(db) {
-    //this.id++;
+    this.id++;
     let data={};
-    let database={id: '', name:'',isAvailable: true, relatedDatabase: [], forests: [], appServers: []};
+    let database={id:'', name:'',isAvailable: true, relatedDatabase: [], forests: [], appServers: []};
     database.id = this.uuid();
+    //database.id=this.id;
     database.name=this.dbName;
     //  database.relatedDatabase= [{ name: this.security, id: this.id}, {name: this.schema, id: this.id}, {name: this.trigger, id: this.id}]
     data["database"]= database;   
