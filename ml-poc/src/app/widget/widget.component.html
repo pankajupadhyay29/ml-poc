@@ -19,8 +19,8 @@
             </div>
         </div>
     </div>-->
-    <div *ngIf="data.title!=''">
-        <app-chart [chartType]="data.title" [cData]="data.chart"></app-chart>
+    <div *ngIf="data.settings.type=='chart'">
+        <app-chart [chartType]="data.title" [cData]="data.widgetData"></app-chart>
     </div>
     <div *ngIf="data.settings.type=='links'" class="flex-column">
         <recent [data]="data.chart"></recent>

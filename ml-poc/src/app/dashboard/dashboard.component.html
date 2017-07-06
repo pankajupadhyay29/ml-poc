@@ -1,3 +1,5 @@
 <div *ngFor="let widget of widgets" class="inline-block" [ngClass]="getWidgetClasses(widget)">
-    <widget [data]="widget"></widget>
+    <div *ngIf="widget.widgetData">
+        <widget [data]="widget"></widget>
+    </div>
 </div>

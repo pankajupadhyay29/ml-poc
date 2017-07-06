@@ -11,10 +11,8 @@ import { DatabaseService } from "app/database.service";
 })
 export class DashboardComponent implements OnInit {
   widgets = [];
-  chart = [];
-  AvailaibleChart = [];
 
-  constructor(private layout: LayoutService, private chart_service: ChartService,private dbService: DatabaseService) { }
+  constructor(private layout: LayoutService, private chart_service: ChartService, private dbService: DatabaseService) { }
 
   ngOnInit() {
     this.widgets = this.layout.getWidgetLayout();
@@ -24,24 +22,36 @@ export class DashboardComponent implements OnInit {
       // // let chartType='requestRateTrend';
       // // let chartData={type:chartType,data:result};
       // this.chart.push(chartData);
-      this.widgets[0]['chart'] = result;
+      // this.widget0data = result;
+      // console.log('inService',this.widget0data);
+      //  this.widgets[0]['widgetData'] = this.widget0data;
+       this.prepareWidgetData(0,result);
+      //  console.log('inService',this.widgets[0]['widgetData'])
     });
 
     this.chart_service.getAvailaibleChartList().subscribe(result => {
       // let chartType='dbAvailabilityTrend';
       // let chartData={type:chartType,data:result};
       // this.chart.push(chartData);
-      this.widgets[1]['chart'] = result;
+      //this.widgets[1]['widgetData'] = result;
+     this.prepareWidgetData(1,result);
     });
 
     this.barChart();
 
-    this.dbService.getRecent().subscribe (result => {
-        this.widgets[3]['chart'] = result;
+    this.dbService.getRecent().subscribe(result => {
+      //this.widgets[3]['widgetData'] = result;
+     this.prepareWidgetData(3,result);
     });
 
+    //this.prepareWidgetData();
+    console.log('inOnInit',this.widgets);
 
+  }
 
+  prepareWidgetData(i:any,data:any) {
+    console.log(i,data);
+    this.widgets[i].widgetData = data;
   }
 
   barChart() {
@@ -77,7 +87,7 @@ export class DashboardComponent implements OnInit {
         ]
       }
     ]
-    this.widgets[2]['chart'] = data;
+    this.widgets[2]['widgetData'] = data;
 
   }
   getWidgetClasses(widget) {
