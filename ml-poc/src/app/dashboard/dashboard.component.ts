@@ -10,6 +10,7 @@ import { DatabaseService } from "app/database.service";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  interval: any;
   widgets = [];
 
   constructor(private layout: LayoutService, private chart_service: ChartService, private dbService: DatabaseService) { }
@@ -17,39 +18,30 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.widgets = this.layout.getWidgetLayout();
     console.log(this.widgets);
+    // this.initData();
+    this.initData = this.initData.bind(this);
+    this.initData();
+    this.interval = setInterval(this.initData, 30 * 1000);
+    console.log('inOnInit', this.widgets);
 
+  }
+  initData() {
     this.chart_service.getChartList().subscribe(result => {
-      // // let chartType='requestRateTrend';
-      // // let chartData={type:chartType,data:result};
-      // this.chart.push(chartData);
-      // this.widget0data = result;
-      // console.log('inService',this.widget0data);
-      //  this.widgets[0]['widgetData'] = this.widget0data;
-       this.prepareWidgetData(0,result);
-      //  console.log('inService',this.widgets[0]['widgetData'])
+      this.prepareWidgetData(0, result);
     });
 
     this.chart_service.getAvailaibleChartList().subscribe(result => {
-      // let chartType='dbAvailabilityTrend';
-      // let chartData={type:chartType,data:result};
-      // this.chart.push(chartData);
-      //this.widgets[1]['widgetData'] = result;
-     this.prepareWidgetData(1,result);
+      this.prepareWidgetData(1, result);
     });
 
     this.barChart();
 
     this.dbService.getRecent().subscribe(result => {
-      //this.widgets[3]['widgetData'] = result;
-     this.prepareWidgetData(3,result);
+      this.prepareWidgetData(3, result);
     });
-
-    //this.prepareWidgetData();
-    console.log('inOnInit',this.widgets);
-
   }
 
-  prepareWidgetData(i:any,data:any) {    
+  prepareWidgetData(i: any, data: any) {
     this.widgets[i].widgetData = data;
   }
 
@@ -93,5 +85,8 @@ export class DashboardComponent implements OnInit {
     let styles = "w-" + widget.width + ' h-' + widget.height;
     styles = (widget.settings.type == 'links' ? 'links' : 'widget') + ' ' + styles;
     return styles;
+  }
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 }

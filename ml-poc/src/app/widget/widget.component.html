@@ -23,7 +23,7 @@
         <app-chart [chartType]="data.title" [cData]="widgetData"></app-chart>
     </div>
     <div *ngIf="data.settings.type=='links'" class="flex-column">
-        <recent [data]="data.chart"></recent>
+        <recent [data]="widgetData"></recent>
         <quick-link></quick-link>
     </div>
 

@@ -11,6 +11,8 @@ export class ChartComponent implements OnInit {
   chartData: any;
   options: any;
 
+  color=['#ff7f0e','#667711','#2222ff','#2ca02c']
+
   chartOptions = {
     chart: {
       type: 'lineChart',
@@ -86,10 +88,20 @@ export class ChartComponent implements OnInit {
       }
     }
   }
+ getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 
   createAvailaibleChartData() {
     let data = [];
     let i = 0;
+    let c =0;
     let linedata = {};
     linedata['values'] = [];
     this.cData.forEach(element => {
@@ -106,7 +118,13 @@ export class ChartComponent implements OnInit {
     });
     linedata['color'] = '#7777ff';
     linedata['area'] = true;
+    linedata['legend']=false;
     data.push(linedata);
+
+    // let elem=document.getElementsByClassName('nv-legend-symbol')[0];
+    // elem.setAttribute('style','display:none !important');
+    // let class1 = document.getElementsByTagName('circle')[0].className;
+    // console.log(class1);
     return data;
   }
 
@@ -120,9 +138,9 @@ export class ChartComponent implements OnInit {
         tempdata.x = (i == 0) ? i : i * 3;
         tempdata.y = element.data[i].data.length;
         linedata['values'].push(tempdata);
+        linedata['color'] = this.getRandomColor();
       }
       linedata['key'] = element.name;
-      linedata['color'] = '#7777ff';
       data.push(linedata);
     });
     return data;

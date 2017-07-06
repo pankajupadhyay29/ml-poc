@@ -13,17 +13,17 @@ export class RecentComponent implements OnInit {
   constructor(private dbService: DatabaseService) { }
 
   ngOnInit() {
-    this.loadRecent = this.loadRecent.bind(this);
-    this.loadRecent();
-    this.interval = setInterval(this.loadRecent, 30 * 1000);
+    // this.loadRecent = this.loadRecent.bind(this);
+   this.loadRecent();
+    // this.interval = setInterval(this.loadRecent, 30 * 1000);
   }
 
   loadRecent(){
    this.recents=this.data;
   }
 
-  ngOnDestroy() {
-    clearInterval(this.interval);
-  }
+  // ngOnDestroy() {
+  //   clearInterval(this.interval);
+  // }
 
 }
