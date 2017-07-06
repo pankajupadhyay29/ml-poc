@@ -35,9 +35,9 @@
         <div class="row alignment">
             <div class="col-sm-12 li_box">
                 <ul class="ul_style">
-                    <li *ngFor="let forests of forestsList">
-                        <md-checkbox [(ngModel)]="forests.selected" (change)="onCheck(forests.id)" class="chckbox"> {{forests.name}}
-                            <span><i class="icons icon-attachment"></i></span></md-checkbox>
+                    <li *ngFor="let forest of forestsList">
+                        <md-checkbox [(ngModel)]="forest.selected" (change)="onCheck(forest.id)" class="chckbox"> {{forest.name}}
+                        </md-checkbox><i class="icons icon-attachment" *ngIf="forest.database" [mdTooltip]="forest.database? forest.database.name: ''"></i>
                     </li>
                 </ul>
             </div>
