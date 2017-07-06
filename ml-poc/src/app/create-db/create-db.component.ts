@@ -49,17 +49,25 @@ export class CreateDbComponent implements OnInit {
     // console.log(this.rows); 
 }
 
+uuid() {
+  let now = Date.now();
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r   = ((now + (Math.random() * 16)) % 16) | 0;
+    now = Math.floor(now / 16);
+    return ((c === 'x' ? r : ((r & 0x7) | 0x8))).toString(16);
+  }
+  );
+}
   createData(db) {
-    this.id++;
+    //this.id++;
     let data={};
-   let database={id:0,name:'',isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9}, { name: 'Schemas', id: 8 }, ], forests: [{ name: 'mlsonforest', id: 6 }], appServers: [{ name: 'mlsprer', id: 3, isDefault: true }, ]};
-   database.id=this.id;
-   database.name=this.dbName;
-  //  database.relatedDatabase= [{ name: this.security, id: this.id}, {name: this.schema, id: this.id}, {name: this.trigger, id: this.id}]
-   data["database"]= database;
-   console.log(JSON.stringify(data));
+    let database={id: '', name:'',isAvailable: true, relatedDatabase: [], forests: [], appServers: []};
+    database.id = this.uuid();
+    database.name=this.dbName;
+    //  database.relatedDatabase= [{ name: this.security, id: this.id}, {name: this.schema, id: this.id}, {name: this.trigger, id: this.id}]
+    data["database"]= database;   
     this.dbService.createDb(JSON.stringify(data));
-   this.router.navigate(['/database']);
+    this.router.navigate(['/database', {id: database.id}]);
     // console.log('here in save db', data );
   }
 
