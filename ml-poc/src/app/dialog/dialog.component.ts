@@ -44,7 +44,7 @@ export class DialogComponent implements OnInit {
   	this.dbService.getForests().subscribe(result=>{
       this.forestsList = result;
       this.temp = this.forestsList;
-      console.log(this.forestsList);
+      console.log('forestList ' + JSON.stringify(this.forestsList[0].name));
       console.log('coming in dialog');
 
     });
@@ -64,7 +64,6 @@ export class DialogComponent implements OnInit {
   } 
 
   onCreate() {
-    
     this.dialogRef.close();
   }
 

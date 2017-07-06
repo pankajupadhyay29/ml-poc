@@ -27,11 +27,12 @@ import { QuickLinkComponent } from './quick-link/quick-link.component';
 import { RequestRateTrendComponent } from './request-rate-trend/request-rate-trend.component';
 import { DbAvailabilityTrendComponent } from './db-availability-trend/db-availability-trend.component';
 import { MemoryUsesTrendComponent } from './memory-uses-trend/memory-uses-trend.component';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,      
+    MenuComponent,
     HeaderComponent,
     DashboardComponent,
     DatabaseComponent,
@@ -48,6 +49,7 @@ import { MemoryUsesTrendComponent } from './memory-uses-trend/memory-uses-trend.
   ],
   imports: [
     BrowserModule,
+    OrderModule,
     BrowserAnimationsModule,
     HttpModule,
     NgbModule,
