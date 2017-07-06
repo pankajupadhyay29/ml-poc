@@ -26,21 +26,10 @@ export class DatabaseService {
 
 
   createDb(db) {
-    // let headers = new Headers({ 'Content-Type': 'application/json' });
-    // let options = new RequestOptions({ headers: headers });
-    // var headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // console.log('in service', db);
-    // db = { database: { id: 11, name: "testML1" } }
-    // console.log('from service', this.service_url + 'createDB');
-    // this.http.post('http://localhost:3000/createDB', db)
-    //   .map((response: Response) =>
-    //     response.json()).subscribe((res) => console.log('created' + res));
-
-
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     // let name = { "database": { "id": 11, "name": 'sanyamDb' } };
+    console.log(db);
 
     return this.http.post('http://localhost:3000/createDB', db, options)
       .map((response: Response) =>

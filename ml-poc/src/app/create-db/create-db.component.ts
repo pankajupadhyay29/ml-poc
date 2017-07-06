@@ -18,9 +18,9 @@ export class CreateDbComponent implements OnInit {
   @Input() dbList: Array<any>;
   dbName: '';
   id = 10;
-  security: '';
-  schema: '';
-  trigger: '';
+  security: 'Security';
+  schema: 'Schema';
+  trigger: 'Trigger';
 
   constructor(private http: Http, private dbService: DatabaseService,private router: Router,) { }
 
@@ -59,12 +59,28 @@ uuid() {
   );
 }
   createData(db) {
-    //this.id++;
+    this.id++;
     let data={};
-    let database={id: '', name:'',isAvailable: true, relatedDatabase: [], forests: [], appServers: []};
+    let database={id:'', name:'',isAvailable: true, relatedDatabase: [], forests: [], appServers: []};
     database.id = this.uuid();
+    //database.id=this.id;
     database.name=this.dbName;
-    //  database.relatedDatabase= [{ name: this.security, id: this.id}, {name: this.schema, id: this.id}, {name: this.trigger, id: this.id}]
+    database.relatedDatabase= [];//{ name: this.security, id: this.id}, {name: this.schema, id: this.id}, {name: this.trigger, id: this.id}]
+    if(this.security){
+      const securityDb = this.dbList.find((db)=>{return db.name == this.security});
+      database.relatedDatabase.push(Object.assign({}, securityDb, {relation: 'Security'} ));
+    }
+
+    if(this.schema){
+      const schemaDb = this.dbList.find((db)=>{return db.name == this.schema});
+      database.relatedDatabase.push(Object.assign({}, schemaDb, {relation: 'Schema'} ));
+    }
+
+    if(this.trigger){
+      const triggerDb = this.dbList.find((db)=>{return db.name == this.trigger});
+      database.relatedDatabase.push(Object.assign({}, triggerDb, {relation: 'Trigger'} ));
+    }
+
     data["database"]= database;   
     this.dbService.createDb(JSON.stringify(data));
     this.router.navigate(['/database', {id: database.id}]);
