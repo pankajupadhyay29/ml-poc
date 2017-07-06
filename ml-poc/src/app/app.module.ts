@@ -24,9 +24,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { CreateForestComponent } from './create-forest/create-forest.component';
 import { RecentComponent } from './recent/recent.component';
 import { QuickLinkComponent } from './quick-link/quick-link.component';
-import { RequestRateTrendComponent } from './request-rate-trend/request-rate-trend.component';
-import { DbAvailabilityTrendComponent } from './db-availability-trend/db-availability-trend.component';
-import { MemoryUsesTrendComponent } from './memory-uses-trend/memory-uses-trend.component';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -42,9 +40,7 @@ import { MemoryUsesTrendComponent } from './memory-uses-trend/memory-uses-trend.
     CreateForestComponent,
     RecentComponent,
     QuickLinkComponent,
-    RequestRateTrendComponent,
-    DbAvailabilityTrendComponent,
-    MemoryUsesTrendComponent
+    ChartComponent
   ],
   imports: [
     BrowserModule,
