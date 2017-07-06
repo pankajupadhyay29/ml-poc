@@ -24,12 +24,13 @@ import { DialogComponent } from './dialog/dialog.component';
 import { CreateForestComponent } from './create-forest/create-forest.component';
 import { RecentComponent } from './recent/recent.component';
 import { QuickLinkComponent } from './quick-link/quick-link.component';
+import { OrderModule } from 'ngx-order-pipe';
 import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,      
+    MenuComponent,
     HeaderComponent,
     DashboardComponent,
     DatabaseComponent,
@@ -44,6 +45,7 @@ import { ChartComponent } from './chart/chart.component';
   ],
   imports: [
     BrowserModule,
+    OrderModule,
     BrowserAnimationsModule,
     HttpModule,
     NgbModule,
