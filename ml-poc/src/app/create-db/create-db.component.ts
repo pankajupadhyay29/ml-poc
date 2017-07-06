@@ -3,6 +3,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import {NgForm} from '@angular/forms';
 import { Http, Response } from "@angular/http";
 import { DatabaseService } from "app/database.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-create-db',
@@ -17,8 +18,11 @@ export class CreateDbComponent implements OnInit {
   @Input() dbList: Array<any>;
   dbName: '';
   id = 10;
+  security: '';
+  schema: '';
+  trigger: '';
 
-  constructor(private http: Http, private dbService: DatabaseService) { }
+  constructor(private http: Http, private dbService: DatabaseService,private router: Router,) { }
 
    toggleContent() {
      if(this.content === '+ See More') {
@@ -45,12 +49,25 @@ export class CreateDbComponent implements OnInit {
     // console.log(this.rows); 
 }
 
+uuid() {
+  let now = Date.now();
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r   = ((now + (Math.random() * 16)) % 16) | 0;
+    now = Math.floor(now / 16);
+    return ((c === 'x' ? r : ((r & 0x7) | 0x8))).toString(16);
+  }
+  );
+}
   createData(db) {
+    //this.id++;
     let data={};
-   let database={};
-   database={'id':11,'name':'testML'};
-   data["database"]= database;
-  this.dbService.createDb(JSON.stringify(data));
+    let database={id: '', name:'',isAvailable: true, relatedDatabase: [], forests: [], appServers: []};
+    database.id = this.uuid();
+    database.name=this.dbName;
+    //  database.relatedDatabase= [{ name: this.security, id: this.id}, {name: this.schema, id: this.id}, {name: this.trigger, id: this.id}]
+    data["database"]= database;   
+    this.dbService.createDb(JSON.stringify(data));
+    this.router.navigate(['/database', {id: database.id}]);
     // console.log('here in save db', data );
   }
 

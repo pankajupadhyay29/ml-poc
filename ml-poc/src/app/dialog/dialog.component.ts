@@ -22,7 +22,8 @@ export class DialogComponent implements OnInit {
   visible:boolean = false;
   constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: DatabaseService, private menuService: MenuService) { }
   ngOnInit() {
-
+    this.selectedDb.id;
+    this.selectedDb.name;
   }
 
   filterDb(event) {
@@ -63,6 +64,7 @@ export class DialogComponent implements OnInit {
   } 
 
   onCreate() {
+    
     this.dialogRef.close();
   }
 
