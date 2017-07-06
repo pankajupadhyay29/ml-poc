@@ -1,100 +1,128 @@
-import { Component,  OnInit, Input } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
-import {MdGridListModule} from '@angular/material';
-import {DatabaseService} from '../database.service';
-import { MenuService } from '../menu.service';
+import {
+    Component,
+    OnInit,
+    Input
+} from '@angular/core';
+import {
+    MdDialog,
+    MdDialogRef
+} from '@angular/material';
+import {
+    MdGridListModule
+} from '@angular/material';
+import {
+    DatabaseService
+} from '../database.service';
+import {
+    MenuService
+} from '../menu.service';
 
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+    selector: 'app-dialog',
+    templateUrl: './dialog.component.html',
+    styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-	temp: Array<Object>;
-  @Input() forestsList: Array<any>;
-  selectedDb: any;
-  checkedForests = [];
-  trainingSearchTerm: string;
+    temp: Array < Object > ;
+    @Input() forestsList: Array < any > ;
+    selectedDb: any;
+    checkedForests = [];
+    trainingSearchTerm: string;
 
 
-  notVisible:boolean = true;
-  visible:boolean = false;
-  constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: DatabaseService, private menuService: MenuService) { }
-  ngOnInit() {
-    this.selectedDb.id;
-    this.selectedDb.name;
-  }
+    notVisible: boolean = true;
+    visible: boolean = false;
+    constructor(public dialogRef: MdDialogRef < DialogComponent > , private dbService: DatabaseService, private menuService: MenuService) {}
+    ngOnInit() {
+        this.selectedDb.id;
+        this.selectedDb.name;
+    }
 
-  filterDb(event) {
-    
-    this.trainingSearchTerm = this.trainingSearchTerm || '';
-      const val = this.trainingSearchTerm.toLowerCase();
-      if (this.temp) {
-      const tempdata = this.temp.filter(function (d) {
-        return d['name'].toLowerCase().indexOf(val) !== -1 || !val;
-      });
+    filterDb(event) {
 
-      // update the rows
-      this.forestsList = tempdata;
-      }
-  }
+        this.trainingSearchTerm = this.trainingSearchTerm || '';
+        const val = this.trainingSearchTerm.toLowerCase();
+        if (this.temp) {
+            const tempdata = this.temp.filter(function(d) {
+                return d['name'].toLowerCase().indexOf(val) !== -1 || !val;
+            });
 
-  onClick() {
-  	this.dbService.getForests().subscribe(result=>{
-      this.forestsList = result;
-      this.temp = this.forestsList;
-      console.log('forestList ' + JSON.stringify(this.forestsList[0].name));
-      console.log('coming in dialog');
+            // update the rows
+            this.forestsList = tempdata;
+        }
+    }
 
-    });
-  	this.visible = true;
-  	this.notVisible = false;
-  	   
-  }
+    onClick() {
+        this.dbService.getForests().subscribe(result => {
+            this.forestsList = result;
+            this.temp = this.forestsList;
+            console.log('forestList ' + JSON.stringify(this.forestsList[0].name));
+            console.log('coming in dialog');
 
-  	onBack() {
-  	this.visible = false;
-  	this.notVisible = true;
-  }
+        });
+        this.visible = true;
+        this.notVisible = false;
 
-  onCheck(check) {
-   var forest = this.forestsList.find(function(f){ return f.id == check});
-   this.checkedForests.push({id: forest.id, name: forest.name});
-  } 
+    }
 
-  onCreate() {
-    this.dialogRef.close();
-  }
+    onBack() {
+        this.visible = false;
+        this.notVisible = true;
+    }
 
-  onClose() {
-    this.dialogRef.close();
-  }
-  
-  onDone() {
-    //console.log(this.checkedForests);
-    let db=this.selectedDb;
-    console.log('selected forest',this.checkedForests);
-    console.log('selected db',db.id);
-    let i=0;
-   let forestList = {"database": {"id":db.id,"name":db.name},
-"selectedForests": []
+    onCheck(check) {
+        var forest = this.forestsList.find(function(f) {
+            return f.id == check
+        });
+        this.checkedForests.push({
+            id: forest.id,
+            name: forest.name
+        });
+    }
+
+    onCreate() {
+        this.dialogRef.close();
+    }
+
+    onClose() {
+        this.dialogRef.close();
+    }
+
+    onDone() {
+        //console.log(this.checkedForests);
+        let db = this.selectedDb;
+        console.log('selected forest', this.checkedForests);
+        console.log('selected db', db.id);
+        let i = 0;
+        let forestList = {
+            "database": {
+                "id": db.id,
+                "name": db.name
+            },
+            "selectedForests": []
+        }
+
+
+        for (i = 0; i < this.checkedForests.length; i++) {
+            let data = {
+                'id': 0,
+                'name': ''
+            };
+            //data=(this.checkedForests[i].id,this.checkedForests[i].name)
+            data['id'] = this.checkedForests[i].id;
+            data['name'] = this.checkedForests[i].name;
+            forestList.selectedForests.push(data);
+        }
+
+
+        this.dbService.attacheForest(forestList);
+        db.forests = this.checkedForests;
+        this.dialogRef.close();
+    }
+    getAttachedForestInfo() {
+      const totalForest = this.forestsList.length;
+      const attachedForest = this.forestsList.filter((value)=>{return value.database}).length;
+      return attachedForest + " of " + totalForest + " are already attached with some database." 
+    }
 }
-
-
-for(i=0;i<this.checkedForests.length;i++)
-{
-  let data={'id':0,'name':''};
-  //data=(this.checkedForests[i].id,this.checkedForests[i].name)
-  data['id']=this.checkedForests[i].id;
-  data['name']=this.checkedForests[i].name;
-  forestList.selectedForests.push(data);
-}
-
-
-    this.dbService.attacheForest(forestList);
-    db.forests = this.checkedForests;
-    this.dialogRef.close();
-  }
-  }
-
