@@ -49,8 +49,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  prepareWidgetData(i:any,data:any) {
-    console.log(i,data);
+  prepareWidgetData(i:any,data:any) {    
     this.widgets[i].widgetData = data;
   }
 

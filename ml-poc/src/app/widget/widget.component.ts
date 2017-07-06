@@ -8,12 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class WidgetComponent implements OnInit {
 
   @Input() data: any;
+  @Input() widgetData:any;
   options: any;
   chartData: any;
 
   constructor() { }
 
   ngOnInit() {
-    console.log('data in widget',this.data.title,this.data.widgetData);
+    console.log('data in widget', Object.assign({}, this.data) , this.data.widgetData);
+  }
+
+  ngOnChange(){
+    console.log('on data change in widget', Object.assign({}, this.data) , this.widgetData);
   }
 }
