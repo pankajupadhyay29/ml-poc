@@ -1,7 +1,9 @@
 import {
     Component,
     OnInit,
-    Input
+    Input,
+    Output,
+    EventEmitter
 } from '@angular/core';
 import {
     MdDialog,
@@ -26,6 +28,8 @@ import {
 export class DialogComponent implements OnInit {
     temp: Array<Object>;
     @Input() forestsList: Array<any>;
+    @Output() forestAttached = new EventEmitter();
+
     selectedDb: any;
     checkedForests = [];
     trainingSearchTerm: string;
@@ -33,7 +37,7 @@ export class DialogComponent implements OnInit {
 
     notVisible: boolean = true;
     visible: boolean = false;
-    constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: DatabaseService, private menuService: MenuService) { }
+    constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: DatabaseService) { }
     ngOnInit() {
         this.selectedDb.id;
         this.selectedDb.name;
@@ -71,6 +75,11 @@ export class DialogComponent implements OnInit {
         var forest = this.forestsList.find(function (f) {
             return f.id == check
         });
+        const checked = this.checkedForests.findIndex((f)=>{return f.id == check});
+        if(checked >= 0){
+            this.checkedForests.splice(checked, 1);
+            return;
+        }
         this.checkedForests.push({
             id: forest.id,
             name: forest.name
@@ -86,9 +95,7 @@ export class DialogComponent implements OnInit {
     }
 
     onDone() {
-        let db = this.selectedDb;
-        console.log('selected forest', this.checkedForests);
-        console.log('selected db', db.id);
+        let db = this.selectedDb;  
         let i = 0;
         let forestList = {
             "database": {
@@ -111,13 +118,21 @@ export class DialogComponent implements OnInit {
         }
 
 
-        this.dbService.attacheForest(forestList);
-        db.forests = this.checkedForests;
-        this.dialogRef.close();
+        this.dbService.attacheForest(forestList).subscribe((res) => {
+            console.log('created' + res)
+            db.forests = this.checkedForests;
+            this.forestAttached.emit(db);
+            this.dialogRef.close();
+        });        
     }
     getAttachedForestInfo() {
-        const totalForest = this.forestsList.length;
-        const attachedForest = this.forestsList.filter((value) => { return value.database }).length;
-        return attachedForest + " of " + totalForest + " are already attached with some database."
+        if(!this.forestsList){
+            return '';
+        }
+
+        const totalForestCount = this.forestsList.length;
+        const attachedForest = this.forestsList.filter((value) => { return value.database })
+        const attachedForestCount = attachedForest? attachedForest.length : totalForestCount;
+        return attachedForestCount + " of " + totalForestCount + " already attached";
     }
 }

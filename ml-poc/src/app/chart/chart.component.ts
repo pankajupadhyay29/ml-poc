@@ -65,10 +65,7 @@ export class ChartComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.cData);
-    console.log(this.chartType);
-
+  ngOnInit() {    
     if (this.chartType == 'Request Rate Trend') {
       this.options = this.chartOptions;
       if (this.cData != undefined) {

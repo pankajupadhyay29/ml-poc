@@ -19,10 +19,9 @@ export class DatabaseService {
 
   attacheForest(forestList) {
     var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    console.log('attache forest',forestList);
-    this.http.post(this.service_url + 'setForestToDB', forestList, headers)
-      .map((response: Response) => response.json()).subscribe((res) => console.log('created' + res));;
+    headers.append('Content-Type', 'application/json');    
+    return this.http.post(this.service_url + 'setForestToDB', forestList, headers)
+      .map((response: Response) => response.json())
   }
 
 
@@ -31,18 +30,16 @@ export class DatabaseService {
     let options = new RequestOptions({ headers: headers });
     return this.http.post('http://localhost:3000/createDB', db, options)
       .map((response: Response) =>
-        response.json()).subscribe((res) => console.log('created' + res));
+        response.json());
 
   }
 
   createForest(forest) {
-
     let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    console.log('forest', forest);
+    let options = new RequestOptions({ headers: headers });    
     return this.http.post('http://localhost:3000/createForest', forest, options)
       .map((response: Response) =>
-        response.json()).subscribe((res) => console.log('created' + res));
+        response.json());
 
   }
 

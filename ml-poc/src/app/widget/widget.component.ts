@@ -15,10 +15,10 @@ export class WidgetComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('data in widget', Object.assign({}, this.data) , this.data.widgetData);
+   
   }
 
   ngOnChange(){
-    console.log('on data change in widget', Object.assign({}, this.data) , this.widgetData);
+   
   }
 }

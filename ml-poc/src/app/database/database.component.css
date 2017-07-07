@@ -14,19 +14,20 @@
 }
 
 .move {
-    float:right;
-    display:block;
-    margin-right:10px;
-    clear:left;
+    float: right;
+    display: block;
+    margin-right: 10px;
+    clear: left;
     margin-top: 12px;
     margin-bottom: 16px;
     text-decoration: none;
-     border-radius: 5px;
+    border-radius: 5px;
 }
 
-.search_box{
-    width:35%;
+.search_box {
+    width: 35%;
 }
+
 .icon-Database {
     padding: 10px;
     font-size: 25px;
@@ -51,15 +52,30 @@
     margin-top: 25px;
 }
 
-.highlighted {
-    border: 2px solid #C01205;
+.forest.highlighted {
+    border: 1px solid #C01205;
+}
+
+.col.actions span {
+    padding-top: 5px;
+    display: inline-block;
 }
 
 .col-name,
+.col,
 .forest {
-    margin: -10px;
-    line-height: 3;
-    padding: 0px 10px;
+    padding: 5px 10px;
+    min-height: 40px;
+}
+
+.new-db {
+    border-top: 1px solid #C01205;
+    border-bottom: 1px solid #C01205;
+}
+
+.new-db.actions {
+    border-right: 1px solid #C01205;
+    border-radius: 0 5px 5px 0;
 }
 
 .col-name {
@@ -73,15 +89,15 @@
     border-left-color: #84BF04;
 }
 
-.mat-raised-button{
-  text-decoration: none;
-    border: 1px solid #ED6704 ;
+.mat-raised-button {
+    text-decoration: none;
+    border: 1px solid #ED6704;
     color: #ED6704;
     font-size: 16px;
-    font-family:Helvetica Neue(Bold);
- }
+    font-family: Helvetica Neue(Bold);
+}
 
-.mat-raised-button:hover{
-  color:white;
-  background-color: #ED6704;
+.mat-raised-button:hover {
+    color: white;
+    background-color: #ED6704;
 }

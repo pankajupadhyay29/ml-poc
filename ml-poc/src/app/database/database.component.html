@@ -10,14 +10,13 @@
     </div>
 
     <div class="tableHeader">
-        <ngx-datatable class="material tableHeader" [rows]="rows| orderBy:'name'" [columnMode]="'force'" [sortType]="'multi'" [headerHeight]="50"
-            [rowHeight]="'auto'">
+        <ngx-datatable class="material tableHeader" [rows]="rows| orderBy:'name'" [columnMode]="'force'" [sortType]="'multi'" [headerHeight]="50" [rowHeight]="'auto'">
             <ngx-datatable-column name="Database Name">
                 <ng-template let-column="column" ngx-datatable-header-template>
-                    <div class="db_sort" [ngClass]="getClasses(column.id)">{{column.name}}</div>
+                    <div class="db_sort">{{column.name}}</div>
                 </ng-template>
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    <div class='col-name' [ngClass]='{ available : row.isAvailable}'>{{row.name}}</div>
+                    <div class='col col-name' [ngClass]='getClasses(row.id, row.isAvailable, true)'>{{row.name}}</div>
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Related Databases">
@@ -25,7 +24,7 @@
                     <span>{{column.name}}</span>
                 </ng-template>
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{stringifyName(row.relatedDatabase)}}
+                    <div class="col" [ngClass]="getClasses(row.id)"> {{stringifyName(row.relatedDatabase)}} </div>
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Forests">
@@ -41,7 +40,7 @@
                     {{column.name}}
                 </ng-template>
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{stringifyName(row.appServers)}}
+                    <div class="col" [ngClass]="getClasses(row.id)"> {{stringifyName(row.appServers)}} </div>
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Action">
@@ -49,9 +48,11 @@
                     {{column.name}}
                 </ng-template>
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    <span mdTooltip="Edit"><i class="icons icon-edit" md-button (click)="onClick()"></i></span>
-                    <span mdTooltip="Forest"><i class="icons icon-attachment" (click)="openDialog(row)"></i></span>
-                    <span mdTooltip="Configure"><i class="icons icon-configure" (click)="onAction()"></i></span>
+                    <div class="col actions" [ngClass]="getClasses(row.id)">
+                        <span mdTooltip="Edit"><i class="icons icon-edit" md-button (click)="onClick()"></i></span>
+                        <span mdTooltip="Forest"><i class="icons icon-attachment" (click)="openDialog(row)"></i></span>
+                        <span mdTooltip="Configure"><i class="icons icon-configure" (click)="onAction()"></i></span>
+                    </div>
                 </ng-template>
             </ngx-datatable-column>
         </ngx-datatable>

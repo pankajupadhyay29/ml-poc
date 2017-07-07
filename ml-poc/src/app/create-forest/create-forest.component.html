@@ -11,14 +11,14 @@
                             <td class="row_width">
                                 <div class="select adjustment"><label class="lbl"> Forest: </label></div>
                             </td>
-                            <td><input type="text" [(ngModel)]="forestName" name="name" placeholder="Forest name" style="width: 400px;"></td>
+                            <td><input type="text" [(ngModel)]="forestName" name="forestName" placeholder="Forest name" style="width: 400px;"></td>
                         </tr>
                         <tr class="set_margn">
                             <td>
                                 <div class="select adjustment"><label class="lbl"> Host: </label></div>
                             </td>
                             <td>
-                                <md-select>
+                                <md-select [(ngModel)]="host" name="host">
                                     <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
                                 </md-select>
                             </td>
@@ -33,7 +33,7 @@
                             <td style="width:12%;">
                                 <div class="select adjustment"><label class="lbl"> Large Data Directory:  </label></div>
                             </td>
-                            <td><input type="text" [(ngModel)]="dbName" name="name" placeholder="" style="width: 400px;"></td>
+                            <td><input type="text" [(ngModel)]="directory" name="directory" placeholder="" style="width: 400px;"></td>
                         </tr>
 
                         <tr class="set_margn" id="demo" class="collapse">

@@ -48,7 +48,7 @@ var DBList = [
         { id: 8, name: 'Schemas', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Schemas', id: 8 }], },
         { id: 9, name: 'Security', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Security', id: 9 }], appServers: [{ name: 'Admin', id: 4, type: appServerType.http, isDefault: true }, ] },
         { id: 10, name: 'Triggers', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Triggers', id: 10 }], },
-		 { id: 11, name: 'Riggers', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: '', id: 11 }], },
+        { id: 11, name: 'Riggers', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: '', id: 11 }], },
     ]
     //-------------------------------------------------------
 
@@ -74,6 +74,9 @@ var objectTypes = {
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
     next();
 });
 
@@ -228,15 +231,15 @@ app.post('/setForestToDB', function(req, res) {
     var selectedForests = req.body.selectedForests;
     //remove these forest form existing
     _.forEach(DBList, function(d) {
-        _.remove(d.forests, function(f) {
-            return _.find(selectedForests, function(forest) { return forest.id == f.id });
+            d.forests = _.filter(d.forests, function(f) {
+                return _.findIndex(selectedForests, function(forest) { return forest.id == f.id }) < 0;
+            })
         })
-    })
-    //add these to current db
+        //add these to current db
     var database = _.find(DBList, function(d) { return d.id == db.id });
     database.forests = selectedForests;
     //_.extend(, {forests: selectedForests})
-
+    console.log(_.find(DBList, function(d) { return d.id == db.id }));
     addToAccessList(objectTypes.database, db.name, db.id);
 
     res.end(JSON.stringify(DBList));

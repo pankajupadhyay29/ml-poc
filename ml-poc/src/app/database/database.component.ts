@@ -15,6 +15,7 @@ export class DatabaseComponent implements OnInit {
   Id: any;
   interval: any;
   loadRecent: any;
+  newDb: any;
 
   temp: Array<Object>;
   rows: Array<Object>;
@@ -26,15 +27,12 @@ export class DatabaseComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    let self = this;
+  ngOnInit() {    
     this.route.params.subscribe((params: Params) => {
       this.Id = params['id'];
-    });
-
-    setTimeout(function () {
-      self.loadData();
-    }, 0);
+      var isForest = params['isForest'];
+      this.loadData(this.Id, !isForest);
+    }).unsubscribe();    
   }
 
   public ngOnChanges(changes: SimpleChanges) {
@@ -60,11 +58,26 @@ export class DatabaseComponent implements OnInit {
     }
   }
 
-  loadData() {
+  loadData(hilight=null, addDb=false) {
     this.dbService.getDbList().subscribe(result => {
       this.rows = result;
       this.temp = this.rows;
       this.dbSearchTerm = '';
+      if(hilight){
+        if(addDb){
+          this.newDb = hilight;
+        }
+        else{
+          this.highlighted = hilight;          
+        }
+
+        setInterval(() => { 
+          this.highlighted = -1; 
+          this.newDb = -1;
+          clearInterval(this.interval);
+          this.router.navigate(['/database']);
+        }, 5 * 1000);        
+      }
     });
   }
 
@@ -72,11 +85,12 @@ export class DatabaseComponent implements OnInit {
     this.selectedDb = db;
     let dialogRef = this.dialog.open(DialogComponent);
     dialogRef.componentInstance.selectedDb = db;
+    //dialogRef.componentInstance.onClick();
+    dialogRef.componentInstance.forestAttached.subscribe((db)=>{
+      this.loadData(db.id);
+    })
     dialogRef.afterClosed().subscribe(result => {
-      this.selectedOption = result;
-      this.highlighted = this.selectedDb.id;
-      this.selectedDb = {};
-      setInterval(() => { this.highlighted = -1 }, 5 * 1000)
+      this.selectedOption = result;     
     });
   }
 
@@ -85,8 +99,17 @@ export class DatabaseComponent implements OnInit {
 
   highlighted = -1;
 
-  getClasses(id) {
-    return this.highlighted == id ? 'highlighted' : '';
+  getClasses(id, isAvialble = true, firstCol = false) {
+    var className = '';
+    if(firstCol){
+      className = isAvialble? 'available ':''
+    }
+    if(this.newDb == id){
+      className += 'new-db ';
+    }  
+    className += this.highlighted == id ? 'highlighted' : '';
+
+    return className;
   }
 
   ngOnDestroy() {

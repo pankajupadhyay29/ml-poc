@@ -34,22 +34,34 @@ export class CreateForestComponent implements OnInit {
     });
   }
 
+  uuid() {
+    let now = Date.now();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = ((now + (Math.random() * 16)) % 16) | 0;
+      now = Math.floor(now / 16);
+      return ((c === 'x' ? r : ((r & 0x7) | 0x8))).toString(16);
+    }
+    );
+  }
+
   createForest() {
     this.id++;
     let data = {};
-    let forest = { id: 0, name: '' };
-    forest.id = this.id;
+    let forest = { id: '', name: '' };
+    forest.id = this.uuid();
     forest.name = this.forestName;
     data["forest"] = forest;
     JSON.stringify(data);
-    this.dbService.createForest(JSON.stringify(data));
+    this.dbService.createForest(JSON.stringify(data)).subscribe((res) => {
+      let forestList = {
+        "database": { "id": this.dbId, "name": this.dbName },
+        "selectedForests": [{ "id": this.id, "name": this.forestName }]
+      }
 
-    let forestList = {
-      "database": { "id": this.dbId, "name": this.dbName },
-      "selectedForests": [{ "id": this.id, "name": this.forestName }]
-    }
-    this.dbService.attacheForest((forestList));
-    this.router.navigate(['/database']);
+      this.dbService.attacheForest((forestList)).subscribe(()=>{
+        this.router.navigate(['/database', { id: this.dbId, isForest:true}]);
+      });  
+    });      
   }
 
 }

@@ -23,8 +23,7 @@ export class AppComponent implements OnInit  {
     this.tiles = this.layoutService.getMainLayout();
   }
 
-  onMenuToggle(isExpended){
-    console.log(isExpended);
+  onMenuToggle(isExpended){    
     this.isExpendedMenu = isExpended;
   }
 

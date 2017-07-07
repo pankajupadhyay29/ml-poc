@@ -80,7 +80,6 @@ body {
     background: #e8e2e2;
     font-family: Helvetica Neue, sans-serif;
     font-size: 14px;
-    padding: 10px;
 }
 
 .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell:nth-child(2n) {
@@ -111,6 +110,6 @@ body {
     padding: 15px;
 }
 
-.datatable-row-center{
+.datatable-row-center {
     margin-top: 5px;
 }

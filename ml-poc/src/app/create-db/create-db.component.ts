@@ -33,9 +33,7 @@ export class CreateDbComponent implements OnInit {
   }
 
 
-  onSubmit(f: NgForm) {
-    console.log(f.value);  // { first: '', last: '' }
-    console.log(f.valid);  // false
+  onSubmit(f: NgForm) {    
   }
 
 
@@ -56,6 +54,7 @@ export class CreateDbComponent implements OnInit {
     }
     );
   }
+  
   createData(db) {
     this.id++;
     let data = {};
@@ -80,8 +79,9 @@ export class CreateDbComponent implements OnInit {
     }
 
     data["database"] = database;
-    this.dbService.createDb(JSON.stringify(data));
-    this.router.navigate(['/database', { id: database.id }]);
+    this.dbService.createDb(JSON.stringify(data)).subscribe((res) => {
+      this.router.navigate(['/database', { id: database.id }]);
+    });
   }
 
 }
