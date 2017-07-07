@@ -18,7 +18,7 @@
                                 <div class="select adjustment"><label class="lbl"> Security DB: </label></div>
                             </td>
                             <td>
-                                <md-select>
+                                <md-select [(ngModel)]="security" name="security">
                                     <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
                                 </md-select>
                             </td>
@@ -29,7 +29,7 @@
                                 <div class="select adjustment"><label class="lbl"> Schema DB: </label></div>
                             </td>
                             <td>
-                                <md-select>
+                                <md-select [(ngModel)]="schema" name="schema">
                                     <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
                                 </md-select>
                             </td>
@@ -39,7 +39,7 @@
                                 <div class="select adjustment"><label class="lbl"> Triggers DB:</label> </div>
                             </td>
                             <td>
-                                <md-select>
+                                <md-select [(ngModel)]="trigger" name="trigger">
                                     <md-option *ngFor="let db of dbList" [value]="db.name">{{db.name}}</md-option>
                                 </md-select>
                             </td>

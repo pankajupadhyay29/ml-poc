@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef, ViewEncapsulation, SimpleChanges } from '@angular/core';
 //import { Overlay, overlayConfigFactory } from 'angular2-modal';
 //import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { HeaderComponent } from '../header/header.component';
 import {DatabaseService} from '../database.service'
 import {DialogComponent} from '../dialog/dialog.component'
+import { Params, Router, ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -13,24 +14,41 @@ import {DialogComponent} from '../dialog/dialog.component'
   styleUrls: ['./database.component.css']
 })
 export class DatabaseComponent implements OnInit {
+  Id: any;
   interval: any;
   loadRecent: any;
 
   temp: Array<Object>;
-  @Input() rows: Array<Object>;
+   rows: Array<Object>;
   selectedOption: string;
-  trainingSearchTerm: string;
+  dbSearchTerm: string;
 
   selectedDb: any;
-  constructor(vcRef: ViewContainerRef,public dialog: MdDialog, private dbService: DatabaseService ) {
+  constructor(vcRef: ViewContainerRef,public dialog: MdDialog, private dbService: DatabaseService ,private router: Router,  private route: ActivatedRoute) {
   }
 
 
   ngOnInit() {
-    this.loadData = this.loadData.bind(this);
-    this.loadData();
-  //  this.interval = setInterval(this.loadData, 1 * 1000);
-  }
+    console.log('inside init');
+    //this.loadData = this.loadData.bind(this);
+   // this.loadData();
+   let self=this;
+    this.route.params.subscribe((params: Params) => {
+      this.Id = params['id'];
+      //this.getClasses(this.Id);
+      console.log('db id',this.Id);
+      
+      
+ });
+  console.log(this.rows);
+  setTimeout(function() {
+    self.loadData();
+  },0);
+}
+
+public ngOnChanges(changes: SimpleChanges){
+  
+}
 
   stringifyName(namedList){
     if(!namedList || !namedList.map){
@@ -42,8 +60,8 @@ export class DatabaseComponent implements OnInit {
 
   filterDb(event) {
     
-    this.trainingSearchTerm = this.trainingSearchTerm || '';
-      const val = this.trainingSearchTerm.toLowerCase();
+    this.dbSearchTerm = this.dbSearchTerm || '';
+      const val = this.dbSearchTerm.toLowerCase();
       if (this.temp) {
       const tempdata = this.temp.filter(function (d) {
         return d['name'].toLowerCase().indexOf(val) !== -1 || !val;
@@ -58,7 +76,7 @@ export class DatabaseComponent implements OnInit {
     this.dbService.getDbList().subscribe(result=>{
       this.rows = result;
       this.temp = this.rows;
-      this.trainingSearchTerm = '';
+      this.dbSearchTerm = '';
       console.log(this.rows);
     });
   }
