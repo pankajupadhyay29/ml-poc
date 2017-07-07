@@ -30,8 +30,6 @@ export class AppComponent implements OnInit  {
 
   getClassName(){
     return this.isExpendedMenu? 'squeeze': 'normal';
-    //{'squeeze': isExpendedMenu, 'normal': !isExpended}
   }
-
   title = 'app';  
 }

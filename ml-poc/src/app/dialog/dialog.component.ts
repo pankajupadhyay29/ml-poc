@@ -24,8 +24,8 @@ import {
     styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-    temp: Array < Object > ;
-    @Input() forestsList: Array < any > ;
+    temp: Array<Object>;
+    @Input() forestsList: Array<any>;
     selectedDb: any;
     checkedForests = [];
     trainingSearchTerm: string;
@@ -33,7 +33,7 @@ export class DialogComponent implements OnInit {
 
     notVisible: boolean = true;
     visible: boolean = false;
-    constructor(public dialogRef: MdDialogRef < DialogComponent > , private dbService: DatabaseService, private menuService: MenuService) {}
+    constructor(public dialogRef: MdDialogRef<DialogComponent>, private dbService: DatabaseService, private menuService: MenuService) { }
     ngOnInit() {
         this.selectedDb.id;
         this.selectedDb.name;
@@ -44,10 +44,9 @@ export class DialogComponent implements OnInit {
         this.trainingSearchTerm = this.trainingSearchTerm || '';
         const val = this.trainingSearchTerm.toLowerCase();
         if (this.temp) {
-            const tempdata = this.temp.filter(function(d) {
+            const tempdata = this.temp.filter(function (d) {
                 return d['name'].toLowerCase().indexOf(val) !== -1 || !val;
             });
-
             // update the rows
             this.forestsList = tempdata;
         }
@@ -57,9 +56,6 @@ export class DialogComponent implements OnInit {
         this.dbService.getForests().subscribe(result => {
             this.forestsList = result;
             this.temp = this.forestsList;
-            console.log('forestList ' + JSON.stringify(this.forestsList[0].name));
-            console.log('coming in dialog');
-
         });
         this.visible = true;
         this.notVisible = false;
@@ -72,7 +68,7 @@ export class DialogComponent implements OnInit {
     }
 
     onCheck(check) {
-        var forest = this.forestsList.find(function(f) {
+        var forest = this.forestsList.find(function (f) {
             return f.id == check
         });
         this.checkedForests.push({
@@ -90,7 +86,6 @@ export class DialogComponent implements OnInit {
     }
 
     onDone() {
-        //console.log(this.checkedForests);
         let db = this.selectedDb;
         console.log('selected forest', this.checkedForests);
         console.log('selected db', db.id);
@@ -121,8 +116,8 @@ export class DialogComponent implements OnInit {
         this.dialogRef.close();
     }
     getAttachedForestInfo() {
-      const totalForest = this.forestsList.length;
-      const attachedForest = this.forestsList.filter((value)=>{return value.database}).length;
-      return attachedForest + " of " + totalForest + " are already attached with some database." 
+        const totalForest = this.forestsList.length;
+        const attachedForest = this.forestsList.filter((value) => { return value.database }).length;
+        return attachedForest + " of " + totalForest + " are already attached with some database."
     }
 }

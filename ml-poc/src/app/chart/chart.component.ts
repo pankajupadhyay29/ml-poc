@@ -120,11 +120,6 @@ export class ChartComponent implements OnInit {
     linedata['area'] = true;
     linedata['legend']=false;
     data.push(linedata);
-
-    // let elem=document.getElementsByClassName('nv-legend-symbol')[0];
-    // elem.setAttribute('style','display:none !important');
-    // let class1 = document.getElementsByTagName('circle')[0].className;
-    // console.log(class1);
     return data;
   }
 
