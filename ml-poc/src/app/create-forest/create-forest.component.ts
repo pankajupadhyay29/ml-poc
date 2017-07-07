@@ -48,7 +48,7 @@ export class CreateForestComponent implements OnInit {
       "database": { "id": this.dbId, "name": this.dbName },
       "selectedForests": [{ "id": this.id, "name": this.forestName }]
     }
-    this.dbService.attacheForest(JSON.stringify(forestList));
+    this.dbService.attacheForest((forestList));
     this.router.navigate(['/database']);
   }
 

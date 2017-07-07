@@ -20,8 +20,9 @@ export class DatabaseService {
   attacheForest(forestList) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    console.log('attache forest',forestList);
     this.http.post(this.service_url + 'setForestToDB', forestList, headers)
-      .map((response: Response) => response.json());
+      .map((response: Response) => response.json()).subscribe((res) => console.log('created' + res));;
   }
 
 
