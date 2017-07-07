@@ -16,8 +16,7 @@ export class CreateDbComponent implements OnInit {
   private service_url = "http://localhost:3000/";
   temp: Array<Object>;
   @Input() dbList: Array<any>;
-  dbName: '';
-  id = 10;
+  dbName: '';  
   security: 'Security';
   schema: 'Schema';
   trigger: 'Trigger';
@@ -54,9 +53,8 @@ export class CreateDbComponent implements OnInit {
     }
     );
   }
-  
-  createData(db) {
-    this.id++;
+
+  createData(db) {    
     let data = {};
     let database = { id: '', name: '', isAvailable: true, relatedDatabase: [], forests: [], appServers: [] };
     database.id = this.uuid();

@@ -37,18 +37,17 @@ var appServers = [
 ];
 
 var DBList = [
-        { id: 0, name: 'App-Services', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Documents', id: 1, relation: dbRelation.schemas }, { name: 'App-Services', id: 0, relation: dbRelation.triggers }], forests: [{ name: 'App-Services', id: 0 }], appServers: [{ name: 'Manage', id: 0, type: appServerType.http, isDefault: true }, { name: 'HealthCheck', id: 1, type: appServerType.http, isDefault: true }] },
+        //{ id: 0, name: 'App-Services', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Documents', id: 1, relation: dbRelation.schemas }, { name: 'App-Services', id: 0, relation: dbRelation.triggers }], forests: [{ name: 'App-Services', id: 0 }], appServers: [{ name: 'Manage', id: 0, type: appServerType.http, isDefault: true }, { name: 'HealthCheck', id: 1, type: appServerType.http, isDefault: true }] },
         { id: 1, name: 'Documents', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, { name: 'Triggers', id: 10, relation: dbRelation.triggers }], forests: [{ name: 'Documents', id: 1 }], appServers: [{ name: 'App-Services', id: 4, type: appServerType.http, isDefault: true }] },
-        { id: 2, name: 'Extensions', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, { name: 'App-Services', id: 0, relation: dbRelation.triggers }], forests: [{ name: 'Extensions', id: 2 }], },
+        //{ id: 2, name: 'Extensions', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, { name: 'App-Services', id: 0, relation: dbRelation.triggers }], forests: [{ name: 'Extensions', id: 2 }], },
         { id: 3, name: 'Fab', isAvailable: false, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, { name: 'App-Services', id: 0, relation: dbRelation.triggers }], forests: [{ name: 'Fab', id: 3 }], },
-        { id: 4, name: 'Last-Login', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, { name: 'App-Services', id: 0, relation: dbRelation.triggers }], forests: [{ name: 'Last-Login', id: 4 }], },
+        //{ id: 4, name: 'Last-Login', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, { name: 'App-Services', id: 0, relation: dbRelation.triggers }], forests: [{ name: 'Last-Login', id: 4 }], },
         { id: 5, name: 'Meters', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Meters', id: 5 }], },
-        { id: 6, name: 'Mlcon', isAvailable: false, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Mlsonforest', id: 6 }], appServers: [{ name: 'mlsprer', id: 3, type: appServerType.http, isDefault: true }, ] },
-        { id: 7, name: 'Modules', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Modules', id: 7 }], },
+        //{ id: 6, name: 'Mlcon', isAvailable: false, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Mlsonforest', id: 6 }], appServers: [{ name: 'mlsprer', id: 3, type: appServerType.http, isDefault: true }, ] },
+        //{ id: 7, name: 'Modules', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Modules', id: 7 }], },
         { id: 8, name: 'Schemas', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Schemas', id: 8 }], },
         { id: 9, name: 'Security', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Security', id: 9 }], appServers: [{ name: 'Admin', id: 4, type: appServerType.http, isDefault: true }, ] },
         { id: 10, name: 'Triggers', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: 'Triggers', id: 10 }], },
-        { id: 11, name: 'Riggers', isAvailable: true, relatedDatabase: [{ name: 'Security', id: 9, relation: dbRelation.security }, { name: 'Schemas', id: 8, relation: dbRelation.schemas }, ], forests: [{ name: '', id: 11 }], },
     ]
     //-------------------------------------------------------
 
@@ -238,8 +237,7 @@ app.post('/setForestToDB', function(req, res) {
         //add these to current db
     var database = _.find(DBList, function(d) { return d.id == db.id });
     database.forests = selectedForests;
-    //_.extend(, {forests: selectedForests})
-    console.log(_.find(DBList, function(d) { return d.id == db.id }));
+    //_.extend(, {forests: selectedForests})    
     addToAccessList(objectTypes.database, db.name, db.id);
 
     res.end(JSON.stringify(DBList));

@@ -71,7 +71,7 @@ export class DatabaseComponent implements OnInit {
           this.highlighted = hilight;          
         }
 
-        setInterval(() => { 
+        this.interval = setInterval(() => { 
           this.highlighted = -1; 
           this.newDb = -1;
           clearInterval(this.interval);

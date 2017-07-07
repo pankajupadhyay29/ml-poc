@@ -36,14 +36,16 @@
 .navigation a:hover {
     background-color: #020102;
 }
+
 .navigation a {
     color: #fff;
 }
 
-.navigation a:active {
+.navigation.active a {
     color: #fff;
     background-color: #C2142E !important;
 }
+
 .navigation a:focus {
     background: #C2142E !important;
     color: #fff;

@@ -131,7 +131,7 @@ export class DialogComponent implements OnInit {
         }
 
         const totalForestCount = this.forestsList.length;
-        const attachedForest = this.forestsList.filter((value) => { return value.database })
+        const attachedForest = this.forestsList.filter((value) => { return value.database && value.database.name })
         const attachedForestCount = attachedForest? attachedForest.length : totalForestCount;
         return attachedForestCount + " of " + totalForestCount + " already attached";
     }

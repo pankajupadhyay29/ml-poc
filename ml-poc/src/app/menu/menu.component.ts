@@ -10,6 +10,7 @@ export class MenuComponent implements OnInit {
   @Input() menuList: Array<Object>;
   @Output() menuToggle = new EventEmitter();
   isExpended = false;
+  activeMenu = 'home';
   
   constructor() { }
 
@@ -22,4 +23,11 @@ export class MenuComponent implements OnInit {
     this.menuToggle.emit(this.isExpended)
   }
 
+  getClass(menu){
+    return menu.name == this.activeMenu? 'active': '';
+  }
+
+  setActive(menu){
+    this.activeMenu = menu.name;
+  }
 }

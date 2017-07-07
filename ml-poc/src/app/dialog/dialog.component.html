@@ -37,7 +37,7 @@
                 <ul class="ul_style">
                     <li *ngFor="let forest of forestsList| orderBy:'name'">
                         <md-checkbox [(ngModel)]="forest.selected" (change)="onCheck(forest.id)" class="chckbox"> {{forest.name}}
-                        </md-checkbox><i class="icons icon-attachment" *ngIf="forest.database" [mdTooltip]="forest.database? forest.database.name: ''"></i>
+                        </md-checkbox><i class="icons icon-attachment" *ngIf="forest.database && forest.database.name" [mdTooltip]="forest.database? forest.database.name: ''"></i>
                     </li>
                 </ul>
             </div>

@@ -13,8 +13,7 @@ export class CreateForestComponent implements OnInit {
   name: any;
   forestName: '';
   content = '+ See More';
-  @Input() dbList: Array<any>;
-  id = 10;
+  @Input() dbList: Array<any>;  
 
   toggleContent() {
     if (this.content === '+ See More') {
@@ -44,8 +43,7 @@ export class CreateForestComponent implements OnInit {
     );
   }
 
-  createForest() {
-    this.id++;
+  createForest() {    
     let data = {};
     let forest = { id: '', name: '' };
     forest.id = this.uuid();
@@ -55,7 +53,7 @@ export class CreateForestComponent implements OnInit {
     this.dbService.createForest(JSON.stringify(data)).subscribe((res) => {
       let forestList = {
         "database": { "id": this.dbId, "name": this.dbName },
-        "selectedForests": [{ "id": this.id, "name": this.forestName }]
+        "selectedForests": [{ "id": forest.id, "name": this.forestName }]
       }
 
       this.dbService.attacheForest((forestList)).subscribe(()=>{
