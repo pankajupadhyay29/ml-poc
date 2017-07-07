@@ -17,13 +17,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.widgets = this.layout.getWidgetLayout();
-    console.log(this.widgets);
-    // this.initData();
     this.initData = this.initData.bind(this);
     this.initData();
     this.interval = setInterval(this.initData, 30 * 1000);
-    console.log('inOnInit', this.widgets);
-
   }
   initData() {
     this.chart_service.getChartList().subscribe(result => {
@@ -67,14 +63,6 @@ export class DashboardComponent implements OnInit {
             "label": "Fab",
             "value": 70
           },
-          // {
-          //   "label": "Last-Login",
-          //   "value": 90
-          // },
-          // {
-          //   "label": "Meter",
-          //   "value": 40
-          // },
         ]
       }
     ]

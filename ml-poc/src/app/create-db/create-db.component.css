@@ -89,9 +89,15 @@
 }
 
 .adjustment{
-    text-align: right;padding-right:15px;margin-bottom:0px
+    text-align: right;
+    padding-right:15px;
+    margin-bottom:0px;
 }
 
 .set_margn{
     margin-bottom: 0px;
+}
+
+.row_width{
+    width:12%;
 }
